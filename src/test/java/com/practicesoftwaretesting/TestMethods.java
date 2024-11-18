@@ -67,7 +67,7 @@ public class TestMethods extends BaseTest{
     //sign-in page web element assert test method
     protected void isSignInPageWebElementDisplayed(SignInPage signInPage){
         //assert 'Sign-in' page title is displayed
-        //assertTrue(signInPage.isSignInPageTitleDisplayed(), "The 'Sign-in' page title isn't displayed.");
+        assertTrue(signInPage.isSignInPageTitleDisplayed(), "The 'Sign-in' page title isn't displayed.");
         //assert 'Sign-in with Google' button is displayed
         assertTrue(signInPage.isSignInWithGoogleButtonDisplayed(), "The 'Sign-in with Google' button isn't displayed.");
         //assert email address input field is displayed

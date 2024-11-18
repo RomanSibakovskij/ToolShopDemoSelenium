@@ -3,6 +3,7 @@ package com.practicesoftwaretesting;
 import org.junit.jupiter.api.*;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.*;
+import org.openqa.selenium.firefox.*;
 
 import java.util.*;
 
@@ -12,11 +13,12 @@ public class BaseTest {
 
     @BeforeEach
     void setUp(){
-        ChromeOptions options = new ChromeOptions();
-        options.addArguments("--disable-search-engine-choice-screen"); //for browser run
-        //options.addArguments("--headless", "--no-sandbox", "--disable-dev-shm-usage", "--disable-gpu", "--window-size=1920,1080"); //this is necessary for CI run, disable once run in IDE and re-enable commented out options
-        driver = new ChromeDriver(options);
-        driver.manage().window().maximize(); //-> enable this with browser run
+        FirefoxOptions options = new FirefoxOptions();
+        options.addArguments("--disable-search-engine-choice-screen"); // For browser run
+        //options.addArguments("--headless", "--disable-gpu", "--window-size=1920,1080"); // Necessary for CI run, uncomment when needed
+
+        driver = new FirefoxDriver(options);
+        driver.manage().window().maximize(); // Enable this for browser run
         driver.get("https://practicesoftwaretesting.com/");
     }
 
