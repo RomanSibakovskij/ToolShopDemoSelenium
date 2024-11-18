@@ -45,6 +45,10 @@ public class SignUpPage extends BasePage{
 
     //sign-up page title getter
     public String getSignUpPageTitle(){return signUpPageTitle.getText();}
+    //sign-up password hint getter
+    public String getPasswordHint(){return passwordInputHint.getText();}
+    //sign-up password strength bar getter
+    public String getPasswordStrengthBarText(){return passwordStrengthBar.getText();}
 
     //sign-up page web element assert methods
     public boolean isSignUpPageTitleDisplayed(){return signUpPageTitle.isDisplayed();}

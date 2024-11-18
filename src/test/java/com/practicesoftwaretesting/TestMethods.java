@@ -29,6 +29,17 @@ public class TestMethods extends BaseTest{
         assertEquals("Customer registration", signUpPage.getSignUpPageTitle(), "The 'Sign-up' page title doesn't match expectations or the user is on the wrong page.");
     }
 
+    //valid user account creation test method
+    protected void createValidUserAccountTest(SignUpPage signUpPage){
+        HomePage homePage = new HomePage(driver);
+        //general web element assert
+        isGeneralPageWebElementDisplayed(homePage);
+        //sign-up web element assert
+        isSignUpPageWebElementDisplayed(signUpPage);
+        //sign-up page text elements assert
+        isSignUpTextAsExpected(signUpPage);
+    }
+
 
     //homepage web element assert test method
     protected void isHomePageWebElementDisplayed(HomePage homePage){
@@ -85,6 +96,59 @@ public class TestMethods extends BaseTest{
         assertTrue(signInPage.isSignUpLinkDisplayed(), "The 'Sign-up' link isn't displayed.");
         //assert 'Forgot password' link is displayed
         assertTrue(signInPage.isForgotPasswordLinkDisplayed(), "The 'Forgot password' link isn't displayed.");
+    }
+
+    //sign-up page web element assert test method
+    protected void isSignUpPageWebElementDisplayed(SignUpPage signUpPage){
+        //assert 'Sign-up' page title is displayed
+        assertTrue(signUpPage.isSignUpPageTitleDisplayed(), "The 'Sign-up' page title isn't displayed");
+        //assert first name input field is displayed
+        assertTrue(signUpPage.isFirstNameInputFieldDisplayed(), "The first name input field isn't displayed");
+        //assert last name input field is displayed
+        assertTrue(signUpPage.isLastNameInputFieldDisplayed(), "The last name input field isn't displayed");
+        //assert birthdate input field is displayed
+        assertTrue(signUpPage.isBirthdateInputFieldDisplayed(), "The birthdate input field isn't displayed");
+        //assert address input field is displayed
+        assertTrue(signUpPage.isAddressInputFieldDisplayed(), "The address input field isn't displayed");
+        //assert post code input field is displayed
+        assertTrue(signUpPage.isPostCodeInputFieldDisplayed(), "The post code input field isn't displayed");
+        //assert city input field is displayed
+        assertTrue(signUpPage.isCityInputFieldDisplayed(), "The city input field isn't displayed");
+        //assert state input field is displayed
+        assertTrue(signUpPage.isStateInputFieldDisplayed(), "The state input field isn't displayed");
+        //assert country dropdown menu is displayed
+        assertTrue(signUpPage.isCountryDropdownMenuDisplayed(), "The country dropdown menu isn't displayed");
+        //assert phone input field is displayed
+        assertTrue(signUpPage.isPhoneInputFieldDisplayed(), "The phone input field isn't displayed");
+        //assert email address input field is displayed
+        assertTrue(signUpPage.isEmailAddressInputFieldDisplayed(), "The email address input field isn't displayed");
+        //assert password input field is displayed
+        assertTrue(signUpPage.isPasswordInputFieldDisplayed(), "The password input field isn't displayed");
+        //assert password view button is displayed
+        assertTrue(signUpPage.isPasswordViewButtonDisplayed(), "The password view button isn't displayed");
+        //assert password input hint is displayed
+        assertTrue(signUpPage.isPasswordInputHintDisplayed(), "The password input hint isn't displayed");
+        //assert password strength bar is displayed
+        assertTrue(signUpPage.isPasswordStrengthBarDisplayed(), "The password strength bar isn't displayed");
+        //assert register button is displayed
+        assertTrue(signUpPage.isRegisterButtonDisplayed(), "The register button isn't displayed");
+    }
+    //sign-up page text assert test method
+    protected void isSignUpTextAsExpected(SignUpPage signUpPage){
+        //assert the user gets on sign-in page (it contains sign-up link)
+        assertEquals("Customer registration", signUpPage.getSignUpPageTitle(), "The 'Sign-up' page title doesn't match expectations or the user is on the wrong page.");
+        //assert password hint matches expectations
+        assertEquals("Your password must:\n" +
+                "Be at least 8 characters long\n" +
+                "Contain both uppercase and lowercase letters\n" +
+                "Include at least one number\n" +
+                "Have at least one special symbol (e.g., @, #, $, etc.)", signUpPage.getPasswordHint(), "The password hint doesn't match expectations");
+        //assert password strength bar text matches expectations
+        assertEquals("Weak\n" +
+                "Moderate\n" +
+                "Strong\n" +
+                "Very Strong\n" +
+                "Excellent", signUpPage.getPasswordStrengthBarText(), "The password strength bar text doesn't match expectations");
     }
 
     //general web element assert test method
