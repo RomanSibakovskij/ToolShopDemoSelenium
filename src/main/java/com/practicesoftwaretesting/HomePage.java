@@ -2,8 +2,10 @@ package com.practicesoftwaretesting;
 
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.*;
 
-import java.util.List;
+import java.time.Duration;
+import java.util.*;
 
 public class HomePage extends BasePage{
 
@@ -52,9 +54,33 @@ public class HomePage extends BasePage{
     private WebElement footerParagraph;
     private List<WebElement> footerLinkElements = driver.findElements(By.xpath("//div[@class='container-fluid text-center bg-light p-5 mt-4']//a"));
 
-
-
     public HomePage(WebDriver driver) {super(driver);}
+
+    //homepage navbar link click index getter
+    public void clickNavbarLink(int navLinkIndex) {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(720));
+        wait.until(ExpectedConditions.elementToBeClickable(navbarLinkElements.get(navLinkIndex)));
+        navbarLinkElements.get(navLinkIndex).click();
+    }
+    //click 'Sign-in' navbar link method
+    public void clickSignInNavbarLink(){
+        clickNavbarLink(3);}
+
+    //product card data getters
+    public List<String> getProductName() {
+        List<String> productName = new ArrayList<>();
+        for (WebElement element : productCardNameElements) {
+            productName.add(element.getText());
+        }
+        return productName;
+    }
+    public List<String> getProductCardFooter() {
+        List<String> productCardFooter = new ArrayList<>();
+        for (WebElement element : productCardFooterElements) {
+            productCardFooter.add(element.getText());
+        }
+        return productCardFooter;
+    }
 
     //homepage web element assert methods
     public boolean isNavbarBrandLogoDisplayed(){return brandLogo.isDisplayed();}

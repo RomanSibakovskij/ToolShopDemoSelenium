@@ -13,6 +13,10 @@ public class TestMethods extends BaseTest{
         isGeneralPageWebElementDisplayed(homePage);
         //homepage web element assert
         isHomePageWebElementDisplayed(homePage);
+        //log available product data (on home page)
+        logHomePageProductData(homePage);
+        //click 'Sign-in' navbar link
+        homePage.clickSignInNavbarLink();
     }
 
 
@@ -44,6 +48,13 @@ public class TestMethods extends BaseTest{
         assertTrue(homePage.isProductCardFooterDisplayed(), "The home page product card footer isn't displayed.");
         //assert homepage pagination links are displayed (as a list)
         assertTrue(homePage.isPaginationLinkDisplayed(), "The home page pagination link isn't displayed.");
+    }
+    //homepage product data logger method
+    protected void logHomePageProductData(HomePage homePage){
+        System.out.println("Home page product displayed data: " + "\n");
+        logger.info("Home page displayed product names: " + homePage.getProductName());
+        logger.info("Home page displayed product card footer content (availability and price): " + homePage.getProductCardFooter());
+        System.out.println("\n");
     }
 
     //general web element assert test method
