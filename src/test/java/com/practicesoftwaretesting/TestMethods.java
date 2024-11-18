@@ -18,12 +18,15 @@ public class TestMethods extends BaseTest{
         logHomePageProductData(homePage);
         //click 'Sign-in' navbar link
         homePage.clickSignInNavbarLink();
+        //assert the user gets on sign-in page (it contains sign-up link)
+        assertEquals("Login", signInPage.getSignInPageTitle(), "The sign-in page title doesn't match expectations or the user is on the wrong page.");
         //sign-in page web assert
         isSignInPageWebElementDisplayed(signInPage);
-        //assert the user gets on sign-in page (it contains sign-up link) // the 'Login' is displayed on the page, Selenium doesn't seem to find the element
-        assertEquals("Login", signInPage.getSignInPageTitle(), "The sign-in page title doesn't match expectations or the user is on the wrong page.");
         //click 'Sign-up' link
         signInPage.clickSignUpLink();
+        SignUpPage signUpPage = new SignUpPage(driver);
+        //assert the user gets on sign-in page (it contains sign-up link)
+        assertEquals("Customer registration", signUpPage.getSignUpPageTitle(), "The 'Sign-up' page title doesn't match expectations or the user is on the wrong page.");
     }
 
 
