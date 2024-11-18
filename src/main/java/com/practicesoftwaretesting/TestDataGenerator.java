@@ -150,31 +150,43 @@ public class TestDataGenerator extends BasePage{
         return phoneNumber;
     }
 
-    //random birthdate generator with set format
     public static String generateBirthdate() {
         Random random = new Random();
+
         //generate a random year between 1950 and 2005
         int year = 1950 + random.nextInt(2005 - 1950 + 1);
+
         //generate a random month between 1 and 12
         int month = 1 + random.nextInt(12);
-        //generate a day based on the month and year (to ensure valid dates)
+
+        //generate a random day based on the month and year (to ensure valid dates)
         int day;
         switch (month) {
             case 4: case 6: case 9: case 11:
-                day = 1 + random.nextInt(30); //30 days for April, June, September, November
+                day = 1 + random.nextInt(30); // 30 days for April, June, September, November
                 break;
             case 2:
-                //verify it's a leap year for February
+                //assert it's a leap year for February
                 day = 1 + random.nextInt(year % 4 == 0 && (year % 100 != 0 || year % 400 == 0) ? 29 : 28);
                 break;
             default:
                 day = 1 + random.nextInt(31);
         }
-        //creates the date with LocalDate for accurate formatting
-        LocalDate birthdate = LocalDate.of(year, month, day);
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
 
-        return birthdate.format(formatter);
+        //generate thedate with LocalDate for accurate formatting
+        LocalDate birthdate = LocalDate.of(year, month, day);
+
+        //format required by <input type="date">
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+
+        //formatter for log/display (dd/MM/yyyy)
+        DateTimeFormatter logFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+
+        //log the visually swapped date format (this most likely due to the developer oversight that the similar date input format is not present)
+        String logFormattedDate = birthdate.format(logFormatter);
+        logger.info("Valid user birthdate: " + logFormattedDate);
+
+        return birthdate.format(formatter); //return in yyyy-MM-dd format - required for internal input
     }
 
     //array of Illinois state cities

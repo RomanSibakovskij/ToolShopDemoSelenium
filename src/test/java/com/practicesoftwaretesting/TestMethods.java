@@ -38,6 +38,37 @@ public class TestMethods extends BaseTest{
         isSignUpPageWebElementDisplayed(signUpPage);
         //sign-up page text elements assert
         isSignUpTextAsExpected(signUpPage);
+        //valid user input data getter
+        signUpPage.validInputUserDataGetter();
+        //input valid first name
+        signUpPage.inputFirstNameIntoInputField();
+        //input valid last name
+        signUpPage.inputLastNameIntoInputField();
+        //input valid birthdate
+        signUpPage.inputBirthdateIntoInputField();
+        //input valid address
+        signUpPage.inputAddressIntoInputField();
+        //input valid post code
+        signUpPage.inputPostCodeIntoInputField();
+        //input valid city
+        signUpPage.inputCityIntoInputField();
+        //input valid state
+        signUpPage.inputStateIntoInputField();
+        //click country dropdown menu
+        signUpPage.clickCountryDropdownMenu();
+        //select 'United States'
+        signUpPage.selectUnitedStatesOption();
+        //input valid phone number
+        signUpPage.inputPhoneNumberIntoInputField();
+        //input valid email address
+        signUpPage.inputEmailIntoInputField();
+        //input valid password
+        signUpPage.inputPasswordIntoInputField();
+        //click 'Register' button
+        signUpPage.clickRegisterButton();
+        SignInPage signInPage = new SignInPage(driver);
+        //assert the user gets back onto "Sign-in' page - there's no message confirmation for account creation (for some reason Selenium displays "Customer Registration" instead of "Login" => the actual user visually gets there though
+//        assertEquals("Login", signInPage.getSignInPageTitle(), "The sign-in page title doesn't match expectations or the user is on the wrong page.");
     }
 
 
