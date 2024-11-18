@@ -62,9 +62,10 @@ public class HomePage extends BasePage{
     public boolean isHomePageBannerDisplayed(){return homePageBanner.isDisplayed();}
     public boolean isSortDropdownMenuDisplayed(){return sortDropdownMenu.isDisplayed();}
     public boolean isPriceRangeSliderDisplayed(){return priceRangeSlider.isDisplayed();}
-    public boolean isSearchBarInputFieldDisplayed(){return searchBarInputField.isDisplayed();}
-    public boolean isSearchBarRemoveQueryButtonDisplayed(){return searchBarRemoveQueryButton.isDisplayed();}
-    public boolean isSearchBarButtonDisplayed(){return searchBarButton.isDisplayed();}
+    public boolean isSearchInputFieldDisplayed(){return searchBarInputField.isDisplayed();}
+    public boolean isSearchRemoveQueryButtonDisplayed(){return searchBarRemoveQueryButton.isDisplayed();}
+    public boolean isSearchButtonDisplayed(){return searchBarButton.isDisplayed();}
+    public boolean isFooterParagraphDisplayed(){return footerParagraph.isDisplayed();}
 
     public boolean isNavbarLinkDisplayed() {
         for (WebElement element : navbarLinkElements) {
