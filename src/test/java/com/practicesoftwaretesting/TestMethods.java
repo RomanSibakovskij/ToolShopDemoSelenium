@@ -9,6 +9,7 @@ public class TestMethods extends BaseTest{
 
     //navigate to user sign-up page test method
     protected void navigateToUserSignUpPageTest(HomePage homePage){
+        SignInPage signInPage = new SignInPage(driver);
         //general web element assert
         isGeneralPageWebElementDisplayed(homePage);
         //homepage web element assert
@@ -17,6 +18,12 @@ public class TestMethods extends BaseTest{
         logHomePageProductData(homePage);
         //click 'Sign-in' navbar link
         homePage.clickSignInNavbarLink();
+        //sign-in page web assert
+        isSignInPageWebElementDisplayed(signInPage);
+        //assert the user gets on sign-in page (it contains sign-up link) // the 'Login' is displayed on the page, Selenium doesn't seem to find the element
+        assertEquals("Login", signInPage.getSignInPageTitle(), "The sign-in page title doesn't match expectations or the user is on the wrong page.");
+        //click 'Sign-up' link
+        signInPage.clickSignUpLink();
     }
 
 
@@ -55,6 +62,26 @@ public class TestMethods extends BaseTest{
         logger.info("Home page displayed product names: " + homePage.getProductName());
         logger.info("Home page displayed product card footer content (availability and price): " + homePage.getProductCardFooter());
         System.out.println("\n");
+    }
+
+    //sign-in page web element assert test method
+    protected void isSignInPageWebElementDisplayed(SignInPage signInPage){
+        //assert 'Sign-in' page title is displayed
+        //assertTrue(signInPage.isSignInPageTitleDisplayed(), "The 'Sign-in' page title isn't displayed.");
+        //assert 'Sign-in with Google' button is displayed
+        assertTrue(signInPage.isSignInWithGoogleButtonDisplayed(), "The 'Sign-in with Google' button isn't displayed.");
+        //assert email address input field is displayed
+        assertTrue(signInPage.isEmailAddressInputDisplayed(), "The email address input field isn't displayed.");
+        //assert password input field is displayed
+        assertTrue(signInPage.isPasswordInputDisplayed(), "The password input field isn't displayed.");
+        //assert view password button is displayed
+        assertTrue(signInPage.isViewPasswordButtonDisplayed(), "The view password button isn't displayed.");
+        //assert 'Sign-in' button is displayed
+        assertTrue(signInPage.isSignInButtonDisplayed(), "The 'Sign-in' button isn't displayed.");
+        //assert 'Sign-up' link is displayed
+        assertTrue(signInPage.isSignUpLinkDisplayed(), "The 'Sign-up' link isn't displayed.");
+        //assert 'Forgot password' link is displayed
+        assertTrue(signInPage.isForgotPasswordLinkDisplayed(), "The 'Forgot password' link isn't displayed.");
     }
 
     //general web element assert test method
