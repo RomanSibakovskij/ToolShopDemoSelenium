@@ -47,6 +47,11 @@ public class SignUpPage extends BasePage{
     private WebElement passwordStrengthBar;
     @FindBy(xpath = "//button[@type='submit']")
     private WebElement registerButton;
+    //invalid input error message elements
+    @FindBy(xpath = "//div[@class='alert alert-danger']")
+    private WebElement invalidUserInputError;
+    @FindBy(xpath = "//div[@class='alert alert-danger mt-3']")
+    private WebElement invalidInputError;
 
     //valid input data
     private String firstName;
@@ -59,6 +64,9 @@ public class SignUpPage extends BasePage{
     private String phone;
     private String email;
     private String password;
+
+    //no singular input
+    private String noFirstName;
 
     public SignUpPage(WebDriver driver) {super(driver);}
 
@@ -153,12 +161,49 @@ public class SignUpPage extends BasePage{
     //select 'United States' option method
     public void selectUnitedStatesOption(){usCountryOption.click();}
 
+    //valid input data getter
+    public void invalidInputUserDataGetterNoFirstName(){
+        noFirstName = "";
+        lastName = TestDataGenerator.getRandomLastName();
+        birthdate = TestDataGenerator.generateBirthdate(); //since this particular field doesn't accept rng values, manual input is introduced "1989-03-15"
+        address = TestDataGenerator.generateRandomAddress(7);
+        postCode = TestDataGenerator.getRandomPostalCode();
+        city = TestDataGenerator.getRandomCity();
+        state = "Illinois";
+        phone = TestDataGenerator.generatePhoneNumber(5);
+        email = TestDataGenerator.generateRandomEmailAddress(6);
+        password = TestDataGenerator.generateRandomPassword();
+
+        System.out.println("Invalid data generated for user account creation (no first name): " + "\n");
+        logger.info("No first name (no first name): " + firstName);
+        logger.info("Valid user last name (no first name): " + lastName);
+        logger.info("Valid user address (no first name): " + address);
+        logger.info("Valid user post code (no first name): " + postCode);
+        logger.info("Valid user city (no first name): " + city);
+        logger.info("Valid user state (no first name): " + state);
+        logger.info("Valid user phone number (no first name): " + phone);
+        logger.info("Valid user email (no first name): " + email);
+        logger.info("Valid user password (no first name): " + password);
+        System.out.println("\n");
+    }
+
+    //invalid user data input method -> no first name
+    public void inputNoFirstNameIntoInputField(){
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(575));
+        wait.until(ExpectedConditions.visibilityOf(firstNameInputField));
+        firstNameInputField.sendKeys(noFirstName);
+    }
+
     //sign-up page title getter
     public String getSignUpPageTitle(){return signUpPageTitle.getText();}
     //sign-up password hint getter
     public String getPasswordHint(){return passwordInputHint.getText();}
     //sign-up password strength bar getter
     public String getPasswordStrengthBarText(){return passwordStrengthBar.getText();}
+
+    //invalid input error message getters
+    public String getInvalidUserInputErrorMessage(){return invalidUserInputError.getText();}
+    public String getInvalidInputErrorMessage(){return invalidInputError.getText();}
 
     //email address getter(for login)
     public String getEmailAddress(){return email;}
