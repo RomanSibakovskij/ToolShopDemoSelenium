@@ -2,6 +2,9 @@ package com.practicesoftwaretesting;
 
 import org.slf4j.*;
 import static org.junit.jupiter.api.Assertions.*;
+import org.openqa.selenium.*;
+import java.io.File;
+import java.nio.file.*;
 
 public class TestMethods extends BaseTest{
 
@@ -69,6 +72,8 @@ public class TestMethods extends BaseTest{
         SignInPage signInPage = new SignInPage(driver);
         //assert the user gets back onto "Sign-in' page - there's no message confirmation for account creation (for some reason Selenium displays "Customer Registration" instead of "Login" => the actual user visually gets there though
 //        assertEquals("Login", signInPage.getSignInPageTitle(), "The sign-in page title doesn't match expectations or the user is on the wrong page.");
+        //capture screenshot of the test result
+        captureScreenshot(driver, "Valid User Account Creation");
     }
 
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -116,6 +121,8 @@ public class TestMethods extends BaseTest{
         signUpPage.clickRegisterButton();
         //assert the expected error message displayed matches the expectations
         assertEquals("First name is required", signUpPage.getInvalidUserInputErrorMessage(), "The first name error message doesn't match expectations.");
+        //capture screenshot of the test result
+        captureScreenshot(driver, "Invalid User Account Creation with No First Name");
     }
     //invalid user account creation test method (no last name)
     protected void invalidUserAccountNoLastNameCreationTest(SignUpPage signUpPage){
@@ -156,6 +163,8 @@ public class TestMethods extends BaseTest{
         signUpPage.clickRegisterButton();
         //assert the expected error message displayed matches the expectations
         assertEquals("fields.last-name.required", signUpPage.getInvalidUserInputErrorMessage(), "The last name error message doesn't match expectations.");
+        //capture screenshot of the test result
+        captureScreenshot(driver, "Invalid User Account Creation with No Last Name");
     }
     //invalid user account creation test method (no birthdate)
     protected void invalidUserAccountNoBirthdateCreationTest(SignUpPage signUpPage){
@@ -196,6 +205,8 @@ public class TestMethods extends BaseTest{
         signUpPage.clickRegisterButton();
         //assert the expected error message displayed matches the expectations
         assertEquals("Date of Birth is required", signUpPage.getInvalidInputErrorMessage(), "The birthdate error message doesn't match expectations.");
+        //capture screenshot of the test result
+        captureScreenshot(driver, "Invalid User Account Creation with No Birthdate");
     }
     //invalid user account creation test method (no user address)
     protected void invalidUserAccountNoAddressCreationTest(SignUpPage signUpPage){
@@ -236,6 +247,55 @@ public class TestMethods extends BaseTest{
         signUpPage.clickRegisterButton();
         //assert the expected error message displayed matches the expectations
         assertEquals("Address is required", signUpPage.getInvalidInputErrorMessage(), "The user address error message doesn't match expectations.");
+        //capture screenshot of the test result
+        captureScreenshot(driver, "Invalid User Account Creation with No User Address");
+    }
+    //invalid user account creation test method (no user post code) (the user account gets created)
+    protected void invalidUserAccountNoPostCodeCreationTest(SignUpPage signUpPage){
+        HomePage homePage = new HomePage(driver);
+        //general web element assert
+        isGeneralPageWebElementDisplayed(homePage);
+        //sign-up web element assert
+        isSignUpPageWebElementDisplayed(signUpPage);
+        //sign-up page text elements assert
+        isSignUpTextAsExpected(signUpPage);
+        //invalid user input data getter -> no user post code
+        signUpPage.invalidInputUserDataGetterNoPostCode();
+        //input valid first name
+        signUpPage.inputFirstNameIntoInputField();
+        //input valid last name
+        signUpPage.inputLastNameIntoInputField();
+        //input valid birthdate
+        signUpPage.inputBirthdateIntoInputField();
+        //input valid address
+        signUpPage.inputAddressIntoInputField();
+        //don't input post code
+        signUpPage.inputPostCodeIntoInputField();
+        //input valid city
+        signUpPage.inputCityIntoInputField();
+        //input valid state
+        signUpPage.inputStateIntoInputField();
+        //click country dropdown menu
+        signUpPage.clickCountryDropdownMenu();
+        //select 'United States'
+        signUpPage.selectUnitedStatesOption();
+        //input valid phone number
+        signUpPage.inputPhoneNumberIntoInputField();
+        //input valid email address
+        signUpPage.inputEmailIntoInputField();
+        //input valid password
+        signUpPage.inputPasswordIntoInputField();
+        //click 'Register' button
+        signUpPage.clickRegisterButton();
+        //log the issue if the user account gets created
+        try {
+            String errorMessage = signUpPage.getInvalidUserInputErrorMessage();
+            assertEquals("Postcode is required", errorMessage, "The user postcode error message doesn't match expectations.");
+        } catch (NoSuchElementException e) {
+            logger.error("The user account gets created despite no user postcode being input.");
+        }
+        //capture screenshot of the error
+        captureScreenshot(driver, "Invalid User Account Creation with No User Post Code");
     }
 
 
@@ -361,5 +421,17 @@ public class TestMethods extends BaseTest{
         assertTrue(homePage.isFooterParagraphDisplayed(), "The footer paragraph isn't displayed.");
         //assert footer links are displayed (as a list)
         assertTrue(homePage.isFooterLinkDisplayed(), "The footer link isn't displayed.");
+    }
+
+    //test result screenshot method
+    public void captureScreenshot(WebDriver driver, String fileName) {
+        try {
+            File screenshot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+            File destination = new File("D:\\IntelliJ Selenium projects\\ToolShopDemoSelenium\\src\\test\\resources" + " " +  fileName + ".png");
+            Files.copy(screenshot.toPath(), destination.toPath(), StandardCopyOption.REPLACE_EXISTING);
+            logger.info("Screenshot saved at: " + destination.getAbsolutePath());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

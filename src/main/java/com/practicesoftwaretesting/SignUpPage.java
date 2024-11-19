@@ -70,6 +70,7 @@ public class SignUpPage extends BasePage{
     private String noLastName;
     private String noBirthdate;
     private String noAddress;
+    private String noPostCode;
 
     public SignUpPage(WebDriver driver) {super(driver);}
 
@@ -289,6 +290,37 @@ public class SignUpPage extends BasePage{
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(575));
         wait.until(ExpectedConditions.visibilityOf(addressInputField));
         addressInputField.sendKeys(noAddress);
+    }
+
+    //invalid input data getter (no user post code)
+    public void invalidInputUserDataGetterNoPostCode(){
+        firstName = TestDataGenerator.getRandomFirstName();
+        lastName = TestDataGenerator.getRandomLastName();
+        birthdate = TestDataGenerator.generateBirthdate();
+        address = TestDataGenerator.generateRandomAddress(7);
+        noPostCode = "";
+        city = TestDataGenerator.getRandomCity();
+        state = "Illinois";
+        phone = TestDataGenerator.generatePhoneNumber(5);
+        email = TestDataGenerator.generateRandomEmailAddress(6);
+        password = TestDataGenerator.generateRandomPassword();
+
+        System.out.println("Invalid data generated for user account creation (no user postcode): " + "\n");
+        logger.info("Valid user first name (no user postcode): " + firstName);
+        logger.info("Valid user last name (no user postcode): " + lastName);
+        logger.info("Valid user address (no user postcode): " + address);
+        logger.info("No user post code (no user postcode): " + noPostCode);
+        logger.info("Valid user city (no user postcode): " + city);
+        logger.info("Valid user state (no user postcode): " + state);
+        logger.info("Valid user phone number (no user postcode): " + phone);
+        logger.info("Valid user email (no user postcode): " + email);
+        logger.info("Valid user password (no user postcode): " + password);
+        System.out.println("\n");
+    }
+    public void inputNoPostCodeIntoInputField(){
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(575));
+        wait.until(ExpectedConditions.visibilityOf(postCodeInputField));
+        postCodeInputField.sendKeys(noPostCode);
     }
 
     //sign-up page title getter
