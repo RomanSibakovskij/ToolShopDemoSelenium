@@ -196,4 +196,5 @@ public class SignUpPageTest extends TestMethods{
         //invalid user account creation test (no user password)
         invalidUserAccountNoPasswordCreationTest(signUpPage);
     }
+
 }

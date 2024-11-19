@@ -76,6 +76,16 @@ public class SignUpPage extends BasePage{
     private String noEmail;
     private String noPassword;
 
+    //invalid singular input (too short)
+    private String tooShortFirstName;
+    private String tooShortLastName;
+    private String tooShortAddress;
+    private String tooShortCity;
+    private String tooShortState;
+    private String tooShortPhone;
+    private String tooShortEmail;
+    private String tooShortPassword;
+
     public SignUpPage(WebDriver driver) {super(driver);}
 
     //valid input data getter
@@ -171,6 +181,7 @@ public class SignUpPage extends BasePage{
 
     //invalid test data getters and input methods
 
+    //no singular input
     //invalid input data getter (no first name)
     public void invalidInputUserDataGetterNoFirstName(){
         noFirstName = "";
