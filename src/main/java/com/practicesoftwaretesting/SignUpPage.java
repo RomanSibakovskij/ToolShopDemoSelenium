@@ -181,7 +181,7 @@ public class SignUpPage extends BasePage{
         email = TestDataGenerator.generateRandomEmailAddress(6);
         password = TestDataGenerator.generateRandomPassword();
 
-        System.out.println("Invalid data generated for user account creation (no first name): " + "\n");
+        System.out.println("Valid data generated for invalid user account creation (no first name): " + "\n");
         logger.info("No first name (no first name): " + noFirstName);
         logger.info("Valid user last name (no first name): " + lastName);
         logger.info("Valid user address (no first name): " + address);
@@ -214,7 +214,7 @@ public class SignUpPage extends BasePage{
         email = TestDataGenerator.generateRandomEmailAddress(6);
         password = TestDataGenerator.generateRandomPassword();
 
-        System.out.println("Invalid data generated for user account creation (no last name): " + "\n");
+        System.out.println("Valid data generated for invalid user account creation (no last name): " + "\n");
         logger.info("Valid user first name (no first name): " + firstName);
         logger.info("No last name (no last name): " + noLastName);
         logger.info("Valid user address (no last name): " + address);
@@ -245,7 +245,7 @@ public class SignUpPage extends BasePage{
         email = TestDataGenerator.generateRandomEmailAddress(6);
         password = TestDataGenerator.generateRandomPassword();
 
-        System.out.println("Invalid data generated for user account creation (no birthdate): " + "\n");
+        System.out.println("Valid data generated for invalid user account creation (no birthdate): " + "\n");
         logger.info("Valid user first name (no birthdate): " + firstName);
         logger.info("Valid user last name (no birthdate): " + lastName);
         logger.info("Valid user address (no birthdate): " + address);
@@ -275,7 +275,7 @@ public class SignUpPage extends BasePage{
         email = TestDataGenerator.generateRandomEmailAddress(6);
         password = TestDataGenerator.generateRandomPassword();
 
-        System.out.println("Invalid data generated for user account creation (no user address): " + "\n");
+        System.out.println("Valid data generated for invalid user account creation (no user address): " + "\n");
         logger.info("Valid user first name (no user address): " + firstName);
         logger.info("Valid user last name (no user address): " + lastName);
         logger.info("No user address (no user address): " + noAddress);
@@ -306,7 +306,7 @@ public class SignUpPage extends BasePage{
         email = TestDataGenerator.generateRandomEmailAddress(6);
         password = TestDataGenerator.generateRandomPassword();
 
-        System.out.println("Invalid data generated for user account creation (no user postcode): " + "\n");
+        System.out.println("Valid data generated for invalid user account creation (no user postcode): " + "\n");
         logger.info("Valid user first name (no user postcode): " + firstName);
         logger.info("Valid user last name (no user postcode): " + lastName);
         logger.info("Valid user address (no user postcode): " + address);
@@ -337,7 +337,7 @@ public class SignUpPage extends BasePage{
         email = TestDataGenerator.generateRandomEmailAddress(6);
         password = TestDataGenerator.generateRandomPassword();
 
-        System.out.println("Invalid data generated for user account creation (no user city): " + "\n");
+        System.out.println("Valid data generated for invalid user account creation (no user city): " + "\n");
         logger.info("Valid user first name (no user city): " + firstName);
         logger.info("Valid user last name (no user city): " + lastName);
         logger.info("Valid user address (no user city): " + address);
@@ -368,7 +368,7 @@ public class SignUpPage extends BasePage{
         email = TestDataGenerator.generateRandomEmailAddress(6);
         password = TestDataGenerator.generateRandomPassword();
 
-        System.out.println("Invalid data generated for user account creation (no user state): " + "\n");
+        System.out.println("Valid data generated for invalid user account creation (no user state): " + "\n");
         logger.info("Valid user first name (no user state): " + firstName);
         logger.info("Valid user last name (no user state): " + lastName);
         logger.info("Valid user address (no user state): " + address);
@@ -384,6 +384,32 @@ public class SignUpPage extends BasePage{
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(575));
         wait.until(ExpectedConditions.visibilityOf(stateInputField));
         stateInputField.sendKeys(noState);
+    }
+
+    //invalid input data getter (no user country)
+    public void invalidInputUserDataGetterNoCountry(){
+        firstName = TestDataGenerator.getRandomFirstName();
+        lastName = TestDataGenerator.getRandomLastName();
+        birthdate = TestDataGenerator.generateBirthdate();
+        address = TestDataGenerator.generateRandomAddress(7);
+        postCode = TestDataGenerator.getRandomPostalCode();
+        city = TestDataGenerator.getRandomCity();
+        state = "Illinois";
+        phone = TestDataGenerator.generatePhoneNumber(5);
+        email = TestDataGenerator.generateRandomEmailAddress(6);
+        password = TestDataGenerator.generateRandomPassword();
+
+        System.out.println("Valid data generated for invalid user account creation (no user country): " + "\n");
+        logger.info("Valid user first name (no user country): " + firstName);
+        logger.info("Valid user last name (no user country): " + lastName);
+        logger.info("Valid user address (no user country): " + address);
+        logger.info("Valid user post code (no user country): " + postCode);
+        logger.info("Valid user city (no user country): " + city);
+        logger.info("Valid user state (no user country): " + state);
+        logger.info("Valid user phone number (no user country): " + phone);
+        logger.info("Valid user email (no user country): " + email);
+        logger.info("Valid user password (no user country): " + password);
+        System.out.println("\n");
     }
 
     //sign-up page title getter

@@ -13,7 +13,7 @@ target/
 *.ipr
 
 # Ignore all .png files in the resources folder
-resources/*.png
+/src/test/resources/*.png
 
 ### Eclipse ###
 .apt_generated
