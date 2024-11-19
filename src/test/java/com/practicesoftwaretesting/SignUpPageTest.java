@@ -360,4 +360,20 @@ public class SignUpPageTest extends TestMethods{
         //invalid user account creation test (invalid phone format)
         invalidUserAccountInvalidPhoneCreationTest(signUpPage);
     }
+
+    //Test 002v -> invalid user account creation test (invalid user email format)
+    @Test
+    @DisplayName("Invalid User Account Creation Test - Invalid Email Format")
+    @Tag("Invalid_Account_Creation_Test")
+    @Tag("Invalid_Singular_Input_Format")
+    void invalidUserAccountInvalidEmailCreationTest(){
+        HomePage homePage = new HomePage(driver);
+        SignUpPage signUpPage = new SignUpPage(driver);
+        //navigation to user sign-up page
+        navigateToUserSignUpPageTest(homePage);
+        //test title (for logging)
+        System.out.println("Invalid User Account Creation Test - Invalid Email Format" + "\n");
+        //invalid user account creation test (invalid email format)
+        invalidUserAccountInvalidEmailCreationTest(signUpPage);
+    }
 }

@@ -147,6 +147,38 @@ public class SignUpInvalidSingularInputPage extends BasePage{
         phoneInputField.sendKeys(invalidPhoneFormat);
     }
 
+    //invalid input data getter (invalid email format)
+    public void invalidInputUserDataGetterInvalidEmail(){
+        firstName = TestDataGenerator.getRandomFirstName();
+        lastName = TestDataGenerator.getRandomLastName();
+        birthdate = TestDataGenerator.generateBirthdate();
+        address = TestDataGenerator.generateRandomAddress(7);
+        postCode = TestDataGenerator.getRandomPostalCode();
+        city = TestDataGenerator.getRandomCity();
+        state = "Illinois";
+        phone = TestDataGenerator.generatePhoneNumber(5);
+        invalidEmailFormat = "m99example.com";
+        password = TestDataGenerator.generateRandomPassword();
+
+        System.out.println("Valid data generated for invalid user account creation (invalid email format): " + "\n");
+        logger.info("Valid user first name (invalid email format): " + firstName);
+        logger.info("Valid user last name (invalid email format): " + lastName);
+        logger.info("Valid user address (invalid email format): " + address);
+        logger.info("Valid user post code (invalid email format): " + postCode);
+        logger.info("Valid user city (invalid email format): " + city);
+        logger.info("Valid user state (invalid email format): " + state);
+        logger.info("Valid phone number (invalid email format): " + phone);
+        logger.info("Invalid email: " + invalidEmailFormat);
+        logger.info("Valid user password (invalid email format): " + password);
+        System.out.println("\n");
+    }
+    //invalid user data input method -> invalid user email
+    public void inputInvalidEmailIntoInputField(){
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(575));
+        wait.until(ExpectedConditions.visibilityOf(emailAddressInputField));
+        emailAddressInputField.sendKeys(invalidEmailFormat);
+    }
+
     //email getter(for existing email scenario)
     public String getEmail(){return email;}
     //password getter methods
