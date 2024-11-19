@@ -376,6 +376,37 @@ public class SignUpTooShortSingularInputPage extends BasePage{
         wait.until(ExpectedConditions.visibilityOf(emailAddressInputField));
         emailAddressInputField.sendKeys(tooShortEmail);
     }
+    //invalid input data getter (too short password)
+    public void invalidInputUserDataGetterTooShortPassword(){
+        firstName = TestDataGenerator.getRandomFirstName();
+        lastName = TestDataGenerator.getRandomLastName();
+        birthdate = TestDataGenerator.generateBirthdate();
+        address = TestDataGenerator.generateRandomAddress(7);
+        postCode = TestDataGenerator.getRandomPostalCode();
+        city = TestDataGenerator.getRandomCity();
+        state = "Illinois";
+        phone = TestDataGenerator.generatePhoneNumber(5);
+        email = TestDataGenerator.generateRandomEmailAddress(7);
+        tooShortPassword = "S";
+
+        System.out.println("Valid data generated for invalid user account creation (too short password): " + "\n");
+        logger.info("Valid user first name (too short password): " + firstName);
+        logger.info("Valid user last name (too short password): " + lastName);
+        logger.info("Valid user address (too short password): " + address);
+        logger.info("Valid user post code (too short password): " + postCode);
+        logger.info("Valid user city (too short password): " + city);
+        logger.info("Valid user state (too short password): " + state);
+        logger.info("Valid phone number (too short password): " + phone);
+        logger.info("Valid user email (too short password): " + email);
+        logger.info("Too short user password: " + tooShortPassword);
+        System.out.println("\n");
+    }
+    //invalid user data input method -> too short user email
+    public void inputTooShortPasswordIntoInputField(){
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(575));
+        wait.until(ExpectedConditions.visibilityOf(passwordInputField));
+        passwordInputField.sendKeys(tooShortPassword);
+    }
 
     //password getter methods
     public String getPasswordInput(){return passwordInputField.getAttribute("value");}

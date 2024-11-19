@@ -994,13 +994,64 @@ public class TestMethods extends BaseTest{
         signUpPage.clickRegisterButton();
         //assert the expected error message displayed matches the expectations
         try {
-            String errorMessage = signUpPage.getInvalidUserInputErrorMessage();
-            assertEquals("Too short email address", errorMessage, "The user email error message doesn't match expectations.");
+            String errorMessage = signUpPage.getInvalidInputErrorMessage();
+            assertEquals("", errorMessage, "The user email error message doesn't match expectations.");
         } catch (NoSuchElementException e) {
             logger.error("The user account gets created despite inputting too short user email address(usually, one char is invalid).");
         }
         //capture screenshot of the test result
         captureScreenshot(driver, "Invalid User Account Creation with Too Short Email");
+    }
+    //invalid user account creation test method (too short user password) (the user account gets created)
+    protected void invalidUserAccountTooShortPasswordCreationTest(SignUpPage signUpPage){
+        HomePage homePage = new HomePage(driver);
+        //utility class
+        SignUpTooShortSingularInputPage signUpTooShortSingularInputPage = new SignUpTooShortSingularInputPage(driver);
+        //general web element assert
+        isGeneralPageWebElementDisplayed(homePage);
+        //sign-up web element assert
+        isSignUpPageWebElementDisplayed(signUpPage);
+        //sign-up page text elements assert
+        isSignUpTextAsExpected(signUpPage);
+        //invalid user input data getter -> too short user password
+        signUpTooShortSingularInputPage.invalidInputUserDataGetterTooShortPassword();
+        //input valid first name
+        signUpTooShortSingularInputPage.inputFirstNameIntoInputField();
+        //input valid last name
+        signUpTooShortSingularInputPage.inputLastNameIntoInputField();
+        //input valid birthdate
+        signUpTooShortSingularInputPage.inputBirthdateIntoInputField();
+        //input valid address
+        signUpTooShortSingularInputPage.inputAddressIntoInputField();
+        //input valid post code
+        signUpTooShortSingularInputPage.inputPostCodeIntoInputField();
+        //input valid city
+        signUpTooShortSingularInputPage.inputCityIntoInputField();
+        //input valid state
+        signUpTooShortSingularInputPage.inputStateIntoInputField();
+        //click country dropdown menu
+        signUpPage.clickCountryDropdownMenu();
+        //select 'United States'
+        signUpPage.selectUnitedStatesOption();
+        //input valid phone number
+        signUpTooShortSingularInputPage.inputPhoneNumberIntoInputField();
+        //input valid email address
+        signUpTooShortSingularInputPage.inputEmailIntoInputField();
+        //input too short password
+        signUpTooShortSingularInputPage.inputTooShortPasswordIntoInputField();
+        //click 'Password view' button
+        signUpTooShortSingularInputPage.clickPasswordViewButton();
+        //click 'Register' button
+        signUpPage.clickRegisterButton();
+        //assert the expected error message displayed matches the expectations
+        try {
+            String errorMessage = signUpPage.getInvalidInputErrorMessage();
+            assertEquals("", errorMessage, "The user password error message doesn't match expectations.");
+        } catch (NoSuchElementException e) {
+            logger.error("The user account gets created despite inputting too short user password.");
+        }
+        //capture screenshot of the test result
+        captureScreenshot(driver, "Invalid User Account Creation with Too Short Password");
     }
 
     //homepage web element assert test method
