@@ -69,6 +69,7 @@ public class SignUpPage extends BasePage{
     private String noFirstName;
     private String noLastName;
     private String noBirthdate;
+    private String noAddress;
 
     public SignUpPage(WebDriver driver) {super(driver);}
 
@@ -257,6 +258,37 @@ public class SignUpPage extends BasePage{
     public void inputNoBirthdateIntoInputField(){
         WebElement birthdateInputField = driver.findElement(By.id("dob"));
         birthdateInputField.sendKeys(noBirthdate);
+    }
+
+    //invalid input data getter (no user address)
+    public void invalidInputUserDataGetterNoAddress(){
+        firstName = TestDataGenerator.getRandomFirstName();
+        lastName = TestDataGenerator.getRandomLastName();
+        birthdate = TestDataGenerator.generateBirthdate();
+        noAddress = "";
+        postCode = TestDataGenerator.getRandomPostalCode();
+        city = TestDataGenerator.getRandomCity();
+        state = "Illinois";
+        phone = TestDataGenerator.generatePhoneNumber(5);
+        email = TestDataGenerator.generateRandomEmailAddress(6);
+        password = TestDataGenerator.generateRandomPassword();
+
+        System.out.println("Invalid data generated for user account creation (no user address): " + "\n");
+        logger.info("Valid user first name (no user address): " + firstName);
+        logger.info("Valid user last name (no user address): " + lastName);
+        logger.info("No user address (no user address): " + noAddress);
+        logger.info("Valid user post code (no user address): " + postCode);
+        logger.info("Valid user city (no user address): " + city);
+        logger.info("Valid user state (no user address): " + state);
+        logger.info("Valid user phone number (no user address): " + phone);
+        logger.info("Valid user email (no user address): " + email);
+        logger.info("Valid user password (no user address): " + password);
+        System.out.println("\n");
+    }
+    public void inputNoAddressIntoInputField(){
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(575));
+        wait.until(ExpectedConditions.visibilityOf(addressInputField));
+        addressInputField.sendKeys(noAddress);
     }
 
     //sign-up page title getter
