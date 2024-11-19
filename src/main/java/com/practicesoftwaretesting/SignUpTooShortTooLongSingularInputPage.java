@@ -252,6 +252,38 @@ public class SignUpTooShortTooLongSingularInputPage extends BasePage{
         postCodeInputField.sendKeys(tooShortPostCode);
     }
 
+    //invalid input data getter (too short city)
+    public void invalidInputUserDataGetterTooShortCity(){
+        firstName = TestDataGenerator.getRandomFirstName();
+        lastName = TestDataGenerator.getRandomLastName();
+        birthdate = TestDataGenerator.generateBirthdate();
+        address = TestDataGenerator.generateRandomAddress(7);
+        postCode = TestDataGenerator.getRandomPostalCode();
+        tooShortCity = "Y";
+        state = "Illinois";
+        phone = TestDataGenerator.generatePhoneNumber(5);
+        email = TestDataGenerator.generateRandomEmailAddress(6);
+        password = TestDataGenerator.generateRandomPassword();
+
+        System.out.println("Valid data generated for invalid user account creation (too short city): " + "\n");
+        logger.info("Valid user first name (too short city): " + firstName);
+        logger.info("Valid user last name (too short city): " + lastName);
+        logger.info("Valid user address (too short city): " + address);
+        logger.info("Valid user post code: " + postCode);
+        logger.info("Too short user city: " + tooShortCity);
+        logger.info("Valid user state (too short city): " + state);
+        logger.info("Valid user phone number (too short city): " + phone);
+        logger.info("Valid user email (too short city): " + email);
+        logger.info("Valid user password (too short city): " + password);
+        System.out.println("\n");
+    }
+    //invalid user data input method -> too short user city
+    public void inputTooShortCityIntoInputField(){
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(575));
+        wait.until(ExpectedConditions.visibilityOf(cityInputField));
+        cityInputField.sendKeys(tooShortCity);
+    }
+
     //password getter methods
     public String getPasswordInput(){return passwordInputField.getAttribute("value");}
     public String getPassword(){return password;}

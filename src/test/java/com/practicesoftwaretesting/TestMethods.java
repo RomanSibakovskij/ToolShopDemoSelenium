@@ -790,6 +790,59 @@ public class TestMethods extends BaseTest{
         //capture screenshot of the test result
         captureScreenshot(driver, "Invalid User Account Creation with Too Short User Post Code");
     }
+    //invalid user account creation test method (too short user city) (the user account gets created)
+    protected void invalidUserAccountTooShortCityCreationTest(SignUpPage signUpPage){
+        HomePage homePage = new HomePage(driver);
+        //utility class
+        SignUpTooShortTooLongSingularInputPage signUpTooShortTooLongSingularInputPage = new SignUpTooShortTooLongSingularInputPage(driver);
+        //general web element assert
+        isGeneralPageWebElementDisplayed(homePage);
+        //sign-up web element assert
+        isSignUpPageWebElementDisplayed(signUpPage);
+        //sign-up page text elements assert
+        isSignUpTextAsExpected(signUpPage);
+        //invalid user input data getter -> too short user city
+        signUpTooShortTooLongSingularInputPage.invalidInputUserDataGetterTooShortCity();
+        //input valid first name
+        signUpTooShortTooLongSingularInputPage.inputFirstNameIntoInputField();
+        //input valid last name
+        signUpTooShortTooLongSingularInputPage.inputLastNameIntoInputField();
+        //input valid birthdate
+        signUpTooShortTooLongSingularInputPage.inputBirthdateIntoInputField();
+        //input valid address
+        signUpTooShortTooLongSingularInputPage.inputAddressIntoInputField();
+        //input valid post code
+        signUpTooShortTooLongSingularInputPage.inputPostCodeIntoInputField();
+        //input too short city
+        signUpTooShortTooLongSingularInputPage.inputTooShortCityIntoInputField();
+        //input valid state
+        signUpTooShortTooLongSingularInputPage.inputStateIntoInputField();
+        //click country dropdown menu
+        signUpPage.clickCountryDropdownMenu();
+        //select 'United States'
+        signUpPage.selectUnitedStatesOption();
+        //input valid phone number
+        signUpTooShortTooLongSingularInputPage.inputPhoneNumberIntoInputField();
+        //input valid email address
+        signUpTooShortTooLongSingularInputPage.inputEmailIntoInputField();
+        //input valid password
+        signUpTooShortTooLongSingularInputPage.inputPasswordIntoInputField();
+        //click 'Password view' button
+        signUpTooShortTooLongSingularInputPage.clickPasswordViewButton();
+        //assert the correct password has been input (for 'Password view' button testing)
+        assertEquals(signUpTooShortTooLongSingularInputPage.getPassword(), signUpTooShortTooLongSingularInputPage.getPasswordInput(), "There's a password mismatch.");
+        //click 'Register' button
+        signUpPage.clickRegisterButton();
+        //assert the expected error message displayed matches the expectations
+        try {
+            String errorMessage = signUpPage.getInvalidUserInputErrorMessage();
+            assertEquals("Too short city", errorMessage, "The user city error message doesn't match expectations.");
+        } catch (NoSuchElementException e) {
+            logger.error("The user account gets created despite inputting too short user city.");
+        }
+        //capture screenshot of the test result
+        captureScreenshot(driver, "Invalid User Account Creation with Too Short User City");
+    }
 
     //homepage web element assert test method
     protected void isHomePageWebElementDisplayed(HomePage homePage){

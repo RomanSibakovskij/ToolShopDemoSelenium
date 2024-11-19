@@ -262,4 +262,20 @@ public class SignUpPageTest extends TestMethods{
         //invalid user account creation test (too short post code)
         invalidUserAccountTooShortPostCodeCreationTest(signUpPage);
     }
+
+    //Test 002p -> invalid user account creation test (too short user city) (the user account gets created)
+    @Test
+    @DisplayName("Invalid User Account Creation Test - Too Short City")
+    @Tag("Invalid_Account_Creation_Test")
+    @Tag("Too_Short_Singular_Input")
+    void invalidUserAccountTooShortCityCreationTest(){
+        HomePage homePage = new HomePage(driver);
+        SignUpPage signUpPage = new SignUpPage(driver);
+        //navigation to user sign-up page
+        navigateToUserSignUpPageTest(homePage);
+        //test title (for logging)
+        System.out.println("Invalid User Account Creation Test - Too Short City" + "\n");
+        //invalid user account creation test (too short city)
+        invalidUserAccountTooShortCityCreationTest(signUpPage);
+    }
 }
