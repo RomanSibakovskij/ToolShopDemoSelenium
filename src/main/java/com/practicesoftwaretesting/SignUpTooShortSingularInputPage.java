@@ -2,12 +2,11 @@ package com.practicesoftwaretesting;
 
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
+import org.openqa.selenium.support.ui.*;
 
 import java.time.Duration;
 
-public class SignUpTooShortTooLongSingularInputPage extends BasePage{
+public class SignUpTooShortSingularInputPage extends BasePage{
 
 
     //input form elements
@@ -66,7 +65,7 @@ public class SignUpTooShortTooLongSingularInputPage extends BasePage{
     private String tooShortEmail;
     private String tooShortPassword;
 
-    public SignUpTooShortTooLongSingularInputPage(WebDriver driver) {super(driver);}
+    public SignUpTooShortSingularInputPage(WebDriver driver) {super(driver);}
 
     //click 'Password view' button method
     public void clickPasswordViewButton() {passwordViewButton.click();}

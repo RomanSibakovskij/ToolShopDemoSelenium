@@ -582,7 +582,7 @@ public class TestMethods extends BaseTest{
     protected void invalidUserAccountTooShortFirstNameCreationTest(SignUpPage signUpPage){
         HomePage homePage = new HomePage(driver);
         //utility class
-        SignUpTooShortTooLongSingularInputPage signUpTooShortTooLongSingularInputPage = new SignUpTooShortTooLongSingularInputPage(driver);
+        SignUpTooShortSingularInputPage signUpTooShortSingularInputPage = new SignUpTooShortSingularInputPage(driver);
         //general web element assert
         isGeneralPageWebElementDisplayed(homePage);
         //sign-up web element assert
@@ -590,35 +590,35 @@ public class TestMethods extends BaseTest{
         //sign-up page text elements assert
         isSignUpTextAsExpected(signUpPage);
         //invalid user input data getter -> too short first name
-        signUpTooShortTooLongSingularInputPage.invalidInputUserDataGetterTooShortFirstName();
+        signUpTooShortSingularInputPage.invalidInputUserDataGetterTooShortFirstName();
         //input too short first name
-        signUpTooShortTooLongSingularInputPage.inputTooShortFirstNameIntoInputField();
+        signUpTooShortSingularInputPage.inputTooShortFirstNameIntoInputField();
         //input valid last name
-        signUpTooShortTooLongSingularInputPage.inputLastNameIntoInputField();
+        signUpTooShortSingularInputPage.inputLastNameIntoInputField();
         //input valid birthdate
-        signUpTooShortTooLongSingularInputPage.inputBirthdateIntoInputField();
+        signUpTooShortSingularInputPage.inputBirthdateIntoInputField();
         //input valid address
-        signUpTooShortTooLongSingularInputPage.inputAddressIntoInputField();
+        signUpTooShortSingularInputPage.inputAddressIntoInputField();
         //input valid post code
-        signUpTooShortTooLongSingularInputPage.inputPostCodeIntoInputField();
+        signUpTooShortSingularInputPage.inputPostCodeIntoInputField();
         //input valid city
-        signUpTooShortTooLongSingularInputPage.inputCityIntoInputField();
+        signUpTooShortSingularInputPage.inputCityIntoInputField();
         //input valid state
-        signUpTooShortTooLongSingularInputPage.inputStateIntoInputField();
+        signUpTooShortSingularInputPage.inputStateIntoInputField();
         //click country dropdown menu
         signUpPage.clickCountryDropdownMenu();
         //select 'United States'
         signUpPage.selectUnitedStatesOption();
         //input valid phone number
-        signUpTooShortTooLongSingularInputPage.inputPhoneNumberIntoInputField();
+        signUpTooShortSingularInputPage.inputPhoneNumberIntoInputField();
         //input valid email address
-        signUpTooShortTooLongSingularInputPage.inputEmailIntoInputField();
+        signUpTooShortSingularInputPage.inputEmailIntoInputField();
         //input valid password
-        signUpTooShortTooLongSingularInputPage.inputPasswordIntoInputField();
+        signUpTooShortSingularInputPage.inputPasswordIntoInputField();
         //click 'Password view' button
-        signUpTooShortTooLongSingularInputPage.clickPasswordViewButton();
+        signUpTooShortSingularInputPage.clickPasswordViewButton();
         //assert the correct password has been input (for 'Password view' button testing)
-        assertEquals(signUpTooShortTooLongSingularInputPage.getPassword(), signUpTooShortTooLongSingularInputPage.getPasswordInput(), "There's a password mismatch.");
+        assertEquals(signUpTooShortSingularInputPage.getPassword(), signUpTooShortSingularInputPage.getPasswordInput(), "There's a password mismatch.");
         //click 'Register' button
         signUpPage.clickRegisterButton();
         //assert the expected error message displayed matches the expectations
@@ -635,7 +635,7 @@ public class TestMethods extends BaseTest{
     protected void invalidUserAccountTooShortLastNameCreationTest(SignUpPage signUpPage){
         HomePage homePage = new HomePage(driver);
         //utility class
-        SignUpTooShortTooLongSingularInputPage signUpTooShortTooLongSingularInputPage = new SignUpTooShortTooLongSingularInputPage(driver);
+        SignUpTooShortSingularInputPage signUpTooShortSingularInputPage = new SignUpTooShortSingularInputPage(driver);
         //general web element assert
         isGeneralPageWebElementDisplayed(homePage);
         //sign-up web element assert
@@ -643,35 +643,35 @@ public class TestMethods extends BaseTest{
         //sign-up page text elements assert
         isSignUpTextAsExpected(signUpPage);
         //invalid user input data getter -> too short last name
-        signUpTooShortTooLongSingularInputPage.invalidInputUserDataGetterTooShortLastName();
+        signUpTooShortSingularInputPage.invalidInputUserDataGetterTooShortLastName();
         //input valid first name
-        signUpTooShortTooLongSingularInputPage.inputFirstNameIntoInputField();
+        signUpTooShortSingularInputPage.inputFirstNameIntoInputField();
         //input too short last name
-        signUpTooShortTooLongSingularInputPage.inputTooShortLastNameIntoInputField();
+        signUpTooShortSingularInputPage.inputTooShortLastNameIntoInputField();
         //input valid birthdate
-        signUpTooShortTooLongSingularInputPage.inputBirthdateIntoInputField();
+        signUpTooShortSingularInputPage.inputBirthdateIntoInputField();
         //input valid address
-        signUpTooShortTooLongSingularInputPage.inputAddressIntoInputField();
+        signUpTooShortSingularInputPage.inputAddressIntoInputField();
         //input valid post code
-        signUpTooShortTooLongSingularInputPage.inputPostCodeIntoInputField();
+        signUpTooShortSingularInputPage.inputPostCodeIntoInputField();
         //input valid city
-        signUpTooShortTooLongSingularInputPage.inputCityIntoInputField();
+        signUpTooShortSingularInputPage.inputCityIntoInputField();
         //input valid state
-        signUpTooShortTooLongSingularInputPage.inputStateIntoInputField();
+        signUpTooShortSingularInputPage.inputStateIntoInputField();
         //click country dropdown menu
         signUpPage.clickCountryDropdownMenu();
         //select 'United States'
         signUpPage.selectUnitedStatesOption();
         //input valid phone number
-        signUpTooShortTooLongSingularInputPage.inputPhoneNumberIntoInputField();
+        signUpTooShortSingularInputPage.inputPhoneNumberIntoInputField();
         //input valid email address
-        signUpTooShortTooLongSingularInputPage.inputEmailIntoInputField();
+        signUpTooShortSingularInputPage.inputEmailIntoInputField();
         //input valid password
-        signUpTooShortTooLongSingularInputPage.inputPasswordIntoInputField();
+        signUpTooShortSingularInputPage.inputPasswordIntoInputField();
         //click 'Password view' button
-        signUpTooShortTooLongSingularInputPage.clickPasswordViewButton();
+        signUpTooShortSingularInputPage.clickPasswordViewButton();
         //assert the correct password has been input (for 'Password view' button testing)
-        assertEquals(signUpTooShortTooLongSingularInputPage.getPassword(), signUpTooShortTooLongSingularInputPage.getPasswordInput(), "There's a password mismatch.");
+        assertEquals(signUpTooShortSingularInputPage.getPassword(), signUpTooShortSingularInputPage.getPasswordInput(), "There's a password mismatch.");
         //click 'Register' button
         signUpPage.clickRegisterButton();
         //assert the expected error message displayed matches the expectations
@@ -688,7 +688,7 @@ public class TestMethods extends BaseTest{
     protected void invalidUserAccountTooShortAddressCreationTest(SignUpPage signUpPage){
         HomePage homePage = new HomePage(driver);
         //utility class
-        SignUpTooShortTooLongSingularInputPage signUpTooShortTooLongSingularInputPage = new SignUpTooShortTooLongSingularInputPage(driver);
+        SignUpTooShortSingularInputPage signUpTooShortSingularInputPage = new SignUpTooShortSingularInputPage(driver);
         //general web element assert
         isGeneralPageWebElementDisplayed(homePage);
         //sign-up web element assert
@@ -696,35 +696,35 @@ public class TestMethods extends BaseTest{
         //sign-up page text elements assert
         isSignUpTextAsExpected(signUpPage);
         //invalid user input data getter -> too short user address
-        signUpTooShortTooLongSingularInputPage.invalidInputUserDataGetterTooShortAddress();
+        signUpTooShortSingularInputPage.invalidInputUserDataGetterTooShortAddress();
         //input valid first name
-        signUpTooShortTooLongSingularInputPage.inputFirstNameIntoInputField();
+        signUpTooShortSingularInputPage.inputFirstNameIntoInputField();
         //input valid last name
-        signUpTooShortTooLongSingularInputPage.inputLastNameIntoInputField();
+        signUpTooShortSingularInputPage.inputLastNameIntoInputField();
         //input valid birthdate
-        signUpTooShortTooLongSingularInputPage.inputBirthdateIntoInputField();
+        signUpTooShortSingularInputPage.inputBirthdateIntoInputField();
         //input too short address
-        signUpTooShortTooLongSingularInputPage.inputTooShortAddressIntoInputField();
+        signUpTooShortSingularInputPage.inputTooShortAddressIntoInputField();
         //input valid post code
-        signUpTooShortTooLongSingularInputPage.inputPostCodeIntoInputField();
+        signUpTooShortSingularInputPage.inputPostCodeIntoInputField();
         //input valid city
-        signUpTooShortTooLongSingularInputPage.inputCityIntoInputField();
+        signUpTooShortSingularInputPage.inputCityIntoInputField();
         //input valid state
-        signUpTooShortTooLongSingularInputPage.inputStateIntoInputField();
+        signUpTooShortSingularInputPage.inputStateIntoInputField();
         //click country dropdown menu
         signUpPage.clickCountryDropdownMenu();
         //select 'United States'
         signUpPage.selectUnitedStatesOption();
         //input valid phone number
-        signUpTooShortTooLongSingularInputPage.inputPhoneNumberIntoInputField();
+        signUpTooShortSingularInputPage.inputPhoneNumberIntoInputField();
         //input valid email address
-        signUpTooShortTooLongSingularInputPage.inputEmailIntoInputField();
+        signUpTooShortSingularInputPage.inputEmailIntoInputField();
         //input valid password
-        signUpTooShortTooLongSingularInputPage.inputPasswordIntoInputField();
+        signUpTooShortSingularInputPage.inputPasswordIntoInputField();
         //click 'Password view' button
-        signUpTooShortTooLongSingularInputPage.clickPasswordViewButton();
+        signUpTooShortSingularInputPage.clickPasswordViewButton();
         //assert the correct password has been input (for 'Password view' button testing)
-        assertEquals(signUpTooShortTooLongSingularInputPage.getPassword(), signUpTooShortTooLongSingularInputPage.getPasswordInput(), "There's a password mismatch.");
+        assertEquals(signUpTooShortSingularInputPage.getPassword(), signUpTooShortSingularInputPage.getPasswordInput(), "There's a password mismatch.");
         //click 'Register' button
         signUpPage.clickRegisterButton();
         //assert the expected error message displayed matches the expectations
@@ -741,7 +741,7 @@ public class TestMethods extends BaseTest{
     protected void invalidUserAccountTooShortPostCodeCreationTest(SignUpPage signUpPage){
         HomePage homePage = new HomePage(driver);
         //utility class
-        SignUpTooShortTooLongSingularInputPage signUpTooShortTooLongSingularInputPage = new SignUpTooShortTooLongSingularInputPage(driver);
+        SignUpTooShortSingularInputPage signUpTooShortSingularInputPage = new SignUpTooShortSingularInputPage(driver);
         //general web element assert
         isGeneralPageWebElementDisplayed(homePage);
         //sign-up web element assert
@@ -749,35 +749,35 @@ public class TestMethods extends BaseTest{
         //sign-up page text elements assert
         isSignUpTextAsExpected(signUpPage);
         //invalid user input data getter -> too short user post code
-        signUpTooShortTooLongSingularInputPage.invalidInputUserDataGetterTooShortPostCode();
+        signUpTooShortSingularInputPage.invalidInputUserDataGetterTooShortPostCode();
         //input valid first name
-        signUpTooShortTooLongSingularInputPage.inputFirstNameIntoInputField();
+        signUpTooShortSingularInputPage.inputFirstNameIntoInputField();
         //input valid last name
-        signUpTooShortTooLongSingularInputPage.inputLastNameIntoInputField();
+        signUpTooShortSingularInputPage.inputLastNameIntoInputField();
         //input valid birthdate
-        signUpTooShortTooLongSingularInputPage.inputBirthdateIntoInputField();
+        signUpTooShortSingularInputPage.inputBirthdateIntoInputField();
         //input valid address
-        signUpTooShortTooLongSingularInputPage.inputAddressIntoInputField();
+        signUpTooShortSingularInputPage.inputAddressIntoInputField();
         //input too short post code
-        signUpTooShortTooLongSingularInputPage.inputTooShortPostCodeIntoInputField();
+        signUpTooShortSingularInputPage.inputTooShortPostCodeIntoInputField();
         //input valid city
-        signUpTooShortTooLongSingularInputPage.inputCityIntoInputField();
+        signUpTooShortSingularInputPage.inputCityIntoInputField();
         //input valid state
-        signUpTooShortTooLongSingularInputPage.inputStateIntoInputField();
+        signUpTooShortSingularInputPage.inputStateIntoInputField();
         //click country dropdown menu
         signUpPage.clickCountryDropdownMenu();
         //select 'United States'
         signUpPage.selectUnitedStatesOption();
         //input valid phone number
-        signUpTooShortTooLongSingularInputPage.inputPhoneNumberIntoInputField();
+        signUpTooShortSingularInputPage.inputPhoneNumberIntoInputField();
         //input valid email address
-        signUpTooShortTooLongSingularInputPage.inputEmailIntoInputField();
+        signUpTooShortSingularInputPage.inputEmailIntoInputField();
         //input valid password
-        signUpTooShortTooLongSingularInputPage.inputPasswordIntoInputField();
+        signUpTooShortSingularInputPage.inputPasswordIntoInputField();
         //click 'Password view' button
-        signUpTooShortTooLongSingularInputPage.clickPasswordViewButton();
+        signUpTooShortSingularInputPage.clickPasswordViewButton();
         //assert the correct password has been input (for 'Password view' button testing)
-        assertEquals(signUpTooShortTooLongSingularInputPage.getPassword(), signUpTooShortTooLongSingularInputPage.getPasswordInput(), "There's a password mismatch.");
+        assertEquals(signUpTooShortSingularInputPage.getPassword(), signUpTooShortSingularInputPage.getPasswordInput(), "There's a password mismatch.");
         //click 'Register' button
         signUpPage.clickRegisterButton();
         //assert the expected error message displayed matches the expectations
@@ -794,7 +794,7 @@ public class TestMethods extends BaseTest{
     protected void invalidUserAccountTooShortCityCreationTest(SignUpPage signUpPage){
         HomePage homePage = new HomePage(driver);
         //utility class
-        SignUpTooShortTooLongSingularInputPage signUpTooShortTooLongSingularInputPage = new SignUpTooShortTooLongSingularInputPage(driver);
+        SignUpTooShortSingularInputPage signUpTooShortSingularInputPage = new SignUpTooShortSingularInputPage(driver);
         //general web element assert
         isGeneralPageWebElementDisplayed(homePage);
         //sign-up web element assert
@@ -802,35 +802,35 @@ public class TestMethods extends BaseTest{
         //sign-up page text elements assert
         isSignUpTextAsExpected(signUpPage);
         //invalid user input data getter -> too short user city
-        signUpTooShortTooLongSingularInputPage.invalidInputUserDataGetterTooShortCity();
+        signUpTooShortSingularInputPage.invalidInputUserDataGetterTooShortCity();
         //input valid first name
-        signUpTooShortTooLongSingularInputPage.inputFirstNameIntoInputField();
+        signUpTooShortSingularInputPage.inputFirstNameIntoInputField();
         //input valid last name
-        signUpTooShortTooLongSingularInputPage.inputLastNameIntoInputField();
+        signUpTooShortSingularInputPage.inputLastNameIntoInputField();
         //input valid birthdate
-        signUpTooShortTooLongSingularInputPage.inputBirthdateIntoInputField();
+        signUpTooShortSingularInputPage.inputBirthdateIntoInputField();
         //input valid address
-        signUpTooShortTooLongSingularInputPage.inputAddressIntoInputField();
+        signUpTooShortSingularInputPage.inputAddressIntoInputField();
         //input valid post code
-        signUpTooShortTooLongSingularInputPage.inputPostCodeIntoInputField();
+        signUpTooShortSingularInputPage.inputPostCodeIntoInputField();
         //input too short city
-        signUpTooShortTooLongSingularInputPage.inputTooShortCityIntoInputField();
+        signUpTooShortSingularInputPage.inputTooShortCityIntoInputField();
         //input valid state
-        signUpTooShortTooLongSingularInputPage.inputStateIntoInputField();
+        signUpTooShortSingularInputPage.inputStateIntoInputField();
         //click country dropdown menu
         signUpPage.clickCountryDropdownMenu();
         //select 'United States'
         signUpPage.selectUnitedStatesOption();
         //input valid phone number
-        signUpTooShortTooLongSingularInputPage.inputPhoneNumberIntoInputField();
+        signUpTooShortSingularInputPage.inputPhoneNumberIntoInputField();
         //input valid email address
-        signUpTooShortTooLongSingularInputPage.inputEmailIntoInputField();
+        signUpTooShortSingularInputPage.inputEmailIntoInputField();
         //input valid password
-        signUpTooShortTooLongSingularInputPage.inputPasswordIntoInputField();
+        signUpTooShortSingularInputPage.inputPasswordIntoInputField();
         //click 'Password view' button
-        signUpTooShortTooLongSingularInputPage.clickPasswordViewButton();
+        signUpTooShortSingularInputPage.clickPasswordViewButton();
         //assert the correct password has been input (for 'Password view' button testing)
-        assertEquals(signUpTooShortTooLongSingularInputPage.getPassword(), signUpTooShortTooLongSingularInputPage.getPasswordInput(), "There's a password mismatch.");
+        assertEquals(signUpTooShortSingularInputPage.getPassword(), signUpTooShortSingularInputPage.getPasswordInput(), "There's a password mismatch.");
         //click 'Register' button
         signUpPage.clickRegisterButton();
         //assert the expected error message displayed matches the expectations
@@ -847,7 +847,7 @@ public class TestMethods extends BaseTest{
     protected void invalidUserAccountTooShortStateCreationTest(SignUpPage signUpPage){
         HomePage homePage = new HomePage(driver);
         //utility class
-        SignUpTooShortTooLongSingularInputPage signUpTooShortTooLongSingularInputPage = new SignUpTooShortTooLongSingularInputPage(driver);
+        SignUpTooShortSingularInputPage signUpTooShortSingularInputPage = new SignUpTooShortSingularInputPage(driver);
         //general web element assert
         isGeneralPageWebElementDisplayed(homePage);
         //sign-up web element assert
@@ -855,35 +855,35 @@ public class TestMethods extends BaseTest{
         //sign-up page text elements assert
         isSignUpTextAsExpected(signUpPage);
         //invalid user input data getter -> too short user state
-        signUpTooShortTooLongSingularInputPage.invalidInputUserDataGetterTooShortState();
+        signUpTooShortSingularInputPage.invalidInputUserDataGetterTooShortState();
         //input valid first name
-        signUpTooShortTooLongSingularInputPage.inputFirstNameIntoInputField();
+        signUpTooShortSingularInputPage.inputFirstNameIntoInputField();
         //input valid last name
-        signUpTooShortTooLongSingularInputPage.inputLastNameIntoInputField();
+        signUpTooShortSingularInputPage.inputLastNameIntoInputField();
         //input valid birthdate
-        signUpTooShortTooLongSingularInputPage.inputBirthdateIntoInputField();
+        signUpTooShortSingularInputPage.inputBirthdateIntoInputField();
         //input valid address
-        signUpTooShortTooLongSingularInputPage.inputAddressIntoInputField();
+        signUpTooShortSingularInputPage.inputAddressIntoInputField();
         //input valid post code
-        signUpTooShortTooLongSingularInputPage.inputPostCodeIntoInputField();
+        signUpTooShortSingularInputPage.inputPostCodeIntoInputField();
         //input valid city
-        signUpTooShortTooLongSingularInputPage.inputCityIntoInputField();
+        signUpTooShortSingularInputPage.inputCityIntoInputField();
         //input too short state
-        signUpTooShortTooLongSingularInputPage.inputTooShortStateIntoInputField();
+        signUpTooShortSingularInputPage.inputTooShortStateIntoInputField();
         //click country dropdown menu
         signUpPage.clickCountryDropdownMenu();
         //select 'United States'
         signUpPage.selectUnitedStatesOption();
         //input valid phone number
-        signUpTooShortTooLongSingularInputPage.inputPhoneNumberIntoInputField();
+        signUpTooShortSingularInputPage.inputPhoneNumberIntoInputField();
         //input valid email address
-        signUpTooShortTooLongSingularInputPage.inputEmailIntoInputField();
+        signUpTooShortSingularInputPage.inputEmailIntoInputField();
         //input valid password
-        signUpTooShortTooLongSingularInputPage.inputPasswordIntoInputField();
+        signUpTooShortSingularInputPage.inputPasswordIntoInputField();
         //click 'Password view' button
-        signUpTooShortTooLongSingularInputPage.clickPasswordViewButton();
+        signUpTooShortSingularInputPage.clickPasswordViewButton();
         //assert the correct password has been input (for 'Password view' button testing)
-        assertEquals(signUpTooShortTooLongSingularInputPage.getPassword(), signUpTooShortTooLongSingularInputPage.getPasswordInput(), "There's a password mismatch.");
+        assertEquals(signUpTooShortSingularInputPage.getPassword(), signUpTooShortSingularInputPage.getPasswordInput(), "There's a password mismatch.");
         //click 'Register' button
         signUpPage.clickRegisterButton();
         //assert the expected error message displayed matches the expectations
