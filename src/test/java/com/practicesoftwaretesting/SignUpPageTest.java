@@ -342,4 +342,22 @@ public class SignUpPageTest extends TestMethods{
         //invalid user account creation test (too short password)
         invalidUserAccountTooShortPasswordCreationTest(signUpPage);
     }
+
+    //invalid singular input format tests
+
+    //Test 002u -> invalid user account creation test (invalid user phone format)
+    @Test
+    @DisplayName("Invalid User Account Creation Test - Invalid Phone Format")
+    @Tag("Invalid_Account_Creation_Test")
+    @Tag("Invalid_Singular_Input_Format")
+    void invalidUserAccountInvalidPhoneCreationTest(){
+        HomePage homePage = new HomePage(driver);
+        SignUpPage signUpPage = new SignUpPage(driver);
+        //navigation to user sign-up page
+        navigateToUserSignUpPageTest(homePage);
+        //test title (for logging)
+        System.out.println("Invalid User Account Creation Test - Invalid Phone Format" + "\n");
+        //invalid user account creation test (invalid phone format)
+        invalidUserAccountInvalidPhoneCreationTest(signUpPage);
+    }
 }

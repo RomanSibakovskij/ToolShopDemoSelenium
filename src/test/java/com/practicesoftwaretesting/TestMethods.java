@@ -1054,6 +1054,62 @@ public class TestMethods extends BaseTest{
         captureScreenshot(driver, "Invalid User Account Creation with Too Short Password");
     }
 
+    //invalid format test scenarios
+
+    //invalid user account creation test method (invalid user phone number format)
+    protected void invalidUserAccountInvalidPhoneCreationTest(SignUpPage signUpPage){
+        HomePage homePage = new HomePage(driver);
+        //utility class
+        SignUpInvalidSingularInputPage signUpInvalidSingularInputPage = new SignUpInvalidSingularInputPage(driver);
+        //general web element assert
+        isGeneralPageWebElementDisplayed(homePage);
+        //sign-up web element assert
+        isSignUpPageWebElementDisplayed(signUpPage);
+        //sign-up page text elements assert
+        isSignUpTextAsExpected(signUpPage);
+        //invalid user input data getter -> too short user phone number
+        signUpInvalidSingularInputPage.invalidInputUserDataGetterInvalidPhoneFormat();
+        //input valid first name
+        signUpInvalidSingularInputPage.inputFirstNameIntoInputField();
+        //input valid last name
+        signUpInvalidSingularInputPage.inputLastNameIntoInputField();
+        //input valid birthdate
+        signUpInvalidSingularInputPage.inputBirthdateIntoInputField();
+        //input valid address
+        signUpInvalidSingularInputPage.inputAddressIntoInputField();
+        //input valid post code
+        signUpInvalidSingularInputPage.inputPostCodeIntoInputField();
+        //input valid city
+        signUpInvalidSingularInputPage.inputCityIntoInputField();
+        //input valid state
+        signUpInvalidSingularInputPage.inputStateIntoInputField();
+        //click country dropdown menu
+        signUpPage.clickCountryDropdownMenu();
+        //select 'United States'
+        signUpPage.selectUnitedStatesOption();
+        //input invalid phone number
+        signUpInvalidSingularInputPage.inputInvalidPhoneFormatIntoInputField();
+        //input valid email address
+        signUpInvalidSingularInputPage.inputEmailIntoInputField();
+        //input valid password
+        signUpInvalidSingularInputPage.inputPasswordIntoInputField();
+        //click 'Password view' button
+        signUpInvalidSingularInputPage.clickPasswordViewButton();
+        //assert the correct password has been input (for 'Password view' button testing)
+        assertEquals(signUpInvalidSingularInputPage.getPassword(), signUpInvalidSingularInputPage.getPasswordInput(), "There's a password mismatch.");
+        //click 'Register' button
+        signUpPage.clickRegisterButton();
+        //assert the expected error message displayed matches the expectations
+        try {
+            String errorMessage = signUpPage.getInvalidInputErrorMessage();
+            assertEquals("Only numbers are allowed.", errorMessage, "The user phone error message doesn't match expectations.");
+        } catch (NoSuchElementException e) {
+            logger.error("The user account gets created despite inputting too short user phone number.");
+        }
+        //capture screenshot of the test result
+        captureScreenshot(driver, "Invalid User Account Creation with Invalid Phone Format");
+    }
+
     //homepage web element assert test method
     protected void isHomePageWebElementDisplayed(HomePage homePage){
         //assert home page banner is displayed
