@@ -194,7 +194,7 @@ public class SignUpInvalidSingularInputPage extends BasePage{
         email = TestDataGenerator.generateRandomEmailAddress(6);
         password = TestDataGenerator.generateRandomPassword();
 
-        System.out.println("Valid data generated for user account creation: " + "\n");
+        System.out.println("Valid data generated for user account creation (pre-existing email scenario): " + "\n");
         logger.info("Valid user first name: " + firstName);
         logger.info("Valid user last name: " + lastName);
         logger.info("Valid user address: " + address);
@@ -219,7 +219,7 @@ public class SignUpInvalidSingularInputPage extends BasePage{
         existingEmail = getEmail();
         password = TestDataGenerator.generateRandomPassword();
 
-        System.out.println("Invalid data generated for invalid user account creation (existing email): " + "\n");
+        System.out.println("Valid data generated for invalid user account creation (existing email): " + "\n");
         logger.info("Valid user first name (existing email): " + firstName);
         logger.info("Valid user last name (existing email): " + lastName);
         logger.info("Valid user address (existing email): " + address);
@@ -236,8 +236,40 @@ public class SignUpInvalidSingularInputPage extends BasePage{
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(575));
         wait.until(ExpectedConditions.visibilityOf(emailAddressInputField));
         JavascriptExecutor js = (JavascriptExecutor) driver;
-        js.executeScript("arguments[0].scrollIntoView(true);", emailAddressInputField);
+        js.executeScript("arguments[0].scrollIntoView(true);", emailAddressInputField); //to make the error message visually visible
         emailAddressInputField.sendKeys(existingEmail);
+    }
+
+    //invalid input data getter (invalid password format)
+    public void invalidInputUserDataGetterInvalidPasswordFormat(){
+        firstName = TestDataGenerator.getRandomFirstName();
+        lastName = TestDataGenerator.getRandomLastName();
+        birthdate = TestDataGenerator.generateBirthdate();
+        address = TestDataGenerator.generateRandomAddress(7);
+        postCode = TestDataGenerator.getRandomPostalCode();
+        city = TestDataGenerator.getRandomCity();
+        state = "Illinois";
+        phone = TestDataGenerator.generatePhoneNumber(5);
+        email = TestDataGenerator.generateRandomEmailAddress(7);
+        invalidPasswordFormat = "StGrg5dsed";
+
+        System.out.println("Valid data generated for invalid user account creation (invalid password format): " + "\n");
+        logger.info("Valid user first name (invalid password format): " + firstName);
+        logger.info("Valid user last name (invalid password format): " + lastName);
+        logger.info("Valid user address (invalid password format): " + address);
+        logger.info("Valid user post code (invalid password format): " + postCode);
+        logger.info("Valid user city (invalid password format): " + city);
+        logger.info("Valid user state (invalid password format): " + state);
+        logger.info("Valid phone number (invalid password format): " + phone);
+        logger.info("Valid user email (invalid password format): " + email);
+        logger.info("Invalid user password format: " + invalidPasswordFormat);
+        System.out.println("\n");
+    }
+    //invalid user data input method -> invalid user password format
+    public void inputInvalidPasswordIntoInputField(){
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(575));
+        wait.until(ExpectedConditions.visibilityOf(passwordInputField));
+        passwordInputField.sendKeys(invalidPasswordFormat);
     }
 
     //email getter(for existing email scenario)

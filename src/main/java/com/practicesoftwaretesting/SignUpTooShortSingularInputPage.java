@@ -401,7 +401,7 @@ public class SignUpTooShortSingularInputPage extends BasePage{
         logger.info("Too short user password: " + tooShortPassword);
         System.out.println("\n");
     }
-    //invalid user data input method -> too short user email
+    //invalid user data input method -> too short user password
     public void inputTooShortPasswordIntoInputField(){
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(575));
         wait.until(ExpectedConditions.visibilityOf(passwordInputField));

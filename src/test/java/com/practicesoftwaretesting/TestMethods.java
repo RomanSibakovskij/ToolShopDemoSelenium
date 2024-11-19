@@ -1253,6 +1253,57 @@ public class TestMethods extends BaseTest{
         //capture screenshot of the test result
         captureScreenshot(driver, "Invalid User Account Creation with Already Existing Email - Final Test Result");
     }
+    //invalid user account creation test method (invalid user password format)
+    protected void invalidUserAccountInvalidPasswordCreationTest(SignUpPage signUpPage){
+        HomePage homePage = new HomePage(driver);
+        //utility class
+        SignUpInvalidSingularInputPage signUpInvalidSingularInputPage = new SignUpInvalidSingularInputPage(driver);
+        //general web element assert
+        isGeneralPageWebElementDisplayed(homePage);
+        //sign-up web element assert
+        isSignUpPageWebElementDisplayed(signUpPage);
+        //sign-up page text elements assert
+        isSignUpTextAsExpected(signUpPage);
+        //invalid user input data getter -> invalid user password format
+        signUpInvalidSingularInputPage.invalidInputUserDataGetterInvalidPasswordFormat();
+        //input valid first name
+        signUpInvalidSingularInputPage.inputFirstNameIntoInputField();
+        //input valid last name
+        signUpInvalidSingularInputPage.inputLastNameIntoInputField();
+        //input valid birthdate
+        signUpInvalidSingularInputPage.inputBirthdateIntoInputField();
+        //input valid address
+        signUpInvalidSingularInputPage.inputAddressIntoInputField();
+        //input valid post code
+        signUpInvalidSingularInputPage.inputPostCodeIntoInputField();
+        //input valid city
+        signUpInvalidSingularInputPage.inputCityIntoInputField();
+        //input valid state
+        signUpInvalidSingularInputPage.inputStateIntoInputField();
+        //click country dropdown menu
+        signUpPage.clickCountryDropdownMenu();
+        //select 'United States'
+        signUpPage.selectUnitedStatesOption();
+        //input valid phone number
+        signUpInvalidSingularInputPage.inputPhoneNumberIntoInputField();
+        //input valid email address
+        signUpInvalidSingularInputPage.inputEmailIntoInputField();
+        //input invalid password (by format)
+        signUpInvalidSingularInputPage.inputInvalidPasswordIntoInputField();
+        //click 'Password view' button
+        signUpInvalidSingularInputPage.clickPasswordViewButton();
+        //click 'Register' button
+        signUpPage.clickRegisterButton();
+        //assert the expected error message displayed matches the expectations
+        try {
+            String errorMessage = signUpPage.getInvalidInputErrorMessage();
+            assertEquals("", errorMessage, "The user password error message doesn't match expectations.");
+        } catch (NoSuchElementException e) {
+            logger.error("The user account gets created despite inputting user password in invalid format.");
+        }
+        //capture screenshot of the test result
+        captureScreenshot(driver, "Invalid User Account Creation with Invalid Password Format");
+    }
 
     //homepage web element assert test method
     protected void isHomePageWebElementDisplayed(HomePage homePage){
