@@ -39,6 +39,8 @@ public class SignUpInvalidSingularInputPage extends BasePage{
     private WebElement invalidUserInputError;
     @FindBy(xpath = "//div[@class='alert alert-danger mt-3']")
     private WebElement invalidInputError;
+    @FindBy(xpath = "//div[@data-test='register-error']")
+    private WebElement existingEmailError;
 
     //valid input data
     private String firstName;
@@ -179,10 +181,71 @@ public class SignUpInvalidSingularInputPage extends BasePage{
         emailAddressInputField.sendKeys(invalidEmailFormat);
     }
 
+    //valid input data getter (for existing email scenario) => first test loop
+    public void validInputUserDataGetter(){
+        firstName = TestDataGenerator.getRandomFirstName();
+        lastName = TestDataGenerator.getRandomLastName();
+        birthdate = TestDataGenerator.generateBirthdate();
+        address = TestDataGenerator.generateRandomAddress(7);
+        postCode = TestDataGenerator.getRandomPostalCode();
+        city = TestDataGenerator.getRandomCity();
+        state = "Illinois";
+        phone = TestDataGenerator.generatePhoneNumber(5);
+        email = TestDataGenerator.generateRandomEmailAddress(6);
+        password = TestDataGenerator.generateRandomPassword();
+
+        System.out.println("Valid data generated for user account creation: " + "\n");
+        logger.info("Valid user first name: " + firstName);
+        logger.info("Valid user last name: " + lastName);
+        logger.info("Valid user address: " + address);
+        logger.info("Valid user post code: " + postCode);
+        logger.info("Valid user city: " + city);
+        logger.info("Valid user state: " + state);
+        logger.info("Valid user phone number: " + phone);
+        logger.info("Valid user email: " + email);
+        logger.info("Valid user password: " + password);
+        System.out.println("\n");
+    }
+    //valid input data getter (with pre-existing user email) => second test loop
+    public void invalidInputUserDataGetterExistingEmail(){
+        firstName = TestDataGenerator.getRandomFirstName();
+        lastName = TestDataGenerator.getRandomLastName();
+        birthdate = TestDataGenerator.generateBirthdate();
+        address = TestDataGenerator.generateRandomAddress(7);
+        postCode = TestDataGenerator.getRandomPostalCode();
+        city = TestDataGenerator.getRandomCity();
+        state = "Illinois";
+        phone = TestDataGenerator.generatePhoneNumber(5);
+        existingEmail = getEmail();
+        password = TestDataGenerator.generateRandomPassword();
+
+        System.out.println("Invalid data generated for invalid user account creation (existing email): " + "\n");
+        logger.info("Valid user first name (existing email): " + firstName);
+        logger.info("Valid user last name (existing email): " + lastName);
+        logger.info("Valid user address (existing email): " + address);
+        logger.info("Valid user post code (existing email): " + postCode);
+        logger.info("Valid user city (existing email): " + city);
+        logger.info("Valid user state (existing email): " + state);
+        logger.info("Valid phone number (existing email): " + phone);
+        logger.info("Existing email: " + existingEmail);
+        logger.info("Valid user password (existing email): " + password);
+        System.out.println("\n");
+    }
+    //invalid user data input method -> existing user email
+    public void inputUsedEmailIntoInputField(){
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(575));
+        wait.until(ExpectedConditions.visibilityOf(emailAddressInputField));
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("arguments[0].scrollIntoView(true);", emailAddressInputField);
+        emailAddressInputField.sendKeys(existingEmail);
+    }
+
     //email getter(for existing email scenario)
     public String getEmail(){return email;}
     //password getter methods
     public String getPasswordInput(){return passwordInputField.getAttribute("value");}
     public String getPassword(){return password;}
+    //pre-existing email error message getter
+    public String getExistingEmailErrorMessage(){return existingEmailError.getText();}
 
 }

@@ -2,6 +2,10 @@ package com.practicesoftwaretesting;
 
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
 
 public class SignInPage extends BasePage{
 
@@ -26,7 +30,11 @@ public class SignInPage extends BasePage{
     public SignInPage(WebDriver driver) {super(driver);}
 
     //click 'Sign-up' link method
-    public void clickSignUpLink(){signUpLink.click();}
+    public void clickSignUpLink(){
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(1800));
+        wait.until(ExpectedConditions.elementToBeClickable(signUpLink));
+        signUpLink.click();
+    }
 
     //sign-in page title getter
     public String getSignInPageTitle() {return signInPageTitle.getText();}

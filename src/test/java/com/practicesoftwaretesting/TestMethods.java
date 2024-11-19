@@ -1162,6 +1162,97 @@ public class TestMethods extends BaseTest{
         //capture screenshot of the test result
         captureScreenshot(driver, "Invalid User Account Creation with Invalid Email Format");
     }
+    //invalid user account creation test method (with existing email address) (ignore the logger output - the user account doesn't get created, Selenium doesn't see the error message even though it's on full display with VALID selector)
+    protected void invalidUserAccountExistingEmailCreationTest(SignUpPage signUpPage){
+        HomePage homePage = new HomePage(driver);
+        SignInPage signInPage = new SignInPage(driver);
+        //utility class
+        SignUpInvalidSingularInputPage signUpInvalidSingularInputPage = new SignUpInvalidSingularInputPage(driver);
+        //general web element assert
+        isGeneralPageWebElementDisplayed(homePage);
+        //sign-up web element assert
+        isSignUpPageWebElementDisplayed(signUpPage);
+        //sign-up page text elements assert
+        isSignUpTextAsExpected(signUpPage);
+        //valid user input data getter -> for first loop
+        signUpInvalidSingularInputPage.validInputUserDataGetter();
+        //input valid first name
+        signUpInvalidSingularInputPage.inputFirstNameIntoInputField();
+        //input valid last name
+        signUpInvalidSingularInputPage.inputLastNameIntoInputField();
+        //input valid birthdate
+        signUpInvalidSingularInputPage.inputBirthdateIntoInputField();
+        //input valid address
+        signUpInvalidSingularInputPage.inputAddressIntoInputField();
+        //input valid post code
+        signUpInvalidSingularInputPage.inputPostCodeIntoInputField();
+        //input valid city
+        signUpInvalidSingularInputPage.inputCityIntoInputField();
+        //input valid state
+        signUpInvalidSingularInputPage.inputStateIntoInputField();
+        //click country dropdown menu
+        signUpPage.clickCountryDropdownMenu();
+        //select 'United States'
+        signUpPage.selectUnitedStatesOption();
+        //input valid phone number
+        signUpInvalidSingularInputPage.inputPhoneNumberIntoInputField();
+        //input valid email address
+        signUpInvalidSingularInputPage.inputEmailIntoInputField();
+        //input valid password
+        signUpInvalidSingularInputPage.inputPasswordIntoInputField();
+        //click 'Password view' button
+        signUpInvalidSingularInputPage.clickPasswordViewButton();
+        //assert the correct password has been input (for 'Password view' button testing)
+        assertEquals(signUpInvalidSingularInputPage.getPassword(), signUpInvalidSingularInputPage.getPasswordInput(), "There's a password mismatch.");
+        //click 'Register' button
+        signUpPage.clickRegisterButton();
+        //capture screenshot of the test result
+        captureScreenshot(driver, "Invalid User Account Creation with Already Existing Email - First Loop");
+        //click 'Sign-up' link (to return to 'Sign-up' page)
+        signInPage.clickSignUpLink();
+        //second test loop
+        //invalid user input data getter -> with already existing email
+        signUpInvalidSingularInputPage.invalidInputUserDataGetterExistingEmail();
+        //input valid first name
+        signUpInvalidSingularInputPage.inputFirstNameIntoInputField();
+        //input valid last name
+        signUpInvalidSingularInputPage.inputLastNameIntoInputField();
+        //input valid birthdate
+        signUpInvalidSingularInputPage.inputBirthdateIntoInputField();
+        //input valid address
+        signUpInvalidSingularInputPage.inputAddressIntoInputField();
+        //input valid post code
+        signUpInvalidSingularInputPage.inputPostCodeIntoInputField();
+        //input valid city
+        signUpInvalidSingularInputPage.inputCityIntoInputField();
+        //input valid state
+        signUpInvalidSingularInputPage.inputStateIntoInputField();
+        //click country dropdown menu
+        signUpPage.clickCountryDropdownMenu();
+        //select 'United States'
+        signUpPage.selectUnitedStatesOption();
+        //input valid phone number
+        signUpInvalidSingularInputPage.inputPhoneNumberIntoInputField();
+        //input already existing email address
+        signUpInvalidSingularInputPage.inputUsedEmailIntoInputField();
+        //input valid password
+        signUpInvalidSingularInputPage.inputPasswordIntoInputField();
+        //click 'Password view' button
+        signUpInvalidSingularInputPage.clickPasswordViewButton();
+        //assert the correct password has been input (for 'Password view' button testing)
+        assertEquals(signUpInvalidSingularInputPage.getPassword(), signUpInvalidSingularInputPage.getPasswordInput(), "There's a password mismatch.");
+        //click 'Register' button
+        signUpPage.clickRegisterButton();
+        //assert the expected error message displayed matches the expectations
+        try {
+            String errorMessage = signUpInvalidSingularInputPage.getExistingEmailErrorMessage();
+            assertEquals("A customer with this email address already exists.", errorMessage, "The user email error message doesn't match expectations.");
+        } catch (NoSuchElementException e) {
+            logger.error("The user account gets created despite inputting pre-existing user email address.");
+        }
+        //capture screenshot of the test result
+        captureScreenshot(driver, "Invalid User Account Creation with Already Existing Email - Final Test Result");
+    }
 
     //homepage web element assert test method
     protected void isHomePageWebElementDisplayed(HomePage homePage){

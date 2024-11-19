@@ -376,4 +376,20 @@ public class SignUpPageTest extends TestMethods{
         //invalid user account creation test (invalid email format)
         invalidUserAccountInvalidEmailCreationTest(signUpPage);
     }
+
+    //Test 002w -> invalid user account creation test (already used user email)
+    @Test
+    @DisplayName("Invalid User Account Creation Test - Existing Email ")
+    @Tag("Invalid_Account_Creation_Test")
+    @Tag("Pre_Existing_Singular_Input")
+    void invalidUserAccountExistingEmailCreationTest(){
+        HomePage homePage = new HomePage(driver);
+        SignUpPage signUpPage = new SignUpPage(driver);
+        //navigation to user sign-up page
+        navigateToUserSignUpPageTest(homePage);
+        //test title (for logging)
+        System.out.println("Invalid User Account Creation Test - Existing Email" + "\n");
+        //invalid user account creation test (existing email)
+        invalidUserAccountExistingEmailCreationTest(signUpPage);
+    }
 }
