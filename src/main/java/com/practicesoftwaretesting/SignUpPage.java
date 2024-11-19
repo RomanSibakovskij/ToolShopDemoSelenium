@@ -73,6 +73,7 @@ public class SignUpPage extends BasePage{
     private String noCity;
     private String noState;
     private String noPhone;
+    private String noEmail;
 
     public SignUpPage(WebDriver driver) {super(driver);}
 
@@ -448,6 +449,37 @@ public class SignUpPage extends BasePage{
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(575));
         wait.until(ExpectedConditions.visibilityOf(phoneInputField));
         phoneInputField.sendKeys(noPhone);
+    }
+
+    //invalid input data getter (no user email address)
+    public void invalidInputUserDataGetterNoEmail(){
+        firstName = TestDataGenerator.getRandomFirstName();
+        lastName = TestDataGenerator.getRandomLastName();
+        birthdate = TestDataGenerator.generateBirthdate();
+        address = TestDataGenerator.generateRandomAddress(7);
+        postCode = TestDataGenerator.getRandomPostalCode();
+        city = TestDataGenerator.getRandomCity();
+        state = "Illinois";
+        phone = TestDataGenerator.generatePhoneNumber(5);
+        noEmail = "";
+        password = TestDataGenerator.generateRandomPassword();
+
+        System.out.println("Valid data generated for invalid user account creation (no user email address): " + "\n");
+        logger.info("Valid user first name (no user email address): " + firstName);
+        logger.info("Valid user last name (no user email address): " + lastName);
+        logger.info("Valid user address (no user email address): " + address);
+        logger.info("Valid user post code (no user email address): " + postCode);
+        logger.info("Valid user city (no user email address): " + city);
+        logger.info("Valid user state (no user email address): " + state);
+        logger.info("Valid user phone number (no user email address): " + phone);
+        logger.info("No user email: " + noEmail);
+        logger.info("Valid user password (no user email address): " + password);
+        System.out.println("\n");
+    }
+    public void inputNoEmailIntoInputField(){
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(575));
+        wait.until(ExpectedConditions.visibilityOf(emailAddressInputField));
+        emailAddressInputField.sendKeys(noEmail);
     }
 
     //sign-up page title getter
