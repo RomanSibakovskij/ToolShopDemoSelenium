@@ -528,6 +528,53 @@ public class TestMethods extends BaseTest{
         //capture screenshot of the error
         captureScreenshot(driver, "Invalid User Account Creation with No User Email Address");
     }
+    //invalid user account creation test method (no password)
+    protected void invalidUserAccountNoPasswordCreationTest(SignUpPage signUpPage){
+        HomePage homePage = new HomePage(driver);
+        //general web element assert
+        isGeneralPageWebElementDisplayed(homePage);
+        //sign-up web element assert
+        isSignUpPageWebElementDisplayed(signUpPage);
+        //sign-up page text elements assert
+        isSignUpTextAsExpected(signUpPage);
+        //invalid user input data getter -> no user password
+        signUpPage.invalidInputUserDataGetterNoPassword();
+        //input valid first name
+        signUpPage.inputFirstNameIntoInputField();
+        //input valid last name
+        signUpPage.inputLastNameIntoInputField();
+        //input valid birthdate
+        signUpPage.inputBirthdateIntoInputField();
+        //input valid address
+        signUpPage.inputAddressIntoInputField();
+        //input valid post code
+        signUpPage.inputPostCodeIntoInputField();
+        //input valid city
+        signUpPage.inputCityIntoInputField();
+        //input valid state
+        signUpPage.inputStateIntoInputField();
+        //click country dropdown menu
+        signUpPage.clickCountryDropdownMenu();
+        //select 'United States'
+        signUpPage.selectUnitedStatesOption();
+        //input valid phone number
+        signUpPage.inputPhoneNumberIntoInputField();
+        //input valid email address
+        signUpPage.inputEmailIntoInputField();
+        //don't input password
+        signUpPage.inputNoPasswordIntoInputField();
+        //click 'Register' button
+        signUpPage.clickRegisterButton();
+        //log the issue if the user account gets created
+        try {
+            String errorMessage = signUpPage.getInvalidInputErrorMessage();
+            assertEquals("Password is required", errorMessage, "The user password error message doesn't match expectations.");
+        } catch (NoSuchElementException e) {
+            logger.error("The user account gets created despite no user password being input.");
+        }
+        //capture screenshot of the error
+        captureScreenshot(driver, "Invalid User Account Creation with No User Email Address");
+    }
 
 
     //homepage web element assert test method

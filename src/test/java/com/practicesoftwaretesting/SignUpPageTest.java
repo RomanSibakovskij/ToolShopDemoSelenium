@@ -180,4 +180,20 @@ public class SignUpPageTest extends TestMethods{
         //invalid user account creation test (no user email address)
         invalidUserAccountNoEmailCreationTest(signUpPage);
     }
+
+    //Test 002k -> invalid user account creation test (no password)
+    @Test
+    @DisplayName("Invalid User Account Creation Test - No Password")
+    @Tag("Invalid_Account_Creation_Test")
+    @Tag("No_Singular_Input")
+    void invalidUserAccountNoPasswordCreationTest(){
+        HomePage homePage = new HomePage(driver);
+        SignUpPage signUpPage = new SignUpPage(driver);
+        //navigation to user sign-up page
+        navigateToUserSignUpPageTest(homePage);
+        //test title (for logging)
+        System.out.println("Invalid User Account Creation Test - No Password" + "\n");
+        //invalid user account creation test (no user password)
+        invalidUserAccountNoPasswordCreationTest(signUpPage);
+    }
 }

@@ -74,6 +74,7 @@ public class SignUpPage extends BasePage{
     private String noState;
     private String noPhone;
     private String noEmail;
+    private String noPassword;
 
     public SignUpPage(WebDriver driver) {super(driver);}
 
@@ -480,6 +481,37 @@ public class SignUpPage extends BasePage{
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(575));
         wait.until(ExpectedConditions.visibilityOf(emailAddressInputField));
         emailAddressInputField.sendKeys(noEmail);
+    }
+
+    //invalid input data getter (no password)
+    public void invalidInputUserDataGetterNoPassword(){
+        firstName = TestDataGenerator.getRandomFirstName();
+        lastName = TestDataGenerator.getRandomLastName();
+        birthdate = TestDataGenerator.generateBirthdate();
+        address = TestDataGenerator.generateRandomAddress(7);
+        postCode = TestDataGenerator.getRandomPostalCode();
+        city = TestDataGenerator.getRandomCity();
+        state = "Illinois";
+        phone = TestDataGenerator.generatePhoneNumber(5);
+        email = TestDataGenerator.generateRandomEmailAddress(6);
+        noPassword = "";
+
+        System.out.println("Valid data generated for invalid user account creation (no password): " + "\n");
+        logger.info("Valid user first name (no password): " + firstName);
+        logger.info("Valid user last name (no password): " + lastName);
+        logger.info("Valid user address (no password): " + address);
+        logger.info("Valid user post code (no password): " + postCode);
+        logger.info("Valid user city (no password): " + city);
+        logger.info("Valid user state (no password): " + state);
+        logger.info("Valid user phone number (no password): " + phone);
+        logger.info("Valid user email (no password): " + email);
+        logger.info("No password: " + noPassword);
+        System.out.println("\n");
+    }
+    public void inputNoPasswordIntoInputField(){
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(575));
+        wait.until(ExpectedConditions.visibilityOf(passwordInputField));
+        passwordInputField.sendKeys(noPassword);
     }
 
     //sign-up page title getter
