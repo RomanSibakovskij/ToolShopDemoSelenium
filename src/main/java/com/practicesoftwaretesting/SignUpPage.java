@@ -71,6 +71,7 @@ public class SignUpPage extends BasePage{
     private String noAddress;
     private String noPostCode;
     private String noCity;
+    private String noState;
 
     public SignUpPage(WebDriver driver) {super(driver);}
 
@@ -352,6 +353,37 @@ public class SignUpPage extends BasePage{
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(575));
         wait.until(ExpectedConditions.visibilityOf(cityInputField));
         cityInputField.sendKeys(noCity);
+    }
+
+    //invalid input data getter (no user state)
+    public void invalidInputUserDataGetterNoState(){
+        firstName = TestDataGenerator.getRandomFirstName();
+        lastName = TestDataGenerator.getRandomLastName();
+        birthdate = TestDataGenerator.generateBirthdate();
+        address = TestDataGenerator.generateRandomAddress(7);
+        postCode = TestDataGenerator.getRandomPostalCode();
+        city = TestDataGenerator.getRandomCity();
+        noState = "";
+        phone = TestDataGenerator.generatePhoneNumber(5);
+        email = TestDataGenerator.generateRandomEmailAddress(6);
+        password = TestDataGenerator.generateRandomPassword();
+
+        System.out.println("Invalid data generated for user account creation (no user state): " + "\n");
+        logger.info("Valid user first name (no user state): " + firstName);
+        logger.info("Valid user last name (no user state): " + lastName);
+        logger.info("Valid user address (no user state): " + address);
+        logger.info("Valid user post code (no user state): " + postCode);
+        logger.info("Valid user city (no user state): " + city);
+        logger.info("No user state (no user state): " + noState);
+        logger.info("Valid user phone number (no user state): " + phone);
+        logger.info("Valid user email (no user state): " + email);
+        logger.info("Valid user password (no user state): " + password);
+        System.out.println("\n");
+    }
+    public void inputNoStateIntoInputField(){
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(575));
+        wait.until(ExpectedConditions.visibilityOf(stateInputField));
+        stateInputField.sendKeys(noState);
     }
 
     //sign-up page title getter

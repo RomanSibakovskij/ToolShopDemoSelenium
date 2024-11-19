@@ -337,12 +337,59 @@ public class TestMethods extends BaseTest{
         //log the issue if the user account gets created
         try {
             String errorMessage = signUpPage.getInvalidUserInputErrorMessage();
-            assertEquals("City is required", errorMessage, "The user postcode error message doesn't match expectations.");
+            assertEquals("City is required", errorMessage, "The user city error message doesn't match expectations.");
         } catch (NoSuchElementException e) {
             logger.error("The user account gets created despite no user city being input.");
         }
         //capture screenshot of the error
         captureScreenshot(driver, "Invalid User Account Creation with No User City");
+    }
+    //invalid user account creation test method (no user state)
+    protected void invalidUserAccountNoStateCreationTest(SignUpPage signUpPage){
+        HomePage homePage = new HomePage(driver);
+        //general web element assert
+        isGeneralPageWebElementDisplayed(homePage);
+        //sign-up web element assert
+        isSignUpPageWebElementDisplayed(signUpPage);
+        //sign-up page text elements assert
+        isSignUpTextAsExpected(signUpPage);
+        //invalid user input data getter -> no user state
+        signUpPage.invalidInputUserDataGetterNoState();
+        //input valid first name
+        signUpPage.inputFirstNameIntoInputField();
+        //input valid last name
+        signUpPage.inputLastNameIntoInputField();
+        //input valid birthdate
+        signUpPage.inputBirthdateIntoInputField();
+        //input valid address
+        signUpPage.inputAddressIntoInputField();
+        //input valid post code
+        signUpPage.inputPostCodeIntoInputField();
+        //input valid city
+        signUpPage.inputCityIntoInputField();
+        //don't input state
+        signUpPage.inputNoStateIntoInputField();
+        //click country dropdown menu
+        signUpPage.clickCountryDropdownMenu();
+        //select 'United States'
+        signUpPage.selectUnitedStatesOption();
+        //input valid phone number
+        signUpPage.inputPhoneNumberIntoInputField();
+        //input valid email address
+        signUpPage.inputEmailIntoInputField();
+        //input valid password
+        signUpPage.inputPasswordIntoInputField();
+        //click 'Register' button
+        signUpPage.clickRegisterButton();
+        //log the issue if the user account gets created
+        try {
+            String errorMessage = signUpPage.getInvalidUserInputErrorMessage();
+            assertEquals("State is required", errorMessage, "The user state error message doesn't match expectations.");
+        } catch (NoSuchElementException e) {
+            logger.error("The user account gets created despite no user state being input.");
+        }
+        //capture screenshot of the error
+        captureScreenshot(driver, "Invalid User Account Creation with No User State");
     }
 
 
