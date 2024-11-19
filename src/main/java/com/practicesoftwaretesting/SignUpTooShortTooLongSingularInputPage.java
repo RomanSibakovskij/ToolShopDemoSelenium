@@ -187,6 +187,38 @@ public class SignUpTooShortTooLongSingularInputPage extends BasePage{
         lastNameInputField.sendKeys(tooShortLastName);
     }
 
+    //invalid input data getter (too short address)
+    public void invalidInputUserDataGetterTooShortAddress(){
+        firstName = TestDataGenerator.getRandomFirstName();
+        lastName = TestDataGenerator.getRandomLastName();
+        birthdate = TestDataGenerator.generateBirthdate();
+        tooShortAddress = "K";
+        postCode = TestDataGenerator.getRandomPostalCode();
+        city = TestDataGenerator.getRandomCity();
+        state = "Illinois";
+        phone = TestDataGenerator.generatePhoneNumber(5);
+        email = TestDataGenerator.generateRandomEmailAddress(6);
+        password = TestDataGenerator.generateRandomPassword();
+
+        System.out.println("Valid data generated for invalid user account creation (too short user address): " + "\n");
+        logger.info("Valid user first name (too short user address): " + firstName);
+        logger.info("Valid user last name (too short user address): " + lastName);
+        logger.info("Too short user address: " + tooShortAddress);
+        logger.info("Valid user post code (too short user address): " + postCode);
+        logger.info("Valid user city (too short user address): " + city);
+        logger.info("Valid user state (too short user address): " + state);
+        logger.info("Valid user phone number (too short user address): " + phone);
+        logger.info("Valid user email (too short user address): " + email);
+        logger.info("Valid user password (too short user address): " + password);
+        System.out.println("\n");
+    }
+    //invalid user data input method -> too short user address
+    public void inputTooShortAddressIntoInputField(){
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(575));
+        wait.until(ExpectedConditions.visibilityOf(addressInputField));
+        addressInputField.sendKeys(tooShortAddress);
+    }
+
     //password getter methods
     public String getPasswordInput(){return passwordInputField.getAttribute("value");}
     public String getPassword(){return password;}

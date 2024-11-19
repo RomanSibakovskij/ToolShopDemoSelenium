@@ -199,7 +199,7 @@ public class SignUpPageTest extends TestMethods{
 
     //too short singular input tests
 
-    //Test 002l -> invalid user account creation test (too short first name)
+    //Test 002l -> invalid user account creation test (too short first name) (the user account gets created)
     @Test
     @DisplayName("Invalid User Account Creation Test - Too Short First Name")
     @Tag("Invalid_Account_Creation_Test")
@@ -215,7 +215,7 @@ public class SignUpPageTest extends TestMethods{
         invalidUserAccountTooShortFirstNameCreationTest(signUpPage);
     }
 
-    //Test 002m -> invalid user account creation test (too short last name)
+    //Test 002m -> invalid user account creation test (too short last name) (the user account gets created)
     @Test
     @DisplayName("Invalid User Account Creation Test - Too Short Last Name")
     @Tag("Invalid_Account_Creation_Test")
@@ -231,4 +231,19 @@ public class SignUpPageTest extends TestMethods{
         invalidUserAccountTooShortLastNameCreationTest(signUpPage);
     }
 
+    //Test 002n -> invalid user account creation test (too short user address) (the user account gets created)
+    @Test
+    @DisplayName("Invalid User Account Creation Test - Too Short Address")
+    @Tag("Invalid_Account_Creation_Test")
+    @Tag("Too_Short_Singular_Input")
+    void invalidUserAccountTooShortAddressCreationTest(){
+        HomePage homePage = new HomePage(driver);
+        SignUpPage signUpPage = new SignUpPage(driver);
+        //navigation to user sign-up page
+        navigateToUserSignUpPageTest(homePage);
+        //test title (for logging)
+        System.out.println("Invalid User Account Creation Test - Too Short Address" + "\n");
+        //invalid user account creation test (too short address)
+        invalidUserAccountTooShortAddressCreationTest(signUpPage);
+    }
 }
