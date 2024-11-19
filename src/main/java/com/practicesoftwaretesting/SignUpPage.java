@@ -67,6 +67,7 @@ public class SignUpPage extends BasePage{
 
     //no singular input
     private String noFirstName;
+    private String noLastName;
 
     public SignUpPage(WebDriver driver) {super(driver);}
 
@@ -74,7 +75,7 @@ public class SignUpPage extends BasePage{
     public void validInputUserDataGetter(){
         firstName = TestDataGenerator.getRandomFirstName();
         lastName = TestDataGenerator.getRandomLastName();
-        birthdate = TestDataGenerator.generateBirthdate(); //since this particular field doesn't accept rng values, manual input is introduced "1989-03-15"
+        birthdate = TestDataGenerator.generateBirthdate();
         address = TestDataGenerator.generateRandomAddress(7);
         postCode = TestDataGenerator.getRandomPostalCode();
         city = TestDataGenerator.getRandomCity();
@@ -161,11 +162,13 @@ public class SignUpPage extends BasePage{
     //select 'United States' option method
     public void selectUnitedStatesOption(){usCountryOption.click();}
 
-    //valid input data getter
+    //invalid test data getters and input methods
+
+    //invalid input data getter (no first name)
     public void invalidInputUserDataGetterNoFirstName(){
         noFirstName = "";
         lastName = TestDataGenerator.getRandomLastName();
-        birthdate = TestDataGenerator.generateBirthdate(); //since this particular field doesn't accept rng values, manual input is introduced "1989-03-15"
+        birthdate = TestDataGenerator.generateBirthdate();
         address = TestDataGenerator.generateRandomAddress(7);
         postCode = TestDataGenerator.getRandomPostalCode();
         city = TestDataGenerator.getRandomCity();
@@ -175,7 +178,7 @@ public class SignUpPage extends BasePage{
         password = TestDataGenerator.generateRandomPassword();
 
         System.out.println("Invalid data generated for user account creation (no first name): " + "\n");
-        logger.info("No first name (no first name): " + firstName);
+        logger.info("No first name (no first name): " + noFirstName);
         logger.info("Valid user last name (no first name): " + lastName);
         logger.info("Valid user address (no first name): " + address);
         logger.info("Valid user post code (no first name): " + postCode);
@@ -192,6 +195,37 @@ public class SignUpPage extends BasePage{
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(575));
         wait.until(ExpectedConditions.visibilityOf(firstNameInputField));
         firstNameInputField.sendKeys(noFirstName);
+    }
+
+    //invalid input data getter (no last name)
+    public void invalidInputUserDataGetterNoLastName(){
+        firstName = TestDataGenerator.getRandomFirstName();
+        noLastName = "";
+        birthdate = TestDataGenerator.generateBirthdate();
+        address = TestDataGenerator.generateRandomAddress(7);
+        postCode = TestDataGenerator.getRandomPostalCode();
+        city = TestDataGenerator.getRandomCity();
+        state = "Illinois";
+        phone = TestDataGenerator.generatePhoneNumber(5);
+        email = TestDataGenerator.generateRandomEmailAddress(6);
+        password = TestDataGenerator.generateRandomPassword();
+
+        System.out.println("Invalid data generated for user account creation (no last name): " + "\n");
+        logger.info("Valid user first name (no first name): " + firstName);
+        logger.info("No last name (no last name): " + noLastName);
+        logger.info("Valid user address (no last name): " + address);
+        logger.info("Valid user post code (no last name): " + postCode);
+        logger.info("Valid user city (no last name): " + city);
+        logger.info("Valid user state (no last name): " + state);
+        logger.info("Valid user phone number (no last name): " + phone);
+        logger.info("Valid user email (no last name): " + email);
+        logger.info("Valid user password (no last name): " + password);
+        System.out.println("\n");
+    }
+    public void inputNoLastNameIntoInputField(){
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(575));
+        wait.until(ExpectedConditions.visibilityOf(lastNameInputField));
+        lastNameInputField.sendKeys(noLastName);
     }
 
     //sign-up page title getter

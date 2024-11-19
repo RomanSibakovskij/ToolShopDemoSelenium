@@ -77,7 +77,7 @@ public class TestMethods extends BaseTest{
 
     //no singular inputs
 
-    //valid user account creation test method
+    //invalid user account creation test method (no first name)
     protected void invalidUserAccountNoFirstNameCreationTest(SignUpPage signUpPage){
         HomePage homePage = new HomePage(driver);
         //general web element assert
@@ -116,6 +116,46 @@ public class TestMethods extends BaseTest{
         signUpPage.clickRegisterButton();
         //assert the expected error message displayed matches the expectations
         assertEquals("First name is required", signUpPage.getInvalidUserInputErrorMessage(), "The first name error message doesn't match expectations.");
+    }
+    //invalid user account creation test method (no last name)
+    protected void invalidUserAccountNoLastNameCreationTest(SignUpPage signUpPage){
+        HomePage homePage = new HomePage(driver);
+        //general web element assert
+        isGeneralPageWebElementDisplayed(homePage);
+        //sign-up web element assert
+        isSignUpPageWebElementDisplayed(signUpPage);
+        //sign-up page text elements assert
+        isSignUpTextAsExpected(signUpPage);
+        //invalid user input data getter -> no last name
+        signUpPage.invalidInputUserDataGetterNoLastName();
+        //input valid first name
+        signUpPage.inputFirstNameIntoInputField();
+        //don't input last name
+        signUpPage.inputNoLastNameIntoInputField();
+        //input valid birthdate
+        signUpPage.inputBirthdateIntoInputField();
+        //input valid address
+        signUpPage.inputAddressIntoInputField();
+        //input valid post code
+        signUpPage.inputPostCodeIntoInputField();
+        //input valid city
+        signUpPage.inputCityIntoInputField();
+        //input valid state
+        signUpPage.inputStateIntoInputField();
+        //click country dropdown menu
+        signUpPage.clickCountryDropdownMenu();
+        //select 'United States'
+        signUpPage.selectUnitedStatesOption();
+        //input valid phone number
+        signUpPage.inputPhoneNumberIntoInputField();
+        //input valid email address
+        signUpPage.inputEmailIntoInputField();
+        //input valid password
+        signUpPage.inputPasswordIntoInputField();
+        //click 'Register' button
+        signUpPage.clickRegisterButton();
+        //assert the expected error message displayed matches the expectations
+        assertEquals("fields.last-name.required", signUpPage.getInvalidUserInputErrorMessage(), "The last name error message doesn't match expectations.");
     }
 
 
