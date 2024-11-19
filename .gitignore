@@ -15,7 +15,7 @@ target/
 # Ignore all .png files in the resources folder
 /src/test/resources/*.png
 # Ignore all .png files in resources and its subdirectories
-/src/test/resources/**/*.png
+/src/test/*.png
 
 ### Eclipse ###
 .apt_generated

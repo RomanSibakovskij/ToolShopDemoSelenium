@@ -148,4 +148,20 @@ public class SignUpPageTest extends TestMethods{
         //invalid user account creation test (no user country)
         invalidUserAccountNoCountryCreationTest(signUpPage);
     }
+
+    //Test 002i -> invalid user account creation test (no user phone number)
+    @Test
+    @DisplayName("Invalid User Account Creation Test - No User Phone Number")
+    @Tag("Invalid_Account_Creation_Test")
+    @Tag("No_Singular_Input")
+    void invalidUserAccountNoPhoneCreationTest(){
+        HomePage homePage = new HomePage(driver);
+        SignUpPage signUpPage = new SignUpPage(driver);
+        //navigation to user sign-up page
+        navigateToUserSignUpPageTest(homePage);
+        //test title (for logging)
+        System.out.println("Invalid User Account Creation Test - No User Phone Number" + "\n");
+        //invalid user account creation test (no user phone number)
+        invalidUserAccountNoPhoneCreationTest(signUpPage);
+    }
 }

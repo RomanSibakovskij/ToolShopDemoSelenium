@@ -72,6 +72,7 @@ public class SignUpPage extends BasePage{
     private String noPostCode;
     private String noCity;
     private String noState;
+    private String noPhone;
 
     public SignUpPage(WebDriver driver) {super(driver);}
 
@@ -182,7 +183,7 @@ public class SignUpPage extends BasePage{
         password = TestDataGenerator.generateRandomPassword();
 
         System.out.println("Valid data generated for invalid user account creation (no first name): " + "\n");
-        logger.info("No first name (no first name): " + noFirstName);
+        logger.info("No first name: " + noFirstName);
         logger.info("Valid user last name (no first name): " + lastName);
         logger.info("Valid user address (no first name): " + address);
         logger.info("Valid user post code (no first name): " + postCode);
@@ -193,7 +194,6 @@ public class SignUpPage extends BasePage{
         logger.info("Valid user password (no first name): " + password);
         System.out.println("\n");
     }
-
     //invalid user data input method -> no first name
     public void inputNoFirstNameIntoInputField(){
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(575));
@@ -216,7 +216,7 @@ public class SignUpPage extends BasePage{
 
         System.out.println("Valid data generated for invalid user account creation (no last name): " + "\n");
         logger.info("Valid user first name (no first name): " + firstName);
-        logger.info("No last name (no last name): " + noLastName);
+        logger.info("No last name: " + noLastName);
         logger.info("Valid user address (no last name): " + address);
         logger.info("Valid user post code (no last name): " + postCode);
         logger.info("Valid user city (no last name): " + city);
@@ -226,6 +226,7 @@ public class SignUpPage extends BasePage{
         logger.info("Valid user password (no last name): " + password);
         System.out.println("\n");
     }
+    //invalid user data input method -> no last name
     public void inputNoLastNameIntoInputField(){
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(575));
         wait.until(ExpectedConditions.visibilityOf(lastNameInputField));
@@ -257,6 +258,7 @@ public class SignUpPage extends BasePage{
         logger.info("Valid user password (no birthdate): " + password);
         System.out.println("\n");
     }
+    //invalid user data input method -> no birthdate
     public void inputNoBirthdateIntoInputField(){
         WebElement birthdateInputField = driver.findElement(By.id("dob"));
         birthdateInputField.sendKeys(noBirthdate);
@@ -278,7 +280,7 @@ public class SignUpPage extends BasePage{
         System.out.println("Valid data generated for invalid user account creation (no user address): " + "\n");
         logger.info("Valid user first name (no user address): " + firstName);
         logger.info("Valid user last name (no user address): " + lastName);
-        logger.info("No user address (no user address): " + noAddress);
+        logger.info("No user address: " + noAddress);
         logger.info("Valid user post code (no user address): " + postCode);
         logger.info("Valid user city (no user address): " + city);
         logger.info("Valid user state (no user address): " + state);
@@ -287,6 +289,7 @@ public class SignUpPage extends BasePage{
         logger.info("Valid user password (no user address): " + password);
         System.out.println("\n");
     }
+    //invalid user data input method -> no user address
     public void inputNoAddressIntoInputField(){
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(575));
         wait.until(ExpectedConditions.visibilityOf(addressInputField));
@@ -310,7 +313,7 @@ public class SignUpPage extends BasePage{
         logger.info("Valid user first name (no user postcode): " + firstName);
         logger.info("Valid user last name (no user postcode): " + lastName);
         logger.info("Valid user address (no user postcode): " + address);
-        logger.info("No user post code (no user postcode): " + noPostCode);
+        logger.info("No user post code: " + noPostCode);
         logger.info("Valid user city (no user postcode): " + city);
         logger.info("Valid user state (no user postcode): " + state);
         logger.info("Valid user phone number (no user postcode): " + phone);
@@ -318,6 +321,7 @@ public class SignUpPage extends BasePage{
         logger.info("Valid user password (no user postcode): " + password);
         System.out.println("\n");
     }
+    //invalid user data input method -> no user postcode
     public void inputNoPostCodeIntoInputField(){
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(575));
         wait.until(ExpectedConditions.visibilityOf(postCodeInputField));
@@ -342,13 +346,14 @@ public class SignUpPage extends BasePage{
         logger.info("Valid user last name (no user city): " + lastName);
         logger.info("Valid user address (no user city): " + address);
         logger.info("Valid user post code (no user city): " + postCode);
-        logger.info("No user city (no user city): " + noCity);
+        logger.info("No user city: " + noCity);
         logger.info("Valid user state (no user city): " + state);
         logger.info("Valid user phone number (no user city): " + phone);
         logger.info("Valid user email (no user city): " + email);
         logger.info("Valid user password (no user city): " + password);
         System.out.println("\n");
     }
+    //invalid user data input method -> no user city
     public void inputNoCityIntoInputField(){
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(575));
         wait.until(ExpectedConditions.visibilityOf(cityInputField));
@@ -374,12 +379,13 @@ public class SignUpPage extends BasePage{
         logger.info("Valid user address (no user state): " + address);
         logger.info("Valid user post code (no user state): " + postCode);
         logger.info("Valid user city (no user state): " + city);
-        logger.info("No user state (no user state): " + noState);
+        logger.info("No user state : " + noState);
         logger.info("Valid user phone number (no user state): " + phone);
         logger.info("Valid user email (no user state): " + email);
         logger.info("Valid user password (no user state): " + password);
         System.out.println("\n");
     }
+    //invalid user data input method -> no user state
     public void inputNoStateIntoInputField(){
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(575));
         wait.until(ExpectedConditions.visibilityOf(stateInputField));
@@ -410,6 +416,38 @@ public class SignUpPage extends BasePage{
         logger.info("Valid user email (no user country): " + email);
         logger.info("Valid user password (no user country): " + password);
         System.out.println("\n");
+    }
+
+    //invalid input data getter (no user phone number)
+    public void invalidInputUserDataGetterNoPhone(){
+        firstName = TestDataGenerator.getRandomFirstName();
+        lastName = TestDataGenerator.getRandomLastName();
+        birthdate = TestDataGenerator.generateBirthdate();
+        address = TestDataGenerator.generateRandomAddress(7);
+        postCode = TestDataGenerator.getRandomPostalCode();
+        city = TestDataGenerator.getRandomCity();
+        state = "Illinois";
+        noPhone = " ";
+        email = TestDataGenerator.generateRandomEmailAddress(6);
+        password = TestDataGenerator.generateRandomPassword();
+
+        System.out.println("Valid data generated for invalid user account creation (no user phone number): " + "\n");
+        logger.info("Valid user first name (no user phone number): " + firstName);
+        logger.info("Valid user last name (no user phone number): " + lastName);
+        logger.info("Valid user address (no user phone number): " + address);
+        logger.info("Valid user post code (no user phone number): " + postCode);
+        logger.info("Valid user city (no user phone number): " + city);
+        logger.info("Valid user state (no user phone number): " + state);
+        logger.info("No user phone number : " + noPhone);
+        logger.info("Valid user email (no user phone number): " + email);
+        logger.info("Valid user password (no user phone number): " + password);
+        System.out.println("\n");
+    }
+    //invalid user data input method -> no user phone number
+    public void inputNoPhoneNumberIntoInputField(){
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(575));
+        wait.until(ExpectedConditions.visibilityOf(phoneInputField));
+        phoneInputField.sendKeys(noPhone);
     }
 
     //sign-up page title getter
