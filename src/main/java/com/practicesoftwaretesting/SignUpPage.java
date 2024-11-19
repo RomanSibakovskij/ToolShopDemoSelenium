@@ -68,6 +68,7 @@ public class SignUpPage extends BasePage{
     //no singular input
     private String noFirstName;
     private String noLastName;
+    private String noBirthdate;
 
     public SignUpPage(WebDriver driver) {super(driver);}
 
@@ -226,6 +227,36 @@ public class SignUpPage extends BasePage{
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(575));
         wait.until(ExpectedConditions.visibilityOf(lastNameInputField));
         lastNameInputField.sendKeys(noLastName);
+    }
+
+    //invalid input data getter (no birthdate)
+    public void invalidInputUserDataGetterNoBirthdate(){
+        firstName = TestDataGenerator.getRandomFirstName();
+        lastName = TestDataGenerator.getRandomLastName();
+        noBirthdate = "";
+        address = TestDataGenerator.generateRandomAddress(7);
+        postCode = TestDataGenerator.getRandomPostalCode();
+        city = TestDataGenerator.getRandomCity();
+        state = "Illinois";
+        phone = TestDataGenerator.generatePhoneNumber(5);
+        email = TestDataGenerator.generateRandomEmailAddress(6);
+        password = TestDataGenerator.generateRandomPassword();
+
+        System.out.println("Invalid data generated for user account creation (no birthdate): " + "\n");
+        logger.info("Valid user first name (no birthdate): " + firstName);
+        logger.info("Valid user last name (no birthdate): " + lastName);
+        logger.info("Valid user address (no birthdate): " + address);
+        logger.info("Valid user post code (no birthdate): " + postCode);
+        logger.info("Valid user city (no birthdate): " + city);
+        logger.info("Valid user state (no birthdate): " + state);
+        logger.info("Valid user phone number (no birthdate): " + phone);
+        logger.info("Valid user email (no birthdate): " + email);
+        logger.info("Valid user password (no birthdate): " + password);
+        System.out.println("\n");
+    }
+    public void inputNoBirthdateIntoInputField(){
+        WebElement birthdateInputField = driver.findElement(By.id("dob"));
+        birthdateInputField.sendKeys(noBirthdate);
     }
 
     //sign-up page title getter

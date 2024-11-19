@@ -157,6 +157,46 @@ public class TestMethods extends BaseTest{
         //assert the expected error message displayed matches the expectations
         assertEquals("fields.last-name.required", signUpPage.getInvalidUserInputErrorMessage(), "The last name error message doesn't match expectations.");
     }
+    //invalid user account creation test method (no birthdate)
+    protected void invalidUserAccountNoBirthdateCreationTest(SignUpPage signUpPage){
+        HomePage homePage = new HomePage(driver);
+        //general web element assert
+        isGeneralPageWebElementDisplayed(homePage);
+        //sign-up web element assert
+        isSignUpPageWebElementDisplayed(signUpPage);
+        //sign-up page text elements assert
+        isSignUpTextAsExpected(signUpPage);
+        //invalid user input data getter -> no birthdate
+        signUpPage.invalidInputUserDataGetterNoBirthdate();
+        //input valid first name
+        signUpPage.inputFirstNameIntoInputField();
+        //input valid last name
+        signUpPage.inputLastNameIntoInputField();
+        //don't input birthdate
+        signUpPage.inputNoBirthdateIntoInputField();
+        //input valid address
+        signUpPage.inputAddressIntoInputField();
+        //input valid post code
+        signUpPage.inputPostCodeIntoInputField();
+        //input valid city
+        signUpPage.inputCityIntoInputField();
+        //input valid state
+        signUpPage.inputStateIntoInputField();
+        //click country dropdown menu
+        signUpPage.clickCountryDropdownMenu();
+        //select 'United States'
+        signUpPage.selectUnitedStatesOption();
+        //input valid phone number
+        signUpPage.inputPhoneNumberIntoInputField();
+        //input valid email address
+        signUpPage.inputEmailIntoInputField();
+        //input valid password
+        signUpPage.inputPasswordIntoInputField();
+        //click 'Register' button
+        signUpPage.clickRegisterButton();
+        //assert the expected error message displayed matches the expectations
+        assertEquals("Date of Birth is required", signUpPage.getInvalidInputErrorMessage(), "The birthdate error message doesn't match expectations.");
+    }
 
 
     //homepage web element assert test method

@@ -52,4 +52,20 @@ public class SignUpPageTest extends TestMethods{
         //invalid user account creation test (no last name)
         invalidUserAccountNoLastNameCreationTest(signUpPage);
     }
+
+    //Test 002c -> invalid user account creation test (no birthdate)
+    @Test
+    @DisplayName("Invalid User Account Creation Test - No Birthdate")
+    @Tag("Invalid_Account_Creation_Test")
+    @Tag("No_Singular_Input")
+    void invalidUserAccountNoBirthdateCreationTest(){
+        HomePage homePage = new HomePage(driver);
+        SignUpPage signUpPage = new SignUpPage(driver);
+        //navigation to user sign-up page
+        navigateToUserSignUpPageTest(homePage);
+        //test title (for logging)
+        System.out.println("Invalid User Account Creation Test - No Birthdate" + "\n");
+        //invalid user account creation test (no birthdate)
+        invalidUserAccountNoBirthdateCreationTest(signUpPage);
+    }
 }
