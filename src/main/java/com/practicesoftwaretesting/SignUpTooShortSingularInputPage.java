@@ -333,7 +333,7 @@ public class SignUpTooShortSingularInputPage extends BasePage{
         logger.info("Valid user post code (too short phone): " + postCode);
         logger.info("Valid user city (too short phone): " + city);
         logger.info("Valid user state (too short phone): " + state);
-        logger.info("Too short phone number (too short phone): " + tooShortPhone);
+        logger.info("Too short phone number: " + tooShortPhone);
         logger.info("Valid user email (too short phone): " + email);
         logger.info("Valid user password (too short phone): " + password);
         System.out.println("\n");
@@ -343,6 +343,38 @@ public class SignUpTooShortSingularInputPage extends BasePage{
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(575));
         wait.until(ExpectedConditions.visibilityOf(phoneInputField));
         phoneInputField.sendKeys(tooShortPhone);
+    }
+
+    //invalid input data getter (too short user email)
+    public void invalidInputUserDataGetterTooShortEmail(){
+        firstName = TestDataGenerator.getRandomFirstName();
+        lastName = TestDataGenerator.getRandomLastName();
+        birthdate = TestDataGenerator.generateBirthdate();
+        address = TestDataGenerator.generateRandomAddress(7);
+        postCode = TestDataGenerator.getRandomPostalCode();
+        city = TestDataGenerator.getRandomCity();
+        state = "Illinois";
+        phone = TestDataGenerator.generatePhoneNumber(5);
+        tooShortEmail = TestDataGenerator.generateRandomEmailAddress(1);
+        password = TestDataGenerator.generateRandomPassword();
+
+        System.out.println("Valid data generated for invalid user account creation (too short email): " + "\n");
+        logger.info("Valid user first name (too short email): " + firstName);
+        logger.info("Valid user last name (too short email): " + lastName);
+        logger.info("Valid user address (too short email): " + address);
+        logger.info("Valid user post code (too short email): " + postCode);
+        logger.info("Valid user city (too short email): " + city);
+        logger.info("Valid user state (too short email): " + state);
+        logger.info("Valid phone number (too short email): " + phone);
+        logger.info("Too short email: " + tooShortEmail);
+        logger.info("Valid user password (too short email): " + password);
+        System.out.println("\n");
+    }
+    //invalid user data input method -> too short user email
+    public void inputTooShortEmailIntoInputField(){
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(575));
+        wait.until(ExpectedConditions.visibilityOf(emailAddressInputField));
+        emailAddressInputField.sendKeys(tooShortEmail);
     }
 
     //password getter methods

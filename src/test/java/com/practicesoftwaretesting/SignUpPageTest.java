@@ -310,4 +310,20 @@ public class SignUpPageTest extends TestMethods{
         //invalid user account creation test (too short phone)
         invalidUserAccountTooShortPhoneCreationTest(signUpPage);
     }
+
+    //Test 002s -> invalid user account creation test (too short user email) (the user account gets created)
+    @Test
+    @DisplayName("Invalid User Account Creation Test - Too Short Email")
+    @Tag("Invalid_Account_Creation_Test")
+    @Tag("Too_Short_Singular_Input")
+    void invalidUserAccountTooShortEmailCreationTest(){
+        HomePage homePage = new HomePage(driver);
+        SignUpPage signUpPage = new SignUpPage(driver);
+        //navigation to user sign-up page
+        navigateToUserSignUpPageTest(homePage);
+        //test title (for logging)
+        System.out.println("Invalid User Account Creation Test - Too Short Email" + "\n");
+        //invalid user account creation test (too short email)
+        invalidUserAccountTooShortEmailCreationTest(signUpPage);
+    }
 }
