@@ -3,8 +3,7 @@ package com.practicesoftwaretesting;
 
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
+import org.openqa.selenium.support.ui.*;
 
 import java.time.Duration;
 
@@ -71,6 +70,7 @@ public class SignUpPage extends BasePage{
     private String noBirthdate;
     private String noAddress;
     private String noPostCode;
+    private String noCity;
 
     public SignUpPage(WebDriver driver) {super(driver);}
 
@@ -321,6 +321,37 @@ public class SignUpPage extends BasePage{
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(575));
         wait.until(ExpectedConditions.visibilityOf(postCodeInputField));
         postCodeInputField.sendKeys(noPostCode);
+    }
+
+    //invalid input data getter (no user city)
+    public void invalidInputUserDataGetterNoCity(){
+        firstName = TestDataGenerator.getRandomFirstName();
+        lastName = TestDataGenerator.getRandomLastName();
+        birthdate = TestDataGenerator.generateBirthdate();
+        address = TestDataGenerator.generateRandomAddress(7);
+        postCode = TestDataGenerator.getRandomPostalCode();
+        noCity = "";
+        state = "Illinois";
+        phone = TestDataGenerator.generatePhoneNumber(5);
+        email = TestDataGenerator.generateRandomEmailAddress(6);
+        password = TestDataGenerator.generateRandomPassword();
+
+        System.out.println("Invalid data generated for user account creation (no user city): " + "\n");
+        logger.info("Valid user first name (no user city): " + firstName);
+        logger.info("Valid user last name (no user city): " + lastName);
+        logger.info("Valid user address (no user city): " + address);
+        logger.info("Valid user post code (no user city): " + postCode);
+        logger.info("No user city (no user city): " + noCity);
+        logger.info("Valid user state (no user city): " + state);
+        logger.info("Valid user phone number (no user city): " + phone);
+        logger.info("Valid user email (no user city): " + email);
+        logger.info("Valid user password (no user city): " + password);
+        System.out.println("\n");
+    }
+    public void inputNoCityIntoInputField(){
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(575));
+        wait.until(ExpectedConditions.visibilityOf(cityInputField));
+        cityInputField.sendKeys(noCity);
     }
 
     //sign-up page title getter

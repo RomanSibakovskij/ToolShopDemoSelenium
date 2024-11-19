@@ -85,7 +85,7 @@ public class SignUpPageTest extends TestMethods{
         invalidUserAccountNoAddressCreationTest(signUpPage);
     }
 
-    //Test 002e -> invalid user account creation test (no user post code)
+    //Test 002e -> invalid user account creation test (no user post code) (the account gets created)
     @Test
     @DisplayName("Invalid User Account Creation Test - No User Post Code")
     @Tag("Invalid_Account_Creation_Test")
@@ -99,5 +99,21 @@ public class SignUpPageTest extends TestMethods{
         System.out.println("Invalid User Account Creation Test - No User Post Code" + "\n");
         //invalid user account creation test (no user post code)
         invalidUserAccountNoPostCodeCreationTest(signUpPage);
+    }
+
+    //Test 002f -> invalid user account creation test (no user city)
+    @Test
+    @DisplayName("Invalid User Account Creation Test - No User City")
+    @Tag("Invalid_Account_Creation_Test")
+    @Tag("No_Singular_Input")
+    void invalidUserAccountNoCityCreationTest(){
+        HomePage homePage = new HomePage(driver);
+        SignUpPage signUpPage = new SignUpPage(driver);
+        //navigation to user sign-up page
+        navigateToUserSignUpPageTest(homePage);
+        //test title (for logging)
+        System.out.println("Invalid User Account Creation Test - No User City" + "\n");
+        //invalid user account creation test (no user city)
+        invalidUserAccountNoCityCreationTest(signUpPage);
     }
 }

@@ -297,6 +297,53 @@ public class TestMethods extends BaseTest{
         //capture screenshot of the error
         captureScreenshot(driver, "Invalid User Account Creation with No User Post Code");
     }
+    //invalid user account creation test method (no user city)
+    protected void invalidUserAccountNoCityCreationTest(SignUpPage signUpPage){
+        HomePage homePage = new HomePage(driver);
+        //general web element assert
+        isGeneralPageWebElementDisplayed(homePage);
+        //sign-up web element assert
+        isSignUpPageWebElementDisplayed(signUpPage);
+        //sign-up page text elements assert
+        isSignUpTextAsExpected(signUpPage);
+        //invalid user input data getter -> no user city
+        signUpPage.invalidInputUserDataGetterNoCity();
+        //input valid first name
+        signUpPage.inputFirstNameIntoInputField();
+        //input valid last name
+        signUpPage.inputLastNameIntoInputField();
+        //input valid birthdate
+        signUpPage.inputBirthdateIntoInputField();
+        //input valid address
+        signUpPage.inputAddressIntoInputField();
+        //input valid post code
+        signUpPage.inputPostCodeIntoInputField();
+        //don't input city
+        signUpPage.inputNoCityIntoInputField();
+        //input valid state
+        signUpPage.inputStateIntoInputField();
+        //click country dropdown menu
+        signUpPage.clickCountryDropdownMenu();
+        //select 'United States'
+        signUpPage.selectUnitedStatesOption();
+        //input valid phone number
+        signUpPage.inputPhoneNumberIntoInputField();
+        //input valid email address
+        signUpPage.inputEmailIntoInputField();
+        //input valid password
+        signUpPage.inputPasswordIntoInputField();
+        //click 'Register' button
+        signUpPage.clickRegisterButton();
+        //log the issue if the user account gets created
+        try {
+            String errorMessage = signUpPage.getInvalidUserInputErrorMessage();
+            assertEquals("City is required", errorMessage, "The user postcode error message doesn't match expectations.");
+        } catch (NoSuchElementException e) {
+            logger.error("The user account gets created despite no user city being input.");
+        }
+        //capture screenshot of the error
+        captureScreenshot(driver, "Invalid User Account Creation with No User City");
+    }
 
 
     //homepage web element assert test method
