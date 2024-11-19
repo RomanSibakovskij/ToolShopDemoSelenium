@@ -59,6 +59,7 @@ public class SignUpTooShortTooLongSingularInputPage extends BasePage{
     private String tooShortFirstName;
     private String tooShortLastName;
     private String tooShortAddress;
+    private String tooShortPostCode;
     private String tooShortCity;
     private String tooShortState;
     private String tooShortPhone;
@@ -217,6 +218,38 @@ public class SignUpTooShortTooLongSingularInputPage extends BasePage{
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(575));
         wait.until(ExpectedConditions.visibilityOf(addressInputField));
         addressInputField.sendKeys(tooShortAddress);
+    }
+
+    //invalid input data getter (too short post code)
+    public void invalidInputUserDataGetterTooShortPostCode(){
+        firstName = TestDataGenerator.getRandomFirstName();
+        lastName = TestDataGenerator.getRandomLastName();
+        birthdate = TestDataGenerator.generateBirthdate();
+        address = TestDataGenerator.generateRandomAddress(7);
+        tooShortPostCode = "1";
+        city = TestDataGenerator.getRandomCity();
+        state = "Illinois";
+        phone = TestDataGenerator.generatePhoneNumber(5);
+        email = TestDataGenerator.generateRandomEmailAddress(6);
+        password = TestDataGenerator.generateRandomPassword();
+
+        System.out.println("Valid data generated for invalid user account creation (too short user post code): " + "\n");
+        logger.info("Valid user first name (too short user post code): " + firstName);
+        logger.info("Valid user last name (too short user post code): " + lastName);
+        logger.info("Valid user address (too short user post code): " + address);
+        logger.info("Too short post code: " + tooShortPostCode);
+        logger.info("Valid user city (too short user post code): " + city);
+        logger.info("Valid user state (too short user post code): " + state);
+        logger.info("Valid user phone number (too short user post code): " + phone);
+        logger.info("Valid user email (too short user post code): " + email);
+        logger.info("Valid user password (too short user post code): " + password);
+        System.out.println("\n");
+    }
+    //invalid user data input method -> too short user post code
+    public void inputTooShortPostCodeIntoInputField(){
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(575));
+        wait.until(ExpectedConditions.visibilityOf(postCodeInputField));
+        postCodeInputField.sendKeys(tooShortPostCode);
     }
 
     //password getter methods
