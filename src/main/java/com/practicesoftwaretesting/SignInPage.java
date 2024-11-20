@@ -26,10 +26,17 @@ public class SignInPage extends BasePage{
     private WebElement signUpLink;
     @FindBy(xpath = "//a[@aria-label='Forgot your Password?']")
     private WebElement forgotPasswordLink;
+    //missing input error message
+    @FindBy(xpath = "//div[@class='alert alert-danger']")
+    private WebElement missingInputErrorBox;
 
     //valid login input data
     private String loginEmail;
     private String loginPassword;
+
+    //no singular input
+    private String noLoginEmail;
+    private String noLoginPassword;
 
     public SignInPage(WebDriver driver) {super(driver);}
 
@@ -38,9 +45,9 @@ public class SignInPage extends BasePage{
         loginEmail = signUpPage.getEmailAddress();
         loginPassword = signUpPage.getPassword();
 
-        System.out.println("Valid data generated for invalid user account creation (too short first name): " + "\n");
-        logger.info("Valid user email (too short last name): " + loginEmail);
-        logger.info("Valid user password (too short last name): " + loginPassword);
+        System.out.println("Valid data generated for valid user login: " + "\n");
+        logger.info("Valid user email: " + loginEmail);
+        logger.info("Valid user password: " + loginPassword);
         System.out.println("\n");
     }
     //valid user data input method -> valid user login email
@@ -57,9 +64,27 @@ public class SignInPage extends BasePage{
         passwordInputField.sendKeys(loginPassword);
     }
 
+    //invalid user login input data getter (no email)
+    public void invalidInputUserLoginDataGetterNoEmail(SignUpPage signUpPage){
+        noLoginEmail = "";
+        loginPassword = signUpPage.getPassword();
+
+        System.out.println("Valid data generated for invalid user login (no login email): " + "\n");
+        logger.info("No user email: " + noLoginEmail);
+        logger.info("Valid user password (no login email): " + loginPassword);
+        System.out.println("\n");
+    }
+    //invalid user data input method -> no user login email
+    public void inputNoLoginEmailIntoInputField(){
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(575));
+        wait.until(ExpectedConditions.visibilityOf(emailAddressInputField));
+        emailAddressInputField.click();
+        emailAddressInputField.sendKeys(noLoginEmail);
+    }
+
+
     //click 'Sign-In' button method
     public void clickSignInButton(){signInButton.click();}
-
 
     //click 'Sign-up' link method
     public void clickSignUpLink(){
@@ -70,6 +95,13 @@ public class SignInPage extends BasePage{
 
     //sign-in page title getter
     public String getSignInPageTitle() {return signInPageTitle.getText();}
+
+    //missing input error message getter
+    public String getMissingInputError() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(1900));
+        wait.until(ExpectedConditions.visibilityOf(missingInputErrorBox));
+        return missingInputErrorBox.getText();
+    }
 
     //sign-in page web element assert methods
     public boolean isSignInPageTitleDisplayed() {return signInPageTitle.isDisplayed();}

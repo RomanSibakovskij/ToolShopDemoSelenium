@@ -1810,6 +1810,35 @@ public class TestMethods extends BaseTest{
         captureScreenshot(driver, "Valid User Login Test");
     }
 
+    //negative user login tests
+
+    //invalid user login test method (no login email)
+    protected void invalidUserSignInNoEmailTest(SignUpPage signUpPage){
+        HomePage homePage = new HomePage(driver);
+        SignInPage signInPage = new SignInPage(driver);
+        //general web element assert
+        isGeneralPageWebElementDisplayed(homePage);
+        //sign-in page web element assert
+        //isSignInPageWebElementDisplayed(signInPage); //Selenium can't locate these elements with VALID selectors
+        //invalid login user input data getter (no email)
+        signInPage.invalidInputUserLoginDataGetterNoEmail(signUpPage);
+        //don't input email
+        signInPage.inputNoLoginEmailIntoInputField();
+        //input valid password
+        signInPage.inputValidLoginPasswordIntoInputField();
+        //click 'Login' button
+        signInPage.clickSignInButton();
+        //assert the login input error message is as expected
+        try {
+            String errorMessage = signInPage.getMissingInputError();
+            assertEquals("Email is required", errorMessage, "The login email error message doesn't match expectations.");
+        } catch (NoSuchElementException e) {
+            logger.error("The user error message didn't appear");
+        }
+        //capture screenshot of the test result
+        captureScreenshot(driver, "Invalid User Login Test - No Login Email");
+    }
+
     //user logout test
 
     //user logout test method
