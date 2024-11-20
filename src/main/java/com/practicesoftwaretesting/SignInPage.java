@@ -38,6 +38,10 @@ public class SignInPage extends BasePage{
     private String noLoginEmail;
     private String noLoginPassword;
 
+    //invalid singular input
+    private String invalidLoginEmail;
+    private String invalidLoginPassword;
+
     public SignInPage(WebDriver driver) {super(driver);}
 
     //valid user login input data getter
@@ -99,6 +103,24 @@ public class SignInPage extends BasePage{
         passwordInputField.sendKeys(noLoginPassword);
     }
 
+    //invalid user login input data getter (invalid login email)
+    public void invalidInputUserLoginDataGetterInvalidEmail(SignUpPage signUpPage){
+        invalidLoginEmail = "b5@fakemail.com";
+        loginPassword = signUpPage.getPassword();
+
+        System.out.println("Valid data generated for invalid user login (invalid login email): " + "\n");
+        logger.info("Invalid login email: " + invalidLoginEmail);
+        logger.info("Valid login password (invalid login email): " + loginPassword);
+        System.out.println("\n");
+    }
+    //invalid user data input method -> invalid user login email
+    public void inputInvalidLoginEmailIntoInputField(){
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(575));
+        wait.until(ExpectedConditions.visibilityOf(emailAddressInputField));
+        emailAddressInputField.click();
+        emailAddressInputField.sendKeys(invalidLoginEmail);
+    }
+
 
     //click 'Sign-In' button method
     public void clickSignInButton(){signInButton.click();}
@@ -122,6 +144,9 @@ public class SignInPage extends BasePage{
         wait.until(ExpectedConditions.visibilityOf(missingInputErrorBox));
         return missingInputErrorBox.getText();
     }
+    //password getter methods
+    public String getPasswordInput(){return passwordInputField.getAttribute("value");}
+    public String getPassword(){return loginPassword;}
 
     //sign-in page web element assert methods
     public boolean isSignInPageTitleDisplayed() {return signInPageTitle.isDisplayed();}

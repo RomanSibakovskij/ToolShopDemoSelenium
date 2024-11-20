@@ -59,6 +59,24 @@ public class LoginPageTest extends TestMethods{
         invalidUserSignInNoPasswordTest(signUpPage);
     }
 
+    //Test 003c -> invalid user login test (invalid login email)
+    @Test
+    @DisplayName("Invalid User Login Test - Invalid Login Email")
+    @Tag("Invalid_Account_Login_Test")
+    @Tag("Invalid_Singular_Input")
+    void invalidUserAccountLoginInvalidEmailTest(){
+        HomePage homePage = new HomePage(driver);
+        SignUpPage signUpPage = new SignUpPage(driver);
+        //navigation to user sign-up page
+        navigateToUserSignUpPageTest(homePage);
+        //valid user account creation test
+        createValidUserAccountTest(signUpPage);
+        //test title (for logging)
+        System.out.println("Invalid User Login Test - Invalid Login Email" + "\n");
+        //invalid user login test (invalid login email)
+        invalidUserSignInInvalidEmailTest(signUpPage);
+    }
+
     //user logout test
 
     //Test 004 -> valid user logout test
