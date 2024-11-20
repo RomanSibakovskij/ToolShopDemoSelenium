@@ -14,11 +14,10 @@ public class BaseTest {
     @BeforeEach
     void setUp(){
         FirefoxOptions options = new FirefoxOptions();
-        options.addArguments("--disable-search-engine-choice-screen"); // For browser run
-        //options.addArguments("--headless", "--disable-gpu", "--window-size=1920,1080"); // Necessary for CI run, uncomment when needed
-
+        //options.addArguments("--disable-search-engine-choice-screen"); // For browser run
+        options.addArguments("--headless", "--disable-gpu", "--window-size=1920,1080"); // Necessary for CI run, uncomment when needed
         driver = new FirefoxDriver(options);
-        driver.manage().window().maximize(); // Enable this for browser run
+        //driver.manage().window().maximize(); // Enable this for browser run
         driver.get("https://practicesoftwaretesting.com/");
     }
 

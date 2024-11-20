@@ -624,7 +624,7 @@ public class TestMethods extends BaseTest{
         //assert the expected error message displayed matches the expectations
         try {
             String errorMessage = signUpPage.getInvalidUserInputErrorMessage();
-            assertEquals("Too short first name", errorMessage, "The first name error message doesn't match expectations.");
+            assertEquals("Too short first name", errorMessage, "The first name error message doesn't match expectations."); //it doesn't have error message text though
         } catch (NoSuchElementException e) {
             logger.error("The user account gets created despite inputting too short first name.");
         }
@@ -677,7 +677,7 @@ public class TestMethods extends BaseTest{
         //assert the expected error message displayed matches the expectations
         try {
             String errorMessage = signUpPage.getInvalidUserInputErrorMessage();
-            assertEquals("Too short last name", errorMessage, "The last name error message doesn't match expectations.");
+            assertEquals("Too short last name", errorMessage, "The last name error message doesn't match expectations."); //it doesn't have error message text though
         } catch (NoSuchElementException e) {
             logger.error("The user account gets created despite inputting too short last name.");
         }
@@ -730,7 +730,7 @@ public class TestMethods extends BaseTest{
         //assert the expected error message displayed matches the expectations
         try {
             String errorMessage = signUpPage.getInvalidUserInputErrorMessage();
-            assertEquals("Too short address", errorMessage, "The user address error message doesn't match expectations.");
+            assertEquals("Too short address", errorMessage, "The user address error message doesn't match expectations."); //it doesn't have error message text though
         } catch (NoSuchElementException e) {
             logger.error("The user account gets created despite inputting too short user address.");
         }
@@ -783,7 +783,7 @@ public class TestMethods extends BaseTest{
         //assert the expected error message displayed matches the expectations
         try {
             String errorMessage = signUpPage.getInvalidUserInputErrorMessage();
-            assertEquals("Too short postcode", errorMessage, "The user post code error message doesn't match expectations.");
+            assertEquals("Too short postcode", errorMessage, "The user post code error message doesn't match expectations."); //it doesn't have error message text though
         } catch (NoSuchElementException e) {
             logger.error("The user account gets created despite inputting too short user post code.");
         }
@@ -836,7 +836,7 @@ public class TestMethods extends BaseTest{
         //assert the expected error message displayed matches the expectations
         try {
             String errorMessage = signUpPage.getInvalidUserInputErrorMessage();
-            assertEquals("Too short city", errorMessage, "The user city error message doesn't match expectations.");
+            assertEquals("Too short city", errorMessage, "The user city error message doesn't match expectations."); //it doesn't have error message text though
         } catch (NoSuchElementException e) {
             logger.error("The user account gets created despite inputting too short user city.");
         }
@@ -889,7 +889,7 @@ public class TestMethods extends BaseTest{
         //assert the expected error message displayed matches the expectations
         try {
             String errorMessage = signUpPage.getInvalidUserInputErrorMessage();
-            assertEquals("Too short state", errorMessage, "The user state error message doesn't match expectations.");
+            assertEquals("Too short state", errorMessage, "The user state error message doesn't match expectations."); //it doesn't have error message text though
         } catch (NoSuchElementException e) {
             logger.error("The user account gets created despite inputting too short user state.");
         }
@@ -942,7 +942,7 @@ public class TestMethods extends BaseTest{
         //assert the expected error message displayed matches the expectations
         try {
             String errorMessage = signUpPage.getInvalidUserInputErrorMessage();
-            assertEquals("Too short phone number", errorMessage, "The user phone error message doesn't match expectations.");
+            assertEquals("Too short phone number", errorMessage, "The user phone error message doesn't match expectations."); //it doesn't have error message text though
         } catch (NoSuchElementException e) {
             logger.error("The user account gets created despite inputting too short user phone number.");
         }
@@ -995,7 +995,7 @@ public class TestMethods extends BaseTest{
         //assert the expected error message displayed matches the expectations
         try {
             String errorMessage = signUpPage.getInvalidInputErrorMessage();
-            assertEquals("", errorMessage, "The user email error message doesn't match expectations.");
+            assertEquals("", errorMessage, "The user email error message doesn't match expectations."); //it doesn't have error message text though
         } catch (NoSuchElementException e) {
             logger.error("The user account gets created despite inputting too short user email address(usually, one char is invalid).");
         }
@@ -1046,7 +1046,7 @@ public class TestMethods extends BaseTest{
         //assert the expected error message displayed matches the expectations
         try {
             String errorMessage = signUpPage.getInvalidInputErrorMessage();
-            assertEquals("", errorMessage, "The user password error message doesn't match expectations.");
+            assertEquals("", errorMessage, "The user password error message doesn't match expectations."); //it doesn't have error message text though
         } catch (NoSuchElementException e) {
             logger.error("The user account gets created despite inputting too short user password.");
         }
@@ -1162,7 +1162,7 @@ public class TestMethods extends BaseTest{
         //capture screenshot of the test result
         captureScreenshot(driver, "Invalid User Account Creation with Invalid Email Format");
     }
-    //invalid user account creation test method (with existing email address) (ignore the logger output - the user account doesn't get created, Selenium doesn't see the error message even though it's on full display with VALID selector)
+    //invalid user account creation test method (with existing email address)
     protected void invalidUserAccountExistingEmailCreationTest(SignUpPage signUpPage){
         HomePage homePage = new HomePage(driver);
         SignInPage signInPage = new SignInPage(driver);
@@ -1305,7 +1305,7 @@ public class TestMethods extends BaseTest{
         captureScreenshot(driver, "Invalid User Account Creation with Invalid Password Format");
     }
 
-    //invalid user account creation test method (invalid birthdate (< 18 y.o)) (ignore the logger output - the user account doesn't get created, Selenium doesn't see the error message even though it's on full display with VALID selector)
+    //invalid user account creation test method (invalid birthdate (< 18 y.o))
     protected void invalidUserAccountInvalidBirthdateCreationTest(SignUpPage signUpPage){
         HomePage homePage = new HomePage(driver);
         //utility class
