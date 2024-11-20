@@ -34,6 +34,8 @@ public class SignUpPageTooLongSingularInputPage extends BasePage{
     private WebElement passwordInputHint;
     @FindBy(xpath = "//div[@class='strength-labels']")
     private WebElement passwordStrengthBar;
+    @FindBy(xpath = "//div[@class='alert alert-danger mt-3']")
+    private WebElement emailInputError;
     //invalid input error message element
     @FindBy(xpath = "//div[@data-test='register-error']")
     private WebElement tooLongSingularInputError;
@@ -336,6 +338,37 @@ public class SignUpPageTooLongSingularInputPage extends BasePage{
         wait.until(ExpectedConditions.visibilityOf(phoneInputField));
         phoneInputField.sendKeys(tooLongPhone);
     }
+    //invalid input data getter (too long user email)
+    public void invalidInputUserDataGetterTooLongEmail(){
+        firstName = TestDataGenerator.getRandomFirstName();
+        lastName = TestDataGenerator.getRandomLastName();
+        birthdate = TestDataGenerator.generateBirthdate();
+        address = TestDataGenerator.generateRandomAddress(6);
+        postCode = TestDataGenerator.getRandomPostalCode();
+        city = TestDataGenerator.getRandomCity();
+        state = "Illinois";
+        phone = TestDataGenerator.generatePhoneNumber(5);
+        tooLongEmail = TestDataGenerator.generateRandomEmailAddress(65);
+        password = TestDataGenerator.generateRandomPassword();
+
+        System.out.println("Valid data generated for invalid user account creation (too long user email): " + "\n");
+        logger.info("Valid user first name (too long user email): " + firstName);
+        logger.info("Valid user last name (too long user email): " + lastName);
+        logger.info("Valid user address (too long user email): " + address);
+        logger.info("Valid user post code (too long user email): " + postCode);
+        logger.info("Valid user city (too long user email): " + city);
+        logger.info("Valid user state (too long user email): " + state);
+        logger.info("Valid user phone number (too long user email): " + phone);
+        logger.info("Too long user email: " + tooLongEmail);
+        logger.info("Valid user password (too long user email): " + password);
+        System.out.println("\n");
+    }
+    //invalid user data input method -> too long user email
+    public void inputTooLongEmailIntoInputField(){
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(575));
+        wait.until(ExpectedConditions.visibilityOf(emailAddressInputField));
+        emailAddressInputField.sendKeys(tooLongEmail);
+    }
 
     //password getter methods
     public String getPasswordInput(){
@@ -344,6 +377,8 @@ public class SignUpPageTooLongSingularInputPage extends BasePage{
         return passwordInputField.getAttribute("value");
     }
     public String getPassword(){return password;}
+    // email error message getter
+    public String getEmailErrorMessage(){return emailInputError.getText();}
     //pre-existing email error message getter
     public String getTooLongSingularInputErrorMessage(){
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(1900));

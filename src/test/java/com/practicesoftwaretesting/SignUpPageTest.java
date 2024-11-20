@@ -538,4 +538,20 @@ public class SignUpPageTest extends TestMethods{
         //invalid user account creation test (too long phone)
         invalidUserAccountTooLongPhoneCreationTest(signUpPage);
     }
+
+    //Test 002ag -> invalid user account creation test (too long user email)
+    @Test
+    @DisplayName("Invalid User Account Creation Test - Too Long Email")
+    @Tag("Invalid_Account_Creation_Test")
+    @Tag("Too_Long_Singular_Input")
+    void invalidUserAccountTooLongEmailCreationTest(){
+        HomePage homePage = new HomePage(driver);
+        SignUpPage signUpPage = new SignUpPage(driver);
+        //navigation to user sign-up page
+        navigateToUserSignUpPageTest(homePage);
+        //test title (for logging)
+        System.out.println("Invalid User Account Creation Test - Too Long Email" + "\n");
+        //invalid user account creation test (too long email)
+        invalidUserAccountTooLongEmailCreationTest(signUpPage);
+    }
 }

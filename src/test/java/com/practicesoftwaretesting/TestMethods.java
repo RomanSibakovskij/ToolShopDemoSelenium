@@ -1727,10 +1727,63 @@ public class TestMethods extends BaseTest{
             String errorMessage = signUpPageTooLongSingularInputPage.getTooLongSingularInputErrorMessage();
             assertEquals("The phone field must not be greater than 24 characters.", errorMessage, "The user phone error message doesn't match expectations.");
         } catch (NoSuchElementException e) {
-            logger.error("The user phone gets created despite inputting too long user state.");
+            logger.error("The user phone gets created despite inputting too long user phone.");
         }
         //capture screenshot of the test result
         captureScreenshot(driver, "Invalid User Account Creation with Too Long User Phone");
+    }
+    //invalid user account creation test method (too long user email)
+    protected void invalidUserAccountTooLongEmailCreationTest(SignUpPage signUpPage){
+        HomePage homePage = new HomePage(driver);
+        //utility class
+        SignUpPageTooLongSingularInputPage signUpPageTooLongSingularInputPage = new SignUpPageTooLongSingularInputPage(driver);
+        //general web element assert
+        isGeneralPageWebElementDisplayed(homePage);
+        //sign-up web element assert
+        isSignUpPageWebElementDisplayed(signUpPage);
+        //sign-up page text elements assert
+        isSignUpTextAsExpected(signUpPage);
+        //invalid user input data getter -> too long user email
+        signUpPageTooLongSingularInputPage.invalidInputUserDataGetterTooLongEmail();
+        //input valid first name
+        signUpPageTooLongSingularInputPage.inputFirstNameIntoInputField();
+        //input valid last name
+        signUpPageTooLongSingularInputPage.inputLastNameIntoInputField();
+        //input valid birthdate
+        signUpPageTooLongSingularInputPage.inputBirthdateIntoInputField();
+        //input valid address
+        signUpPageTooLongSingularInputPage.inputAddressIntoInputField();
+        //input valid post code
+        signUpPageTooLongSingularInputPage.inputPostCodeIntoInputField();
+        //input valid city
+        signUpPageTooLongSingularInputPage.inputCityIntoInputField();
+        //input valid state
+        signUpPageTooLongSingularInputPage.inputStateIntoInputField();
+        //click country dropdown menu
+        signUpPage.clickCountryDropdownMenu();
+        //select 'United States'
+        signUpPage.selectUnitedStatesOption();
+        //input valid phone number
+        signUpPageTooLongSingularInputPage.inputPhoneNumberIntoInputField();
+        //input too long email address
+        signUpPageTooLongSingularInputPage.inputTooLongEmailIntoInputField();
+        //input valid password
+        signUpPageTooLongSingularInputPage.inputPasswordIntoInputField();
+        //click 'Password view' button
+        signUpPageTooLongSingularInputPage.clickPasswordViewButton();
+        //assert the correct password has been input (for 'Password view' button testing)
+        assertEquals(signUpPageTooLongSingularInputPage.getPassword(), signUpPageTooLongSingularInputPage.getPasswordInput(), "There's a password mismatch.");
+        //click 'Register' button
+        signUpPage.clickRegisterButton();
+        //assert the expected error message displayed matches the expectations
+        try {
+            String errorMessage = signUpPageTooLongSingularInputPage.getEmailErrorMessage();
+            assertEquals("", errorMessage, "The user email error message doesn't match expectations."); //it doesn't have error message text though
+        } catch (NoSuchElementException e) {
+            logger.error("The user phone gets created despite inputting too long user email.");
+        }
+        //capture screenshot of the test result
+        captureScreenshot(driver, "Invalid User Account Creation with Too Long User Email");
     }
 
     //homepage web element assert test method
