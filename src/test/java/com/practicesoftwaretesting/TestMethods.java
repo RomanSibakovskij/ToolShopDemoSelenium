@@ -1245,7 +1245,7 @@ public class TestMethods extends BaseTest{
         signUpPage.clickRegisterButton();
         //assert the expected error message displayed matches the expectations
         try {
-            String errorMessage = signUpInvalidSingularInputPage.getExistingEmailErrorMessage();
+            String errorMessage = signUpInvalidSingularInputPage.getLowerErrorInputMessage();
             assertEquals("A customer with this email address already exists.", errorMessage, "The user email error message doesn't match expectations.");
         } catch (NoSuchElementException e) {
             logger.error("The user account gets created despite inputting pre-existing user email address.");
