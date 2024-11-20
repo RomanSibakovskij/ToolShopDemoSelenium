@@ -40,6 +40,7 @@ public class SignInPage extends BasePage{
 
     //invalid singular input
     private String invalidLoginEmail;
+    private String invalidLoginEmailFormat;
     private String invalidLoginPassword;
 
     public SignInPage(WebDriver driver) {super(driver);}
@@ -119,6 +120,24 @@ public class SignInPage extends BasePage{
         wait.until(ExpectedConditions.visibilityOf(emailAddressInputField));
         emailAddressInputField.click();
         emailAddressInputField.sendKeys(invalidLoginEmail);
+    }
+
+    //invalid user login input data getter (invalid login email format)
+    public void invalidInputUserLoginDataGetterInvalidEmailFormat(SignUpPage signUpPage){
+        invalidLoginEmailFormat = "234553mail.com";
+        loginPassword = signUpPage.getPassword();
+
+        System.out.println("Valid data generated for invalid user login (invalid login email): " + "\n");
+        logger.info("Invalid login email: " + invalidLoginEmailFormat);
+        logger.info("Valid login password (invalid login email): " + loginPassword);
+        System.out.println("\n");
+    }
+    //invalid user data input method -> invalid user login email
+    public void inputInvalidFormatLoginEmailIntoInputField(){
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(575));
+        wait.until(ExpectedConditions.visibilityOf(emailAddressInputField));
+        emailAddressInputField.click();
+        emailAddressInputField.sendKeys(invalidLoginEmailFormat);
     }
 
 

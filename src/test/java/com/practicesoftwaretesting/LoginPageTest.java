@@ -77,6 +77,25 @@ public class LoginPageTest extends TestMethods{
         invalidUserSignInInvalidEmailTest(signUpPage);
     }
 
+    //Test 003d -> invalid user login test (invalid login email format)
+    @Test
+    @DisplayName("Invalid User Login Test - Invalid Login Email Format")
+    @Tag("Invalid_Account_Login_Test")
+    @Tag("Invalid_Singular_Input")
+    @Tag("Invalid_Singular_Input_Format")
+    void invalidUserAccountLoginInvalidEmailFormatTest(){
+        HomePage homePage = new HomePage(driver);
+        SignUpPage signUpPage = new SignUpPage(driver);
+        //navigation to user sign-up page
+        navigateToUserSignUpPageTest(homePage);
+        //valid user account creation test
+        createValidUserAccountTest(signUpPage);
+        //test title (for logging)
+        System.out.println("Invalid User Login Test - Invalid Login Email Format" + "\n");
+        //invalid user login test (invalid login email format)
+        invalidUserSignInInvalidEmailFormatTest(signUpPage);
+    }
+
     //user logout test
 
     //Test 004 -> valid user logout test

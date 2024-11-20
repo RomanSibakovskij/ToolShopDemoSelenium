@@ -1897,6 +1897,37 @@ public class TestMethods extends BaseTest{
         captureScreenshot(driver, "Invalid User Login Test - Invalid Login Email");
     }
 
+    //invalid user login test method (invalid login email format)
+    protected void invalidUserSignInInvalidEmailFormatTest(SignUpPage signUpPage){
+        HomePage homePage = new HomePage(driver);
+        SignInPage signInPage = new SignInPage(driver);
+        //general web element assert
+        isGeneralPageWebElementDisplayed(homePage);
+        //sign-in page web element assert
+        //isSignInPageWebElementDisplayed(signInPage); //Selenium can't locate these elements with VALID selectors
+        //invalid login user input data getter (invalid login email)
+        signInPage.invalidInputUserLoginDataGetterInvalidEmailFormat(signUpPage);
+        //input invalid email format
+        signInPage.inputInvalidFormatLoginEmailIntoInputField();
+        //input valid password
+        signInPage.inputValidLoginPasswordIntoInputField();
+        //click 'Password view' button
+        signInPage.clickPasswordViewButton();
+        //assert the correct password has been input (for 'Password view' button testing)
+        assertEquals(signInPage.getPassword(), signInPage.getPasswordInput(), "There's a password mismatch.");
+        //click 'Login' button
+        signInPage.clickSignInButton();
+        //assert the login input error message is as expected
+        try {
+            String errorMessage = signInPage.getMissingInputError();
+            assertEquals("Email format is invalid", errorMessage, "The login email error message doesn't match expectations.");
+        } catch (NoSuchElementException e) {
+            logger.error("The invalid user email format error message didn't appear");
+        }
+        //capture screenshot of the test result
+        captureScreenshot(driver, "Invalid User Login Test - Invalid Login Email Format");
+    }
+
     //user logout test
 
     //user logout test method
