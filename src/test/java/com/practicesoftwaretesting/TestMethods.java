@@ -1797,7 +1797,7 @@ public class TestMethods extends BaseTest{
         //general web element assert
         isGeneralPageWebElementDisplayed(homePage);
         //sign-in page web element assert
-        //isSignInPageWebElementDisplayed(signInPage);
+        //isSignInPageWebElementDisplayed(signInPage); //Selenium can't locate these elements with VALID selectors
         //valid login user input data getter
         signInPage.validInputUserLoginDataGetter(signUpPage);
         //input valid email
@@ -1808,6 +1808,26 @@ public class TestMethods extends BaseTest{
         signInPage.clickSignInButton();
         //capture screenshot of the test result
         captureScreenshot(driver, "Valid User Login Test");
+    }
+
+    //user logout test
+
+    //user logout test method
+    protected void userSignOutTest(MyAccountPage myAccountPage){
+        HomePage homePage = new HomePage(driver);
+        SignInPage signInPage = new SignInPage(driver);
+        //general web element assert
+        isGeneralPageWebElementDisplayed(homePage);
+        //my account web element assert
+        //isMyAccountPageWebElementDisplayed(myAccountPage); //Selenium can't locate these elements with VALID selectors
+        //my account page text assert
+        //isMyAccountPageTextAsExpected(myAccountPage); //Selenium can't locate these elements with VALID selectors
+        //click profile dropdown menu
+        myAccountPage.clickProfileDropdownMenu();
+        //click 'Sign-out' option
+        myAccountPage.clickSignOutOption();
+        //capture screenshot of the test result
+        captureScreenshot(driver, "Valid User Logout Test");
     }
 
     //homepage web element assert test method
@@ -1918,6 +1938,25 @@ public class TestMethods extends BaseTest{
                 "Strong\n" +
                 "Very Strong\n" +
                 "Excellent", signUpPage.getPasswordStrengthBarText(), "The password strength bar text doesn't match expectations");
+    }
+
+    //my account page web element assert test method
+    protected void isMyAccountPageWebElementDisplayed(MyAccountPage myAccountPage){
+        //assert 'My Account' page title is displayed
+        assertTrue(myAccountPage.isMyAccountPageTitleDisplayed(), "The 'My Account' page title isn't displayed");
+        //assert 'My Account' page description is displayed
+        assertTrue(myAccountPage.isMyAccountPageDescriptionDisplayed(), "The 'My Account' page description isn't displayed");
+        //assert profile dropdown menu is displayed
+        assertTrue(myAccountPage.isProfileDropdownMenuDisplayed(), "The profile dropdown menu isn't displayed");
+        //assert 'My Account' account table links are displayed (as a list)
+        assertTrue(myAccountPage.isMyAccountTableLinkDisplayed(), "The 'My Account' account table link isn't displayed");
+    }
+    //my account page text assert
+    protected void isMyAccountPageTextAsExpected(MyAccountPage myAccountPage){
+        //assert 'My Account' page title is as expected
+        assertEquals("My account", myAccountPage.getMyAccountPageTitle(), "The page title doesn't match expectations.");
+        //assert 'My Account' page description is as expected
+        assertEquals("Here you can manage your profile, favorites and orders.", myAccountPage.getMyAccountPageDescription(), "The page description doesn't match expectations.");
     }
 
     //general web element assert test method
