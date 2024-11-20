@@ -1786,6 +1786,30 @@ public class TestMethods extends BaseTest{
         captureScreenshot(driver, "Invalid User Account Creation with Too Long User Email");
     }
 
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    //user login tests
+
+    //valid user login test method
+    protected void validUserSignInTest(SignUpPage signUpPage){
+        HomePage homePage = new HomePage(driver);
+        SignInPage signInPage = new SignInPage(driver);
+        //general web element assert
+        isGeneralPageWebElementDisplayed(homePage);
+        //sign-in page web element assert
+        //isSignInPageWebElementDisplayed(signInPage);
+        //valid login user input data getter
+        signInPage.validInputUserLoginDataGetter(signUpPage);
+        //input valid email
+        signInPage.inputValidLoginEmailIntoInputField();
+        //input valid password
+        signInPage.inputValidLoginPasswordIntoInputField();
+        //click 'Login' button
+        signInPage.clickSignInButton();
+        //capture screenshot of the test result
+        captureScreenshot(driver, "Valid User Login Test");
+    }
+
     //homepage web element assert test method
     protected void isHomePageWebElementDisplayed(HomePage homePage){
         //assert home page banner is displayed

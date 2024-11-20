@@ -20,14 +20,46 @@ public class SignInPage extends BasePage{
     private WebElement passwordInputField;
     @FindBy(xpath = "//button[@class='btn btn-outline-secondary']")
     private WebElement viewPasswordButton;
-    @FindBy(xpath = "//input[@type='submit']")
+    @FindBy(xpath = "//input[@data-test='login-submit']")
     private WebElement signInButton;
     @FindBy(xpath = "//a[@aria-label='Register your account']")
     private WebElement signUpLink;
     @FindBy(xpath = "//a[@aria-label='Forgot your Password?']")
     private WebElement forgotPasswordLink;
 
+    //valid login input data
+    private String loginEmail;
+    private String loginPassword;
+
     public SignInPage(WebDriver driver) {super(driver);}
+
+    //valid user login input data getter
+    public void validInputUserLoginDataGetter(SignUpPage signUpPage){
+        loginEmail = signUpPage.getEmailAddress();
+        loginPassword = signUpPage.getPassword();
+
+        System.out.println("Valid data generated for invalid user account creation (too short first name): " + "\n");
+        logger.info("Valid user email (too short last name): " + loginEmail);
+        logger.info("Valid user password (too short last name): " + loginPassword);
+        System.out.println("\n");
+    }
+    //valid user data input method -> valid user login email
+    public void inputValidLoginEmailIntoInputField(){
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(575));
+        wait.until(ExpectedConditions.visibilityOf(emailAddressInputField));
+        emailAddressInputField.click();
+        emailAddressInputField.sendKeys(loginEmail);
+    }
+    //valid user data input method -> valid user login password
+    public void inputValidLoginPasswordIntoInputField(){
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(575));
+        wait.until(ExpectedConditions.visibilityOf(passwordInputField));
+        passwordInputField.sendKeys(loginPassword);
+    }
+
+    //click 'Sign-In' button method
+    public void clickSignInButton(){signInButton.click();}
+
 
     //click 'Sign-up' link method
     public void clickSignUpLink(){
