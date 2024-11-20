@@ -491,7 +491,7 @@ public class SignUpPageTest extends TestMethods{
         invalidUserAccountTooLongPostCodeCreationTest(signUpPage);
     }
 
-    //Test 002ac -> invalid user account creation test (too long user city)
+    //Test 002ad -> invalid user account creation test (too long user city)
     @Test
     @DisplayName("Invalid User Account Creation Test - Too Long City")
     @Tag("Invalid_Account_Creation_Test")
@@ -505,5 +505,21 @@ public class SignUpPageTest extends TestMethods{
         System.out.println("Invalid User Account Creation Test - Too Long City" + "\n");
         //invalid user account creation test (too long city)
         invalidUserAccountTooLongCityCreationTest(signUpPage);
+    }
+
+    //Test 002ae -> invalid user account creation test (too long user state)
+    @Test
+    @DisplayName("Invalid User Account Creation Test - Too Long State")
+    @Tag("Invalid_Account_Creation_Test")
+    @Tag("Too_Long_Singular_Input")
+    void invalidUserAccountTooLongStateCreationTest(){
+        HomePage homePage = new HomePage(driver);
+        SignUpPage signUpPage = new SignUpPage(driver);
+        //navigation to user sign-up page
+        navigateToUserSignUpPageTest(homePage);
+        //test title (for logging)
+        System.out.println("Invalid User Account Creation Test - Too Long State" + "\n");
+        //invalid user account creation test (too long state)
+        invalidUserAccountTooLongStateCreationTest(signUpPage);
     }
 }

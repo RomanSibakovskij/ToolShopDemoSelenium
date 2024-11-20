@@ -196,7 +196,7 @@ public class SignUpPageTooLongSingularInputPage extends BasePage{
 
         System.out.println("Valid data generated for invalid user account creation (too long address): " + "\n");
         logger.info("Valid user first name (too long address): " + firstName);
-        logger.info("Valid user last name: " + lastName);
+        logger.info("Valid user last name (too long address): " + lastName);
         logger.info("Too long user address : " + tooLongAddress);
         logger.info("Valid user post code (too long address): " + postCode);
         logger.info("Valid user city (too long address): " + city);
@@ -273,6 +273,37 @@ public class SignUpPageTooLongSingularInputPage extends BasePage{
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(575));
         wait.until(ExpectedConditions.visibilityOf(cityInputField));
         cityInputField.sendKeys(tooLongCity);
+    }
+    //invalid input data getter (too long user state (41 chars))
+    public void invalidInputUserDataGetterTooLongState(){
+        firstName = TestDataGenerator.getRandomFirstName();
+        lastName = TestDataGenerator.getRandomLastName();
+        birthdate = TestDataGenerator.generateBirthdate();
+        address = TestDataGenerator.generateRandomAddress(6);
+        postCode = TestDataGenerator.getRandomPostalCode();
+        city = TestDataGenerator.getRandomCity();
+        tooLongState = "rRYVTDsuqXdpBVIQWfMbeSZcuwlujHasdasdsaqeq";
+        phone = TestDataGenerator.generatePhoneNumber(5);
+        email = TestDataGenerator.generateRandomEmailAddress(6);
+        password = TestDataGenerator.generateRandomPassword();
+
+        System.out.println("Valid data generated for invalid user account creation (too long user state): " + "\n");
+        logger.info("Valid user first name (too long user state): " + firstName);
+        logger.info("Valid user last name (too long user state): " + lastName);
+        logger.info("Valid user address (too long user state): " + address);
+        logger.info("Valid user post code (too long user state): " + postCode);
+        logger.info("Valid user city (too long user state): " + city);
+        logger.info("Too long user state: " + tooLongState);
+        logger.info("Valid user phone number (too long user state): " + phone);
+        logger.info("Valid user email (too long user state): " + email);
+        logger.info("Valid user password (too long user state): " + password);
+        System.out.println("\n");
+    }
+    //invalid user data input method -> too long user state
+    public void inputTooLongStateIntoInputField(){
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(575));
+        wait.until(ExpectedConditions.visibilityOf(stateInputField));
+        stateInputField.sendKeys(tooLongState);
     }
 
     //password getter methods
