@@ -1833,10 +1833,37 @@ public class TestMethods extends BaseTest{
             String errorMessage = signInPage.getMissingInputError();
             assertEquals("Email is required", errorMessage, "The login email error message doesn't match expectations.");
         } catch (NoSuchElementException e) {
-            logger.error("The user error message didn't appear");
+            logger.error("The user email error message didn't appear");
         }
         //capture screenshot of the test result
         captureScreenshot(driver, "Invalid User Login Test - No Login Email");
+    }
+
+    //invalid user login test method (no login password)
+    protected void invalidUserSignInNoPasswordTest(SignUpPage signUpPage){
+        HomePage homePage = new HomePage(driver);
+        SignInPage signInPage = new SignInPage(driver);
+        //general web element assert
+        isGeneralPageWebElementDisplayed(homePage);
+        //sign-in page web element assert
+        //isSignInPageWebElementDisplayed(signInPage); //Selenium can't locate these elements with VALID selectors
+        //invalid login user input data getter (no password)
+        signInPage.invalidInputUserLoginDataGetterNoPassword(signUpPage);
+        //input valid email
+        signInPage.inputValidLoginEmailIntoInputField();
+        //don't input password
+        signInPage.inputNoLoginPasswordIntoInputField();
+        //click 'Login' button
+        signInPage.clickSignInButton();
+        //assert the login input error message is as expected
+        try {
+            String errorMessage = signInPage.getMissingInputError();
+            assertEquals("Password is required", errorMessage, "The login email error message doesn't match expectations.");
+        } catch (NoSuchElementException e) {
+            logger.error("The user password error message didn't appear");
+        }
+        //capture screenshot of the test result
+        captureScreenshot(driver, "Invalid User Login Test - No Login Password");
     }
 
     //user logout test

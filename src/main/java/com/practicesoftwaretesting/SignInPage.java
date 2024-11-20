@@ -46,8 +46,8 @@ public class SignInPage extends BasePage{
         loginPassword = signUpPage.getPassword();
 
         System.out.println("Valid data generated for valid user login: " + "\n");
-        logger.info("Valid user email: " + loginEmail);
-        logger.info("Valid user password: " + loginPassword);
+        logger.info("Valid login email: " + loginEmail);
+        logger.info("Valid login password: " + loginPassword);
         System.out.println("\n");
     }
     //valid user data input method -> valid user login email
@@ -64,14 +64,15 @@ public class SignInPage extends BasePage{
         passwordInputField.sendKeys(loginPassword);
     }
 
+    //no singular input
     //invalid user login input data getter (no email)
     public void invalidInputUserLoginDataGetterNoEmail(SignUpPage signUpPage){
         noLoginEmail = "";
         loginPassword = signUpPage.getPassword();
 
         System.out.println("Valid data generated for invalid user login (no login email): " + "\n");
-        logger.info("No user email: " + noLoginEmail);
-        logger.info("Valid user password (no login email): " + loginPassword);
+        logger.info("No login email: " + noLoginEmail);
+        logger.info("Valid login password (no login email): " + loginPassword);
         System.out.println("\n");
     }
     //invalid user data input method -> no user login email
@@ -81,10 +82,29 @@ public class SignInPage extends BasePage{
         emailAddressInputField.click();
         emailAddressInputField.sendKeys(noLoginEmail);
     }
+    //invalid user login input data getter (no password)
+    public void invalidInputUserLoginDataGetterNoPassword(SignUpPage signUpPage){
+        loginEmail = signUpPage.getEmailAddress();
+        noLoginPassword = "";
+
+        System.out.println("Valid data generated for invalid user login (no login password): " + "\n");
+        logger.info("Valid login email (no login password): " + loginEmail);
+        logger.info("No login password: " + noLoginPassword);
+        System.out.println("\n");
+    }
+    //invalid user data input method -> no user login password
+    public void inputNoLoginPasswordIntoInputField(){
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(575));
+        wait.until(ExpectedConditions.visibilityOf(passwordInputField));
+        passwordInputField.sendKeys(noLoginPassword);
+    }
 
 
     //click 'Sign-In' button method
     public void clickSignInButton(){signInButton.click();}
+
+    //click 'Password view' button method
+    public void clickPasswordViewButton() {viewPasswordButton.click();}
 
     //click 'Sign-up' link method
     public void clickSignUpLink(){
