@@ -305,6 +305,37 @@ public class SignUpPageTooLongSingularInputPage extends BasePage{
         wait.until(ExpectedConditions.visibilityOf(stateInputField));
         stateInputField.sendKeys(tooLongState);
     }
+    //invalid input data getter (too long user phone (25 chars))
+    public void invalidInputUserDataGetterTooLongPhone(){
+        firstName = TestDataGenerator.getRandomFirstName();
+        lastName = TestDataGenerator.getRandomLastName();
+        birthdate = TestDataGenerator.generateBirthdate();
+        address = TestDataGenerator.generateRandomAddress(6);
+        postCode = TestDataGenerator.getRandomPostalCode();
+        city = TestDataGenerator.getRandomCity();
+        state = "Illinois";
+        tooLongPhone = TestDataGenerator.generatePhoneNumber(25);
+        email = TestDataGenerator.generateRandomEmailAddress(6);
+        password = TestDataGenerator.generateRandomPassword();
+
+        System.out.println("Valid data generated for invalid user account creation (too long user phone): " + "\n");
+        logger.info("Valid user first name (too long user phone): " + firstName);
+        logger.info("Valid user last name (too long user phone): " + lastName);
+        logger.info("Valid user address (too long user phone): " + address);
+        logger.info("Valid user post code (too long user phone): " + postCode);
+        logger.info("Valid user city (too long user phone): " + city);
+        logger.info("Valid user state (too long user phone): " + state);
+        logger.info("Too long user phone number : " + tooLongPhone);
+        logger.info("Valid user email (too long user phone): " + email);
+        logger.info("Valid user password (too long user phone): " + password);
+        System.out.println("\n");
+    }
+    //invalid user data input method -> too long user phone
+    public void inputTooLongPhoneIntoInputField(){
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(575));
+        wait.until(ExpectedConditions.visibilityOf(phoneInputField));
+        phoneInputField.sendKeys(tooLongPhone);
+    }
 
     //password getter methods
     public String getPasswordInput(){

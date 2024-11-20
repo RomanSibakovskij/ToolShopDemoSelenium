@@ -522,4 +522,20 @@ public class SignUpPageTest extends TestMethods{
         //invalid user account creation test (too long state)
         invalidUserAccountTooLongStateCreationTest(signUpPage);
     }
+
+    //Test 002af -> invalid user account creation test (too long user phone)
+    @Test
+    @DisplayName("Invalid User Account Creation Test - Too Long Phone")
+    @Tag("Invalid_Account_Creation_Test")
+    @Tag("Too_Long_Singular_Input")
+    void invalidUserAccountTooLongPhoneCreationTest(){
+        HomePage homePage = new HomePage(driver);
+        SignUpPage signUpPage = new SignUpPage(driver);
+        //navigation to user sign-up page
+        navigateToUserSignUpPageTest(homePage);
+        //test title (for logging)
+        System.out.println("Invalid User Account Creation Test - Too Long Phone" + "\n");
+        //invalid user account creation test (too long phone)
+        invalidUserAccountTooLongPhoneCreationTest(signUpPage);
+    }
 }
