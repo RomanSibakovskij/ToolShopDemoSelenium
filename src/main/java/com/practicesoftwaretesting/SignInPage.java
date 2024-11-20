@@ -121,15 +121,14 @@ public class SignInPage extends BasePage{
         emailAddressInputField.click();
         emailAddressInputField.sendKeys(invalidLoginEmail);
     }
-
     //invalid user login input data getter (invalid login email format)
     public void invalidInputUserLoginDataGetterInvalidEmailFormat(SignUpPage signUpPage){
         invalidLoginEmailFormat = "234553mail.com";
         loginPassword = signUpPage.getPassword();
 
-        System.out.println("Valid data generated for invalid user login (invalid login email): " + "\n");
-        logger.info("Invalid login email: " + invalidLoginEmailFormat);
-        logger.info("Valid login password (invalid login email): " + loginPassword);
+        System.out.println("Valid data generated for invalid user login (invalid login email format): " + "\n");
+        logger.info("Invalid login email format: " + invalidLoginEmailFormat);
+        logger.info("Valid login password (invalid login email format): " + loginPassword);
         System.out.println("\n");
     }
     //invalid user data input method -> invalid user login email
@@ -138,6 +137,23 @@ public class SignInPage extends BasePage{
         wait.until(ExpectedConditions.visibilityOf(emailAddressInputField));
         emailAddressInputField.click();
         emailAddressInputField.sendKeys(invalidLoginEmailFormat);
+    }
+
+    //invalid user login input data getter (invalid password)
+    public void invalidInputUserLoginDataGetterInvalidPassword(SignUpPage signUpPage){
+        loginEmail = signUpPage.getEmailAddress();
+        invalidLoginPassword = "Scvfdfdf$$3443@";
+
+        System.out.println("Valid data generated for invalid user login (invalid login password): " + "\n");
+        logger.info("Valid login email (invalid login password): " + loginEmail);
+        logger.info("Invalid login password: " + invalidLoginPassword);
+        System.out.println("\n");
+    }
+    //invalid user data input method -> invalid user login password
+    public void inputInvalidLoginPasswordIntoInputField(){
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(575));
+        wait.until(ExpectedConditions.visibilityOf(passwordInputField));
+        passwordInputField.sendKeys(invalidLoginPassword);
     }
 
 
