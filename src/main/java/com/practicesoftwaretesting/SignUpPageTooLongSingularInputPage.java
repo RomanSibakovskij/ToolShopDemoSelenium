@@ -147,14 +147,16 @@ public class SignUpPageTooLongSingularInputPage extends BasePage{
     //invalid user data input method -> too long first name
     public void inputTooLongFirstNameIntoInputField(){
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(575));
-        wait.until(ExpectedConditions.visibilityOf(firstNameInputField));
-        JavascriptExecutor js = (JavascriptExecutor) driver;
-        js.executeScript("arguments[0].scrollIntoView(true);", emailAddressInputField); //to make the error message visually visible
+        wait.until(ExpectedConditions.visibilityOf(firstNameInputField)); //to make the error message visually visible
         firstNameInputField.sendKeys(tooLongFirstName);
     }
 
     //password getter methods
-    public String getPasswordInput(){return passwordInputField.getAttribute("value");}
+    public String getPasswordInput(){
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("arguments[0].scrollIntoView(true);", passwordInputField);
+        return passwordInputField.getAttribute("value");
+    }
     public String getPassword(){return password;}
     //pre-existing email error message getter
     public String getTooLongSingularInputErrorMessage(){return tooLongSingularInputError.getText();}

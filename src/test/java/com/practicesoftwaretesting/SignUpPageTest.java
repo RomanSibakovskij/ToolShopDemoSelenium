@@ -409,9 +409,25 @@ public class SignUpPageTest extends TestMethods{
         invalidUserAccountInvalidPasswordCreationTest(signUpPage);
     }
 
+    //Test 002y -> invalid user account creation test (invalid birthdate format)
+    @Test
+    @DisplayName("Invalid User Account Creation Test - Invalid Birthdate (less than 18 y.o.)")
+    @Tag("Invalid_Account_Creation_Test")
+    @Tag("Invalid_Singular_Input")
+    void invalidUserAccountInvalidBirthdateCreationTest(){
+        HomePage homePage = new HomePage(driver);
+        SignUpPage signUpPage = new SignUpPage(driver);
+        //navigation to user sign-up page
+        navigateToUserSignUpPageTest(homePage);
+        //test title (for logging)
+        System.out.println("Invalid User Account Creation Test - Invalid Birthdate(less than 18 y.o.)" + "\n");
+        //invalid user account creation test (invalid birthdate)
+        invalidUserAccountInvalidBirthdateCreationTest(signUpPage);
+    }
+
     //too long singular input tests
 
-    //Test 002y -> invalid user account creation test (too long first name)
+    //Test 002z -> invalid user account creation test (too long first name)
     @Test
     @DisplayName("Invalid User Account Creation Test - Too Long First Name")
     @Tag("Invalid_Account_Creation_Test")

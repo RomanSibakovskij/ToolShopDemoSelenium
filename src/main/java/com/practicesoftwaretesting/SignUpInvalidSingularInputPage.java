@@ -14,6 +14,8 @@ public class SignUpInvalidSingularInputPage extends BasePage{
     private WebElement firstNameInputField;
     @FindBy(xpath = "//input[@id='last_name']")
     private WebElement lastNameInputField;
+    @FindBy(xpath = "//input[@id='dob']")
+    private WebElement birthdateInputField;
     @FindBy(xpath = "//input[@id='address']")
     private WebElement addressInputField;
     @FindBy(xpath = "//input[@id='postcode']")
@@ -41,6 +43,9 @@ public class SignUpInvalidSingularInputPage extends BasePage{
     private WebElement invalidInputError;
     @FindBy(xpath = "//div[@data-test='register-error']")
     private WebElement existingEmailError;
+    //invalid input error message element
+    @FindBy(xpath = "//div[@class='alert alert-danger']")
+    private WebElement lowerErrorInputBox;
 
     //valid input data
     private String firstName;
@@ -55,6 +60,7 @@ public class SignUpInvalidSingularInputPage extends BasePage{
     private String password;
 
     //invalid singular input (by format)
+    private String invalidBirthdate;
     private String invalidPhoneFormat;
     private String invalidEmailFormat;
     private String existingEmail;
@@ -181,6 +187,38 @@ public class SignUpInvalidSingularInputPage extends BasePage{
         emailAddressInputField.sendKeys(invalidEmailFormat);
     }
 
+    //invalid input data getter (invalid birthdate)
+    public void invalidInputUserDataGetterInvalidBirthdate(){
+        firstName = TestDataGenerator.getRandomFirstName();
+        lastName = TestDataGenerator.getRandomLastName();
+        invalidBirthdate = "2011-06-17";
+        address = TestDataGenerator.generateRandomAddress(7);
+        postCode = TestDataGenerator.getRandomPostalCode();
+        city = TestDataGenerator.getRandomCity();
+        state = "Illinois";
+        phone = TestDataGenerator.generatePhoneNumber(5);
+        email = TestDataGenerator.generateRandomEmailAddress(6);
+        password = TestDataGenerator.generateRandomPassword();
+
+        System.out.println("Valid data generated for invalid user account creation (invalid birthdate): " + "\n");
+        logger.info("Valid user first name (invalid birthdate): " + firstName);
+        logger.info("Valid user last name (invalid birthdate): " + lastName);
+        logger.info("Valid user address (invalid birthdate): " + address);
+        logger.info("Valid user post code (invalid birthdate): " + postCode);
+        logger.info("Valid user city (invalid birthdate): " + city);
+        logger.info("Valid user state (invalid birthdate): " + state);
+        logger.info("Valid phone number (invalid birthdate): " + phone);
+        logger.info("Valid user email (invalid birthdate): " + email);
+        logger.info("Valid user password (invalid birthdate): " + password);
+        System.out.println("\n");
+    }
+    //invalid user data input method -> invalid user birthdate
+    public void inputInvalidBirthdateIntoInputField(){
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(575));
+        wait.until(ExpectedConditions.visibilityOf(birthdateInputField));
+        birthdateInputField.sendKeys(invalidBirthdate);
+    }
+
     //valid input data getter (for existing email scenario) => first test loop
     public void validInputUserDataGetter(){
         firstName = TestDataGenerator.getRandomFirstName();
@@ -279,5 +317,7 @@ public class SignUpInvalidSingularInputPage extends BasePage{
     public String getPassword(){return password;}
     //pre-existing email error message getter
     public String getExistingEmailErrorMessage(){return existingEmailError.getText();}
+    //lower input error box message getter
+    public String getLowerErrorInputMessage(){return lowerErrorInputBox.getText();}
 
 }

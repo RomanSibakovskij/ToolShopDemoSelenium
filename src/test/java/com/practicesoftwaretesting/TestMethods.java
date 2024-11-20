@@ -1305,6 +1305,60 @@ public class TestMethods extends BaseTest{
         captureScreenshot(driver, "Invalid User Account Creation with Invalid Password Format");
     }
 
+    //invalid user account creation test method (invalid birthdate (< 18 y.o))
+    protected void invalidUserAccountInvalidBirthdateCreationTest(SignUpPage signUpPage){
+        HomePage homePage = new HomePage(driver);
+        //utility class
+        SignUpInvalidSingularInputPage signUpInvalidSingularInputPage = new SignUpInvalidSingularInputPage(driver);
+        //general web element assert
+        isGeneralPageWebElementDisplayed(homePage);
+        //sign-up web element assert
+        isSignUpPageWebElementDisplayed(signUpPage);
+        //sign-up page text elements assert
+        isSignUpTextAsExpected(signUpPage);
+        //invalid user input data getter -> invalid birthdate
+        signUpInvalidSingularInputPage.invalidInputUserDataGetterInvalidBirthdate();
+        //input valid first name
+        signUpInvalidSingularInputPage.inputFirstNameIntoInputField();
+        //input valid last name
+        signUpInvalidSingularInputPage.inputLastNameIntoInputField();
+        //input invalid birthdate
+        signUpInvalidSingularInputPage.inputInvalidBirthdateIntoInputField();
+        //input valid address
+        signUpInvalidSingularInputPage.inputAddressIntoInputField();
+        //input valid post code
+        signUpInvalidSingularInputPage.inputPostCodeIntoInputField();
+        //input valid city
+        signUpInvalidSingularInputPage.inputCityIntoInputField();
+        //input valid state
+        signUpInvalidSingularInputPage.inputStateIntoInputField();
+        //click country dropdown menu
+        signUpPage.clickCountryDropdownMenu();
+        //select 'United States'
+        signUpPage.selectUnitedStatesOption();
+        //input valid phone number
+        signUpInvalidSingularInputPage.inputPhoneNumberIntoInputField();
+        //input valid email address
+        signUpInvalidSingularInputPage.inputEmailIntoInputField();
+        //input valid password
+        signUpInvalidSingularInputPage.inputPasswordIntoInputField();
+        //click 'Password view' button
+        signUpInvalidSingularInputPage.clickPasswordViewButton();
+        //assert the correct password has been input (for 'Password view' button testing)
+        assertEquals(signUpInvalidSingularInputPage.getPassword(), signUpInvalidSingularInputPage.getPasswordInput(), "There's a password mismatch.");
+        //click 'Register' button
+        signUpPage.clickRegisterButton();
+        //assert the expected error message displayed matches the expectations
+        try {
+            String errorMessage = signUpInvalidSingularInputPage.getLowerErrorInputMessage();
+            assertEquals("Customer must be 18 years old.", errorMessage, "The birthdate error message doesn't match expectations.");
+        } catch (NoSuchElementException e) {
+            logger.error("The user account gets created despite inputting invalid birthdate.");
+        }
+        //capture screenshot of the test result
+        captureScreenshot(driver, "Invalid User Account Creation with Invalid Birthdate (less than 18 y.o.)");
+    }
+
     //too long singular input tests
 
     //invalid user account creation test method (too long first name) (ignore the logger output - the user account doesn't get created, Selenium doesn't see the error message even though it's on full display with VALID selector)
