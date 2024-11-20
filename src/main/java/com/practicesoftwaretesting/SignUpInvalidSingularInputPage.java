@@ -318,6 +318,10 @@ public class SignUpInvalidSingularInputPage extends BasePage{
     //pre-existing email error message getter
     public String getExistingEmailErrorMessage(){return existingEmailError.getText();}
     //lower input error box message getter
-    public String getLowerErrorInputMessage(){return lowerErrorInputBox.getText();}
+    public String getLowerErrorInputMessage(){
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(1900));
+        wait.until(ExpectedConditions.visibilityOf(lowerErrorInputBox));
+        return lowerErrorInputBox.getText();
+    }
 
 }

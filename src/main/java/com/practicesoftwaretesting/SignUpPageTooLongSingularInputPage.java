@@ -147,18 +147,52 @@ public class SignUpPageTooLongSingularInputPage extends BasePage{
     //invalid user data input method -> too long first name
     public void inputTooLongFirstNameIntoInputField(){
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(575));
-        wait.until(ExpectedConditions.visibilityOf(firstNameInputField)); //to make the error message visually visible
+        wait.until(ExpectedConditions.visibilityOf(firstNameInputField));
         firstNameInputField.sendKeys(tooLongFirstName);
+    }
+    //invalid input data getter (too long last name (21 chars))
+    public void invalidInputUserDataGetterTooLongLastName(){
+        firstName = TestDataGenerator.getRandomFirstName();
+        tooLongLastName = "ASsfdfgrererwewJhdsWs";
+        birthdate = TestDataGenerator.generateBirthdate();
+        address = TestDataGenerator.generateRandomAddress(7);
+        postCode = TestDataGenerator.getRandomPostalCode();
+        city = TestDataGenerator.getRandomCity();
+        state = "Illinois";
+        phone = TestDataGenerator.generatePhoneNumber(5);
+        email = TestDataGenerator.generateRandomEmailAddress(6);
+        password = TestDataGenerator.generateRandomPassword();
+
+        System.out.println("Valid data generated for invalid user account creation (too long last name): " + "\n");
+        logger.info("Valid user first name (too long last name): " + firstName);
+        logger.info("Too long last name: " + tooLongLastName);
+        logger.info("Valid user address (too long last name): " + address);
+        logger.info("Valid user post code (too long last name): " + postCode);
+        logger.info("Valid user city (too long last name): " + city);
+        logger.info("Valid user state (too long last name): " + state);
+        logger.info("Valid user phone number (too long last name): " + phone);
+        logger.info("Valid user email (too long last name): " + email);
+        logger.info("Valid user password (too long last name): " + password);
+        System.out.println("\n");
+    }
+    //invalid user data input method -> too long first name
+    public void inputTooLongLastNameIntoInputField(){
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(575));
+        wait.until(ExpectedConditions.visibilityOf(lastNameInputField));
+        lastNameInputField.sendKeys(tooLongLastName);
     }
 
     //password getter methods
     public String getPasswordInput(){
         JavascriptExecutor js = (JavascriptExecutor) driver;
-        js.executeScript("arguments[0].scrollIntoView(true);", passwordInputField);
+        js.executeScript("arguments[0].scrollIntoView(true);", passwordInputField); //to make the error message visible
         return passwordInputField.getAttribute("value");
     }
     public String getPassword(){return password;}
     //pre-existing email error message getter
-    public String getTooLongSingularInputErrorMessage(){return tooLongSingularInputError.getText();}
-
+    public String getTooLongSingularInputErrorMessage(){
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(1900));
+        wait.until(ExpectedConditions.visibilityOf(tooLongSingularInputError));
+        return tooLongSingularInputError.getText();
+    }
 }
