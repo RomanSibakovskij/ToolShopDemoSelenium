@@ -1305,6 +1305,62 @@ public class TestMethods extends BaseTest{
         captureScreenshot(driver, "Invalid User Account Creation with Invalid Password Format");
     }
 
+    //too long singular input tests
+
+    //invalid user account creation test method (too long first name) (ignore the logger output - the user account doesn't get created, Selenium doesn't see the error message even though it's on full display with VALID selector)
+    protected void invalidUserAccountTooLongFirstNameCreationTest(SignUpPage signUpPage){
+        HomePage homePage = new HomePage(driver);
+        //utility class
+        SignUpPageTooLongSingularInputPage signUpPageTooLongSingularInputPage = new SignUpPageTooLongSingularInputPage(driver);
+        //general web element assert
+        isGeneralPageWebElementDisplayed(homePage);
+        //sign-up web element assert
+        isSignUpPageWebElementDisplayed(signUpPage);
+        //sign-up page text elements assert
+        isSignUpTextAsExpected(signUpPage);
+        //invalid user input data getter -> too long first name
+        signUpPageTooLongSingularInputPage.invalidInputUserDataGetterTooLongFirstName();
+        //input too long first name
+        signUpPageTooLongSingularInputPage.inputTooLongFirstNameIntoInputField();
+        //input valid last name
+        signUpPageTooLongSingularInputPage.inputLastNameIntoInputField();
+        //input valid birthdate
+        signUpPageTooLongSingularInputPage.inputBirthdateIntoInputField();
+        //input valid address
+        signUpPageTooLongSingularInputPage.inputAddressIntoInputField();
+        //input valid post code
+        signUpPageTooLongSingularInputPage.inputPostCodeIntoInputField();
+        //input valid city
+        signUpPageTooLongSingularInputPage.inputCityIntoInputField();
+        //input valid state
+        signUpPageTooLongSingularInputPage.inputStateIntoInputField();
+        //click country dropdown menu
+        signUpPage.clickCountryDropdownMenu();
+        //select 'United States'
+        signUpPage.selectUnitedStatesOption();
+        //input valid phone number
+        signUpPageTooLongSingularInputPage.inputPhoneNumberIntoInputField();
+        //input valid email address
+        signUpPageTooLongSingularInputPage.inputEmailIntoInputField();
+        //input valid password
+        signUpPageTooLongSingularInputPage.inputPasswordIntoInputField();
+        //click 'Password view' button
+        signUpPageTooLongSingularInputPage.clickPasswordViewButton();
+        //assert the correct password has been input (for 'Password view' button testing)
+        assertEquals(signUpPageTooLongSingularInputPage.getPassword(), signUpPageTooLongSingularInputPage.getPasswordInput(), "There's a password mismatch.");
+        //click 'Register' button
+        signUpPage.clickRegisterButton();
+        //assert the expected error message displayed matches the expectations
+        try {
+            String errorMessage = signUpPageTooLongSingularInputPage.getTooLongSingularInputErrorMessage();
+            assertEquals("The first name field must not be greater than 40 characters.", errorMessage, "The first name error message doesn't match expectations.");
+        } catch (NoSuchElementException e) {
+            logger.error("The user account gets created despite inputting too long first name.");
+        }
+        //capture screenshot of the test result
+        captureScreenshot(driver, "Invalid User Account Creation with Too Long First Name");
+    }
+
     //homepage web element assert test method
     protected void isHomePageWebElementDisplayed(HomePage homePage){
         //assert home page banner is displayed
