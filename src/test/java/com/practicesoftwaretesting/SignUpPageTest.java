@@ -458,4 +458,20 @@ public class SignUpPageTest extends TestMethods{
         //invalid user account creation test (too long last name)
         invalidUserAccountTooLongLastNameCreationTest(signUpPage);
     }
+
+    //Test 002ab -> invalid user account creation test (too long user address)
+    @Test
+    @DisplayName("Invalid User Account Creation Test - Too Long Address")
+    @Tag("Invalid_Account_Creation_Test")
+    @Tag("Too_Long_Singular_Input")
+    void invalidUserAccountTooLongAddressCreationTest(){
+        HomePage homePage = new HomePage(driver);
+        SignUpPage signUpPage = new SignUpPage(driver);
+        //navigation to user sign-up page
+        navigateToUserSignUpPageTest(homePage);
+        //test title (for logging)
+        System.out.println("Invalid User Account Creation Test - Too Long Address" + "\n");
+        //invalid user account creation test (too long address)
+        invalidUserAccountTooLongAddressCreationTest(signUpPage);
+    }
 }

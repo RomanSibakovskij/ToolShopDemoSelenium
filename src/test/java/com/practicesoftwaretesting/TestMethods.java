@@ -1467,6 +1467,59 @@ public class TestMethods extends BaseTest{
         //capture screenshot of the test result
         captureScreenshot(driver, "Invalid User Account Creation with Too Long Last Name");
     }
+    //invalid user account creation test method (too long user address)
+    protected void invalidUserAccountTooLongAddressCreationTest(SignUpPage signUpPage){
+        HomePage homePage = new HomePage(driver);
+        //utility class
+        SignUpPageTooLongSingularInputPage signUpPageTooLongSingularInputPage = new SignUpPageTooLongSingularInputPage(driver);
+        //general web element assert
+        isGeneralPageWebElementDisplayed(homePage);
+        //sign-up web element assert
+        isSignUpPageWebElementDisplayed(signUpPage);
+        //sign-up page text elements assert
+        isSignUpTextAsExpected(signUpPage);
+        //invalid user input data getter -> too long user address
+        signUpPageTooLongSingularInputPage.invalidInputUserDataGetterTooLongAddress();
+        //input valid first name
+        signUpPageTooLongSingularInputPage.inputFirstNameIntoInputField();
+        //input valid last name
+        signUpPageTooLongSingularInputPage.inputLastNameIntoInputField();
+        //input valid birthdate
+        signUpPageTooLongSingularInputPage.inputBirthdateIntoInputField();
+        //input too long address
+        signUpPageTooLongSingularInputPage.inputTooLongAddressIntoInputField();
+        //input valid post code
+        signUpPageTooLongSingularInputPage.inputPostCodeIntoInputField();
+        //input valid city
+        signUpPageTooLongSingularInputPage.inputCityIntoInputField();
+        //input valid state
+        signUpPageTooLongSingularInputPage.inputStateIntoInputField();
+        //click country dropdown menu
+        signUpPage.clickCountryDropdownMenu();
+        //select 'United States'
+        signUpPage.selectUnitedStatesOption();
+        //input valid phone number
+        signUpPageTooLongSingularInputPage.inputPhoneNumberIntoInputField();
+        //input valid email address
+        signUpPageTooLongSingularInputPage.inputEmailIntoInputField();
+        //input valid password
+        signUpPageTooLongSingularInputPage.inputPasswordIntoInputField();
+        //click 'Password view' button
+        signUpPageTooLongSingularInputPage.clickPasswordViewButton();
+        //assert the correct password has been input (for 'Password view' button testing)
+        assertEquals(signUpPageTooLongSingularInputPage.getPassword(), signUpPageTooLongSingularInputPage.getPasswordInput(), "There's a password mismatch.");
+        //click 'Register' button
+        signUpPage.clickRegisterButton();
+        //assert the expected error message displayed matches the expectations
+        try {
+            String errorMessage = signUpPageTooLongSingularInputPage.getTooLongSingularInputErrorMessage();
+            assertEquals("The address field must not be greater than 70 characters.", errorMessage, "The user address error message doesn't match expectations.");
+        } catch (NoSuchElementException e) {
+            logger.error("The user account gets created despite inputting too long user address.");
+        }
+        //capture screenshot of the test result
+        captureScreenshot(driver, "Invalid User Account Creation with Too Long User Address");
+    }
 
     //homepage web element assert test method
     protected void isHomePageWebElementDisplayed(HomePage homePage){

@@ -181,6 +181,37 @@ public class SignUpPageTooLongSingularInputPage extends BasePage{
         wait.until(ExpectedConditions.visibilityOf(lastNameInputField));
         lastNameInputField.sendKeys(tooLongLastName);
     }
+    //invalid input data getter (too long address (71 chars))
+    public void invalidInputUserDataGetterTooLongAddress(){
+        firstName = TestDataGenerator.getRandomFirstName();
+        lastName = TestDataGenerator.getRandomLastName();
+        birthdate = TestDataGenerator.generateBirthdate();
+        tooLongAddress = TestDataGenerator.generateRandomAddress(63);
+        postCode = TestDataGenerator.getRandomPostalCode();
+        city = TestDataGenerator.getRandomCity();
+        state = "Illinois";
+        phone = TestDataGenerator.generatePhoneNumber(5);
+        email = TestDataGenerator.generateRandomEmailAddress(6);
+        password = TestDataGenerator.generateRandomPassword();
+
+        System.out.println("Valid data generated for invalid user account creation (too long address): " + "\n");
+        logger.info("Valid user first name (too long address): " + firstName);
+        logger.info("Valid user last name: " + lastName);
+        logger.info("Too long user address : " + tooLongAddress);
+        logger.info("Valid user post code (too long address): " + postCode);
+        logger.info("Valid user city (too long address): " + city);
+        logger.info("Valid user state (too long address): " + state);
+        logger.info("Valid user phone number (too long address): " + phone);
+        logger.info("Valid user email (too long address): " + email);
+        logger.info("Valid user password (too long address): " + password);
+        System.out.println("\n");
+    }
+    //invalid user data input method -> too long address
+    public void inputTooLongAddressIntoInputField(){
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(575));
+        wait.until(ExpectedConditions.visibilityOf(addressInputField));
+        addressInputField.sendKeys(tooLongAddress);
+    }
 
     //password getter methods
     public String getPasswordInput(){
