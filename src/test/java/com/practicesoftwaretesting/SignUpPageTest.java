@@ -474,4 +474,20 @@ public class SignUpPageTest extends TestMethods{
         //invalid user account creation test (too long address)
         invalidUserAccountTooLongAddressCreationTest(signUpPage);
     }
+
+    //Test 002ac -> invalid user account creation test (too long user post code)
+    @Test
+    @DisplayName("Invalid User Account Creation Test - Too Long Post Code")
+    @Tag("Invalid_Account_Creation_Test")
+    @Tag("Too_Long_Singular_Input")
+    void invalidUserAccountTooLongPostCodeCreationTest(){
+        HomePage homePage = new HomePage(driver);
+        SignUpPage signUpPage = new SignUpPage(driver);
+        //navigation to user sign-up page
+        navigateToUserSignUpPageTest(homePage);
+        //test title (for logging)
+        System.out.println("Invalid User Account Creation Test - Too Long Post Code" + "\n");
+        //invalid user account creation test (too long post code)
+        invalidUserAccountTooLongPostCodeCreationTest(signUpPage);
+    }
 }

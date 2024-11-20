@@ -54,7 +54,7 @@ public class SignUpPageTooLongSingularInputPage extends BasePage{
     private String tooLongFirstName;
     private String tooLongLastName;
     private String tooLongAddress;
-    private int tooLongPostCode;
+    private String tooLongPostCode;
     private String tooLongCity;
     private String tooLongState;
     private String tooLongPhone;
@@ -211,6 +211,37 @@ public class SignUpPageTooLongSingularInputPage extends BasePage{
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(575));
         wait.until(ExpectedConditions.visibilityOf(addressInputField));
         addressInputField.sendKeys(tooLongAddress);
+    }
+    //invalid input data getter (too long post code (11 chars))
+    public void invalidInputUserDataGetterTooLongPostCode(){
+        firstName = TestDataGenerator.getRandomFirstName();
+        lastName = TestDataGenerator.getRandomLastName();
+        birthdate = TestDataGenerator.generateBirthdate();
+        address = TestDataGenerator.generateRandomAddress(6);
+        tooLongPostCode = "91432317687";
+        city = TestDataGenerator.getRandomCity();
+        state = "Illinois";
+        phone = TestDataGenerator.generatePhoneNumber(5);
+        email = TestDataGenerator.generateRandomEmailAddress(6);
+        password = TestDataGenerator.generateRandomPassword();
+
+        System.out.println("Valid data generated for invalid user account creation (too long post code): " + "\n");
+        logger.info("Valid user first name (too long post code): " + firstName);
+        logger.info("Valid user last name (too long post code): " + lastName);
+        logger.info("Valid user address (too long post code): " + address);
+        logger.info("Too long user post code: " + tooLongPostCode);
+        logger.info("Valid user city (too long post code): " + city);
+        logger.info("Valid user state (too long post code): " + state);
+        logger.info("Valid user phone number (too long post code): " + phone);
+        logger.info("Valid user email (too long post code): " + email);
+        logger.info("Valid user password (too long post code): " + password);
+        System.out.println("\n");
+    }
+    //invalid user data input method -> too long user post code
+    public void inputTooLongPostCodeIntoInputField(){
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(575));
+        wait.until(ExpectedConditions.visibilityOf(postCodeInputField));
+        postCodeInputField.sendKeys(tooLongPostCode);
     }
 
     //password getter methods
