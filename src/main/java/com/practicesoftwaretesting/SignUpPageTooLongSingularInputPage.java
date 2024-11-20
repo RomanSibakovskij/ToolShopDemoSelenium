@@ -243,6 +243,37 @@ public class SignUpPageTooLongSingularInputPage extends BasePage{
         wait.until(ExpectedConditions.visibilityOf(postCodeInputField));
         postCodeInputField.sendKeys(tooLongPostCode);
     }
+    //invalid input data getter (too long user city (41 chars))
+    public void invalidInputUserDataGetterTooLongCity(){
+        firstName = TestDataGenerator.getRandomFirstName();
+        lastName = TestDataGenerator.getRandomLastName();
+        birthdate = TestDataGenerator.generateBirthdate();
+        address = TestDataGenerator.generateRandomAddress(6);
+        postCode = TestDataGenerator.getRandomPostalCode();
+        tooLongCity = "rRYVTDsuqXdpBVIQWfMbeSZcuwlujHasdasdsaqeq";
+        state = "Illinois";
+        phone = TestDataGenerator.generatePhoneNumber(5);
+        email = TestDataGenerator.generateRandomEmailAddress(6);
+        password = TestDataGenerator.generateRandomPassword();
+
+        System.out.println("Valid data generated for invalid user account creation (too long user city): " + "\n");
+        logger.info("Valid user first name (too long user city): " + firstName);
+        logger.info("Valid user last name (too long user city): " + lastName);
+        logger.info("Valid user address (too long user city): " + address);
+        logger.info("Valid user post code (too long user city): " + postCode);
+        logger.info("Too long user city: " + tooLongCity);
+        logger.info("Valid user state (too long user city): " + state);
+        logger.info("Valid user phone number (too long user city): " + phone);
+        logger.info("Valid user email (too long user city): " + email);
+        logger.info("Valid user password (too long user city): " + password);
+        System.out.println("\n");
+    }
+    //invalid user data input method -> too long user city
+    public void inputTooLongCityIntoInputField(){
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(575));
+        wait.until(ExpectedConditions.visibilityOf(cityInputField));
+        cityInputField.sendKeys(tooLongCity);
+    }
 
     //password getter methods
     public String getPasswordInput(){
