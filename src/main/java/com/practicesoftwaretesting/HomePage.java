@@ -63,8 +63,18 @@ public class HomePage extends BasePage{
         navbarLinkElements.get(navLinkIndex).click();
     }
     //click 'Sign-in' navbar link method
-    public void clickSignInNavbarLink(){
-        clickNavbarLink(3);}
+    public void clickSignInNavbarLink(){clickNavbarLink(3);}
+    //click 'Home' navbar link method
+    public void clickHomeNavbarLink(){clickNavbarLink(0);}
+
+    //homepage navbar link click index getter
+    public void clickProductLink(int productLinkIndex) {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(720));
+        wait.until(ExpectedConditions.elementToBeClickable(productCardElements.get(productLinkIndex)));
+        productCardElements.get(productLinkIndex).click();
+    }
+    //click 'Home' navbar link method
+    public void clickBoltCuttersLink(){clickProductLink(2);}
 
     //product card data getters
     public List<String> getProductName() {

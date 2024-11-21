@@ -1975,6 +1975,27 @@ public class TestMethods extends BaseTest{
         captureScreenshot(driver, "Valid User Logout Test");
     }
 
+    //return to homepage after account creation test method
+    protected void returnToHomePageTestMethod(HomePage homePage){
+        //return to homepage
+        homePage.clickHomeNavbarLink();
+    }
+
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    //add singular product to cart tests
+
+    //add 'Bolt cutters' to cart test method
+    protected void addBoltCuttersToCartTest(){
+        HomePage homePage = new HomePage(driver);
+        //general web element assert
+        isGeneralPageWebElementDisplayed(homePage);
+        //homepage web element assert
+        isHomePageWebElementDisplayed(homePage);
+        //click 'Bolt cutters' link
+        homePage.clickBoltCuttersLink();
+    }
+
     //homepage web element assert test method
     protected void isHomePageWebElementDisplayed(HomePage homePage){
         //assert home page banner is displayed
