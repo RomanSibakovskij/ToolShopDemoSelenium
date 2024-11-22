@@ -24,8 +24,6 @@ public class SignInPage extends BasePage{
     private WebElement signInButton;
     @FindBy(xpath = "//a[@aria-label='Register your account']")
     private WebElement signUpLink;
-    @FindBy(xpath = "//a[@data-test='register-link']")
-    private WebElement signUpLinkShoppingCartForm;
     @FindBy(xpath = "//a[@aria-label='Forgot your Password?']")
     private WebElement forgotPasswordLink;
     //missing input error message
@@ -170,12 +168,6 @@ public class SignInPage extends BasePage{
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(1800));
         wait.until(ExpectedConditions.elementToBeClickable(signUpLink));
         signUpLink.click();
-    }
-    //click 'Sign-up' link method(shopping cart form)
-    public void clickSignUpShoppingCartLink(){
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(1800));
-        wait.until(ExpectedConditions.elementToBeClickable(signUpLinkShoppingCartForm));
-        signUpLinkShoppingCartForm.click();
     }
 
     //sign-in page title getter

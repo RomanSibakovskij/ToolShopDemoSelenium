@@ -58,13 +58,6 @@ public class ShoppingCartPage extends BasePage{
         return productTotalPrice;
     }
 
-    //click 'Proceed to checkout' button method
-    public void clickProceedCheckoutButton(){
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(800));
-        wait.until(ExpectedConditions.elementToBeClickable(proceedToCheckoutButton));
-        proceedToCheckoutButton.click();
-    }
-
     //shopping cart page web element assert methods
     public boolean isStepsIndicatorDisplayed() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(800));

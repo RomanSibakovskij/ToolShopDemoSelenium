@@ -15,8 +15,6 @@ public class HomePage extends BasePage{
     private WebElement brandLogo;
     private List<WebElement> navbarLinkElements = driver.findElements(By.xpath("//div[@id='navbarSupportedContent']/ul[@role='menubar']/li/a"));
     //home nav link element
-    @FindBy(xpath = "ul[@role='menubar']/li[1]")
-    private WebElement homeNavLink;
     @FindBy(xpath = "//button[@id='language']")
     private WebElement navbarLanguageDropdownMenu;
     //banner element
@@ -74,15 +72,6 @@ public class HomePage extends BasePage{
     public void clickBrandLogoLink() {
         brandLogo.click();
     }
-
-    //homepage navbar link click index getter
-    public void clickProductLink(int productLinkIndex) {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(900));
-        wait.until(ExpectedConditions.elementToBeClickable(productCardElements.get(productLinkIndex)));
-        productCardElements.get(productLinkIndex).click();
-    }
-    //click 'Home' navbar link method
-    public void clickBoltCuttersLink(){clickProductLink(2);}
 
     //click 'Bolt cutters' card method //due to the instability of Selenium test runs, single element is used, not the one from the list
     public void clickBoltCuttersCard() {
