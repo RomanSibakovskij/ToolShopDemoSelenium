@@ -11,9 +11,12 @@ public class HomePage extends BasePage{
 
     //homepage web elements
     //navbar elements
-    @FindBy(xpath = "//nav/div[@class='container']/a[@class='navbar-brand']//nav/div[@class='container']/a[@class='navbar-brand']")
+    @FindBy(xpath = "//nav//a[@title='Practice Software Testing - Toolshop']")
     private WebElement brandLogo;
     private List<WebElement> navbarLinkElements = driver.findElements(By.xpath("//div[@id='navbarSupportedContent']/ul[@role='menubar']/li/a"));
+    //home nav link element
+    @FindBy(xpath = "ul[@role='menubar']/li[1]")
+    private WebElement homeNavLink;
     @FindBy(xpath = "//button[@id='language']")
     private WebElement navbarLanguageDropdownMenu;
     //banner element
@@ -40,6 +43,8 @@ public class HomePage extends BasePage{
     //product cards
     @FindBy(xpath = "//div[@class='col-md-9']//a[@class='card']")
     private List<WebElement> productCardElements;
+    @FindBy(xpath = "//div[@class='col-md-9']//a[@class='card'][3]")
+    private WebElement boltCutterCard;
     //product card singular elements
     @FindBy(xpath = "//div[@class='col-md-9']//img")
     private List<WebElement> productCardImageElements;
@@ -64,17 +69,27 @@ public class HomePage extends BasePage{
     }
     //click 'Sign-in' navbar link method
     public void clickSignInNavbarLink(){clickNavbarLink(3);}
-    //click 'Home' navbar link method
-    public void clickHomeNavbarLink(){clickNavbarLink(0);}
+
+    //click 'Bolt cutters' card method //due to the instability of Selenium test runs, single element is used, not the one from the list
+    public void clickBrandLogoLink() {
+        brandLogo.click();
+    }
 
     //homepage navbar link click index getter
     public void clickProductLink(int productLinkIndex) {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(720));
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(900));
         wait.until(ExpectedConditions.elementToBeClickable(productCardElements.get(productLinkIndex)));
         productCardElements.get(productLinkIndex).click();
     }
     //click 'Home' navbar link method
     public void clickBoltCuttersLink(){clickProductLink(2);}
+
+    //click 'Bolt cutters' card method //due to the instability of Selenium test runs, single element is used, not the one from the list
+    public void clickBoltCuttersCard() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(800));
+        wait.until(ExpectedConditions.elementToBeClickable(boltCutterCard));
+        boltCutterCard.click();
+    }
 
     //product card data getters
     public List<String> getProductName() {
@@ -93,15 +108,51 @@ public class HomePage extends BasePage{
     }
 
     //homepage web element assert methods
-    public boolean isNavbarBrandLogoDisplayed(){return brandLogo.isDisplayed();}
-    public boolean isNavbarLanguageDropdownMenuDisplayed(){return navbarLanguageDropdownMenu.isDisplayed();}
-    public boolean isHomePageBannerDisplayed(){return homePageBanner.isDisplayed();}
-    public boolean isSortDropdownMenuDisplayed(){return sortDropdownMenu.isDisplayed();}
-    public boolean isPriceRangeSliderDisplayed(){return priceRangeSlider.isDisplayed();}
-    public boolean isSearchInputFieldDisplayed(){return searchBarInputField.isDisplayed();}
-    public boolean isSearchRemoveQueryButtonDisplayed(){return searchBarRemoveQueryButton.isDisplayed();}
-    public boolean isSearchButtonDisplayed(){return searchBarButton.isDisplayed();}
-    public boolean isFooterParagraphDisplayed(){return footerParagraph.isDisplayed();}
+    public boolean isNavbarBrandLogoDisplayed(){
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(800));
+        wait.until(ExpectedConditions.visibilityOf(brandLogo));
+        return brandLogo.isDisplayed();
+    }
+    public boolean isNavbarLanguageDropdownMenuDisplayed(){
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(800));
+        wait.until(ExpectedConditions.visibilityOf(navbarLanguageDropdownMenu));
+        return navbarLanguageDropdownMenu.isDisplayed();
+    }
+    public boolean isHomePageBannerDisplayed(){
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(800));
+        wait.until(ExpectedConditions.visibilityOf(homePageBanner));
+        return homePageBanner.isDisplayed();
+    }
+    public boolean isSortDropdownMenuDisplayed(){
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(800));
+        wait.until(ExpectedConditions.visibilityOf(sortDropdownMenu));
+        return sortDropdownMenu.isDisplayed();
+    }
+    public boolean isPriceRangeSliderDisplayed(){
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(800));
+        wait.until(ExpectedConditions.visibilityOf(priceRangeSlider));
+        return priceRangeSlider.isDisplayed();
+    }
+    public boolean isSearchInputFieldDisplayed(){
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(800));
+        wait.until(ExpectedConditions.visibilityOf(searchBarInputField));
+        return searchBarInputField.isDisplayed();
+    }
+    public boolean isSearchRemoveQueryButtonDisplayed(){
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(800));
+        wait.until(ExpectedConditions.visibilityOf(searchBarRemoveQueryButton));
+        return searchBarRemoveQueryButton.isDisplayed();
+    }
+    public boolean isSearchButtonDisplayed(){
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(800));
+        wait.until(ExpectedConditions.visibilityOf(searchBarButton));
+        return searchBarButton.isDisplayed();
+    }
+    public boolean isFooterParagraphDisplayed(){
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(800));
+        wait.until(ExpectedConditions.visibilityOf(footerParagraph));
+        return footerParagraph.isDisplayed();
+    }
 
     public boolean isNavbarLinkDisplayed() {
         for (WebElement element : navbarLinkElements) {

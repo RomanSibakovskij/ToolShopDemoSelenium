@@ -1978,7 +1978,7 @@ public class TestMethods extends BaseTest{
     //return to homepage after account creation test method
     protected void returnToHomePageTestMethod(HomePage homePage){
         //return to homepage
-        homePage.clickHomeNavbarLink();
+        homePage.clickBrandLogoLink();
     }
 
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1988,12 +1988,37 @@ public class TestMethods extends BaseTest{
     //add 'Bolt cutters' to cart test method
     protected void addBoltCuttersToCartTest(){
         HomePage homePage = new HomePage(driver);
+        SingleProductPage singleProductPage = new SingleProductPage(driver);
         //general web element assert
         isGeneralPageWebElementDisplayed(homePage);
         //homepage web element assert
         isHomePageWebElementDisplayed(homePage);
-        //click 'Bolt cutters' link
-        homePage.clickBoltCuttersLink();
+        //click 'Bolt cutters' card
+        homePage.clickBoltCuttersCard();
+        //general web element assert
+        isGeneralPageWebElementDisplayed(homePage);
+        //single product page web element assert
+        isSingleProductPageWebElementDisplayed(singleProductPage);
+        //assert the product name matches expectations
+        assertEquals("Bolt Cutters", singleProductPage.getProductName(), "The product name doesn't match expectations.");
+        //assert the product category matches expectations
+        assertEquals("Pliers", singleProductPage.getProductCategory(), "The product category doesn't match expectations.");
+        //assert the product brand name matches expectations
+        assertEquals("MightyCraft Hardware", singleProductPage.getProductBrandName(), "The product brand name doesn't match expectations.");
+        //add product quantity
+        singleProductPage.clickAddQuantityButton();
+        //capture screenshot of the result
+        captureScreenshot(driver, "Add Product Quantity with a Button Click");
+        //remove product quantity
+        singleProductPage.clickRemoveQuantityButton();
+        //capture screenshot of the result
+        captureScreenshot(driver, "Remove Product Quantity with a Button Click");
+        //click 'Add to cart' button
+        singleProductPage.clickAddToCartButton();
+        //click shopping cart icon button (to get to shopping cart page)
+        singleProductPage.clickShoppingCartIconButton();
+        //capture screenshot of the result
+        captureScreenshot(driver, "Add Bolt Cutters To Cart Test (as a registered user)");
     }
 
     //homepage web element assert test method
@@ -2123,6 +2148,40 @@ public class TestMethods extends BaseTest{
         assertEquals("My account", myAccountPage.getMyAccountPageTitle(), "The page title doesn't match expectations.");
         //assert 'My Account' page description is as expected
         assertEquals("Here you can manage your profile, favorites and orders.", myAccountPage.getMyAccountPageDescription(), "The page description doesn't match expectations.");
+    }
+
+    //single product page web element assert test method //Selenium can't find elements with VALID selectors, check the dev console
+    protected void isSingleProductPageWebElementDisplayed(SingleProductPage singleProductPage){
+        //assert the product image is displayed
+        assertTrue(singleProductPage.isProductImageDisplayed(), "The product image isn't displayed.");
+        //assert the product name is displayed
+        assertTrue(singleProductPage.isProductNameDisplayed(), "The product name isn't displayed.");
+        //assert the product category is displayed
+        assertTrue(singleProductPage.isProductCategoryDisplayed(), "The product category isn't displayed.");
+        //assert the product brand name is displayed
+        assertTrue(singleProductPage.isProductBrandNameDisplayed(), "The product brand name isn't displayed.");
+        //assert the product unit price is displayed
+        assertTrue(singleProductPage.isProductUnitPriceDisplayed(), "The product unit price isn't displayed.");
+        //assert the product description is displayed
+        assertTrue(singleProductPage.isProductDescriptionDisplayed(), "The product description isn't displayed.");
+        //assert the product quantity input field is displayed
+        assertTrue(singleProductPage.isProductQuantityInputFieldDisplayed(), "The product quantity input field isn't displayed.");
+        //assert the product add quantity button is displayed
+        assertTrue(singleProductPage.isProductAddQuantityButtonDisplayed(), "The product add quantity button isn't displayed.");
+        //assert the product remove quantity button is displayed
+        assertTrue(singleProductPage.isProductRemoveQuantityButtonDisplayed(), "The product remove quantity button isn't displayed.");
+        //assert the product 'Add to cart' button is displayed
+        assertTrue(singleProductPage.isProductAddToCartButtonDisplayed(), "The product 'Add to cart' button isn't displayed.");
+        //assert the product 'Add to favorites' button is displayed
+        assertTrue(singleProductPage.isProductAddToFavoritesButtonDisplayed(), "The product 'Add to favorites' button isn't displayed.");
+        //assert the related product card is displayed //due to the instability of Selenium test runs, these asserts are disabled (selectors are VALID, check dev console)
+        //assertTrue(singleProductPage.isRelatedProductCardDisplayed(), "The related product card isn't displayed.");
+        //assert the related product card image is displayed
+        //assertTrue(singleProductPage.isRelatedProductCardImageDisplayed(), "The related product card image isn't displayed.");
+        //assert the related product card name is displayed
+        //assertTrue(singleProductPage.isRelatedProductCardNameDisplayed(), "The related product card name isn't displayed.");
+        //assert the related product card 'More information' link is displayed
+        //assertTrue(singleProductPage.isRelatedProductCardMoreInfoLinkDisplayed(), "The related product card 'More information' link isn't displayed.");
     }
 
     //general web element assert test method

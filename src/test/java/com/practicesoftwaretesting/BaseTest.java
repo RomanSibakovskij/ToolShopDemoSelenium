@@ -14,6 +14,8 @@ public class BaseTest {
     @BeforeEach
     void setUp(){
         FirefoxOptions options = new FirefoxOptions();
+        FirefoxProfile profile = new FirefoxProfile();
+        profile.setPreference("signon.rememberSignons", false);
         options.addArguments("--disable-search-engine-choice-screen"); // For browser run
         //options.addArguments("--headless", "--disable-gpu", "--window-size=1920,1080"); // Necessary for CI run, uncomment when needed
         driver = new FirefoxDriver(options);

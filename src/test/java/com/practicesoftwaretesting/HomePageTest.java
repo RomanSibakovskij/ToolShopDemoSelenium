@@ -24,6 +24,8 @@ public class HomePageTest extends TestMethods{
         navigateToUserSignUpPageTest(homePage);
         //valid user account creation test
         createValidUserAccountTest(signUpPage);
+        //valid user login test
+        validUserSignInTest(signUpPage);
         //return to homepage test
         returnToHomePageTestMethod(homePage);
         //test title (for logging)
