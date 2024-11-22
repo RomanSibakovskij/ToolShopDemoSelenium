@@ -69,7 +69,7 @@ public class TestMethods extends BaseTest{
         signUpPage.inputPasswordIntoInputField();
         //click 'Register' button
         signUpPage.clickRegisterButton();
-        SignInPage signInPage = new SignInPage(driver);
+        //SignInPage signInPage = new SignInPage(driver);
         //assert the user gets back onto "Sign-in' page - there's no message confirmation for account creation (for some reason Selenium displays "Customer Registration" instead of "Login" => the actual user visually gets there though
 //        assertEquals("Login", signInPage.getSignInPageTitle(), "The sign-in page title doesn't match expectations or the user is on the wrong page.");
         //capture screenshot of the test result
@@ -1960,7 +1960,6 @@ public class TestMethods extends BaseTest{
     //user logout test method
     protected void userSignOutTest(MyAccountPage myAccountPage){
         HomePage homePage = new HomePage(driver);
-        SignInPage signInPage = new SignInPage(driver);
         //general web element assert
         isGeneralPageWebElementDisplayed(homePage);
         //my account web element assert
@@ -1979,6 +1978,8 @@ public class TestMethods extends BaseTest{
     protected void returnToHomePageTestMethod(HomePage homePage){
         //return to homepage
         homePage.clickBrandLogoLink();
+        //capture screenshot of the fatal page bug (the user gets logged out somehow, later on it's impossible to re-login back since the database doesn't keep user data for longer than 20-30 seconds)
+        captureScreenshot(driver, "The User Gets Logged Out Somehow (fatal bug, further testing is imprudent)");
     }
 
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -2018,8 +2019,12 @@ public class TestMethods extends BaseTest{
         singleProductPage.clickAddToCartButton();
         //click shopping cart icon button (to get to shopping cart page)
         singleProductPage.clickShoppingCartIconButton();
+        //shopping cart web element assert
+        isShoppingCartWebElementDisplayed(shoppingCartPage);
+        //log shopping cart data
+        logShoppingCartData(shoppingCartPage);
         //capture screenshot of the result
-        captureScreenshot(driver, "Add Bolt Cutters To Cart Test (as a registered user)");
+        captureScreenshot(driver, "Add Bolt Cutters To Cart Test (as a logged out for no reason user (fatal webpage bug)");
     }
 
     //homepage web element assert test method
@@ -2151,7 +2156,7 @@ public class TestMethods extends BaseTest{
         assertEquals("Here you can manage your profile, favorites and orders.", myAccountPage.getMyAccountPageDescription(), "The page description doesn't match expectations.");
     }
 
-    //single product page web element assert test method //Selenium can't find elements with VALID selectors, check the dev console
+    //single product page web element assert test method
     protected void isSingleProductPageWebElementDisplayed(SingleProductPage singleProductPage){
         //assert the product image is displayed
         assertTrue(singleProductPage.isProductImageDisplayed(), "The product image isn't displayed.");
@@ -2183,6 +2188,32 @@ public class TestMethods extends BaseTest{
         //assertTrue(singleProductPage.isRelatedProductCardNameDisplayed(), "The related product card name isn't displayed.");
         //assert the related product card 'More information' link is displayed
         //assertTrue(singleProductPage.isRelatedProductCardMoreInfoLinkDisplayed(), "The related product card 'More information' link isn't displayed.");
+    }
+    //shopping cart page web element assert test method
+    protected void isShoppingCartWebElementDisplayed(ShoppingCartPage shoppingCartPage){
+        //assert steps indicator is displayed
+        assertTrue(shoppingCartPage.isStepsIndicatorDisplayed(), "The shopping cart steps indicator isn't displayed.");
+        //assert 'proceed to checkout' button is displayed
+        assertTrue(shoppingCartPage.isProceedToCheckoutButtonDisplayed(), "The 'Proceed to checkout' button isn't displayed.");
+        //assert product name is displayed
+        assertTrue(shoppingCartPage.isAddedToCartProductNameDisplayed(), "The product name isn't displayed.");
+        //assert product quantity is displayed
+        assertTrue(shoppingCartPage.isAddedToCartProductQuantityInputFieldDisplayed(), "The product quantity isn't displayed.");
+        //assert product unit price is displayed
+        assertTrue(shoppingCartPage.isAddedToCartProductUnitPriceDisplayed(), "The product unit price isn't displayed.");
+        //assert product total price is displayed
+        assertTrue(shoppingCartPage.isAddedToCartProductTotalPriceDisplayed(), "The product total price isn't displayed.");
+        //assert remove product button is displayed
+        assertTrue(shoppingCartPage.isAddedToCartProductRemoveButtonDisplayed(), "The remove product button isn't displayed.");
+    }
+
+    //shopping cart product data logger method
+    protected void logShoppingCartData(ShoppingCartPage shoppingCartPage){
+        System.out.println("Displayed products in shopping cart: " + "\n");
+        logger.info("Product name: " + shoppingCartPage.getProductName());
+        logger.info("Product quantity: " + shoppingCartPage.getProductQuantity());
+        logger.info("Product unit price: " + shoppingCartPage.getProductUnitPrice());
+        logger.info("Product total price: " + shoppingCartPage.getProductTotalPrice());
     }
 
     //general web element assert test method

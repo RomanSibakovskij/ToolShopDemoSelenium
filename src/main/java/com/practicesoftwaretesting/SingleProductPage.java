@@ -6,7 +6,6 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
-import java.util.ArrayList;
 import java.util.List;
 
 public class SingleProductPage extends BasePage{
@@ -69,7 +68,7 @@ public class SingleProductPage extends BasePage{
 
     //click shopping cart icon button method
     public void clickShoppingCartIconButton() {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(800));
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(900));
         wait.until(ExpectedConditions.elementToBeClickable(shoppingCartIconButton));
         shoppingCartIconButton.click();
     }
